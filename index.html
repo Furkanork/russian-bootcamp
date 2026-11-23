@@ -6,6 +6,8 @@
 <title>Russian A2→B1 Bootcamp</title>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#16110e">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-12 -12 24 24'%3E%3Crect x='-12' y='-12' width='24' height='24' rx='4' fill='%23c8161d'/%3E%3Cpath transform='translate(0 1)' d='M0,-10 L2.35,-3.24 L9.51,-3.09 L3.8,1.24 L5.88,8.09 L0,4 L-5.88,8.09 L-3.8,1.24 L-9.51,-3.09 L-2.35,-3.24Z' fill='%23f0b323'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -36,6 +38,7 @@
 --bad:light-dark(#b3141a,#ff7b72)}
 :root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
 *{box-sizing:border-box;min-width:0}
+[hidden]{display:none!important}
 html{scroll-behavior:smooth;scroll-padding-top:66px}
 body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "PT Sans",system-ui,sans-serif;overflow-x:clip}
 h1,h2,h3{font-family:Oswald,"Arial Narrow",sans-serif;font-weight:700;line-height:1.05;text-transform:uppercase;text-wrap:balance;margin:0}
@@ -167,13 +170,56 @@ td em{font-style:normal;color:var(--redt);font-weight:700}
 .say{width:44px;height:44px;border-radius:50%;border:0;background:var(--gold);color:var(--blk);cursor:pointer;display:inline-grid;place-items:center;flex:none}
 .face .say{position:absolute;top:10px;right:10px;background:var(--blk);color:var(--gold)}
 .ctl{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
-.ctl .btn{flex:1 1 90px;padding:0 10px}
+.ctl .btn{flex:1 1 90px;padding:0 8px;font-size:14px;white-space:nowrap}
 .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0}
 .stats div{background:rgba(0,0,0,.22);padding:10px 14px}
 .stats b{display:block;font:700 32px Oswald,sans-serif}
 .stats span{font-size:14px}
 select{min-height:44px;font:16px "PT Sans",sans-serif;padding:0 12px;border:2px solid #fff;background:transparent;color:#fff;width:100%;border-radius:0}
 select option{color:#1a1411}
+/* today */
+.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:10px}
+.tc{background:#211b17;border-top:6px solid var(--red);padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.tc.ok{border-top-color:var(--gold)}
+.tc b{font:700 30px/1.1 Oswald,sans-serif;color:var(--gold)}
+.tc span{font-size:15px;color:#d8ccbb}
+.tc .btn{margin-top:auto;color:#f2eadb}
+.cell.now{border-color:var(--gold)}
+/* drill controls */
+.seg{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dbtn{min-height:44px;padding:0 14px;border:2px solid #fff;background:transparent;color:#fff;font:600 15px Oswald,sans-serif;text-transform:uppercase;cursor:pointer}
+.dbtn[aria-pressed=true]{background:var(--gold);border-color:var(--gold);color:var(--blk)}
+.caprow{display:grid;grid-template-columns:auto 6em minmax(0,1fr);gap:10px;align-items:center;margin-bottom:12px;font-size:15px}
+.face .rev{color:#1a1411;font-size:14px;margin-top:12px}
+.wl .rv{margin-left:6px;color:var(--soft);text-decoration:none}
+/* voice */
+.voice{display:grid;grid-template-columns:auto minmax(0,1.4fr) auto minmax(0,1fr) auto;gap:10px;align-items:center;margin-bottom:8px}
+.voice select{border-color:var(--ink);color:var(--ink);background:var(--card)}
+.voice input{accent-color:var(--red);width:100%}
+/* speak + write */
+.chk{list-style:none;padding:0;margin:12px 0;display:grid;gap:6px}
+.chk label{display:flex;gap:8px;align-items:flex-start;font-size:15px;cursor:pointer}
+.chk input{accent-color:var(--red);width:18px;height:18px;margin-top:2px;flex:none}
+.timer{font:700 clamp(48px,8vw,72px)/1 Oswald,sans-serif;color:var(--gold);margin:12px 0}
+textarea{width:100%;font:16px/1.5 "PT Sans",sans-serif;padding:10px 12px;border:2px solid #6b5f55;background:#14110f;color:#f2eadb;border-radius:0;resize:vertical}
+#backup textarea{background:var(--card);color:var(--ink);border-color:var(--ink)}
+.model{white-space:pre-line;background:#14110f;border-left:6px solid var(--gold);padding:12px 14px;margin-top:12px;font-size:16px}
+.model[hidden]{display:none}
+#speak select{margin:8px 0 12px}
+.subq{margin:6px 0 0;padding-left:20px;color:#d8ccbb;font-size:15.5px}
+/* mock exam */
+.mpart{background:var(--card);border:1px solid var(--line);padding:clamp(16px,3vw,26px);margin-bottom:16px}
+.mpart h3{margin-bottom:8px}
+.mtext{background:var(--paper);padding:12px 16px;border-left:6px solid var(--red);margin:10px 0}
+.mq{border-top:1px dashed var(--line);padding:12px 0}
+.mq>p{font-weight:700;margin:0 0 6px}
+.mo{display:flex;gap:10px;align-items:center;padding:6px 12px;border:2px solid var(--line);margin:6px 0;cursor:pointer;font-size:16px;min-height:44px}
+.mo input{accent-color:var(--red);width:18px;height:18px;flex:none}
+.mo.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent)}
+.mo.no{border-color:var(--bad)}
+.mbar{position:sticky;top:60px;z-index:5;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--blk);color:#f2eadb;padding:10px 14px;margin-bottom:14px}
+.mbar b{font:700 22px Oswald,sans-serif;color:var(--gold)}
+.pass{color:var(--ok);font-weight:700}.fail{color:var(--bad);font-weight:700}
 /* coverage + word list */
 .cov{background:rgba(0,0,0,.22);padding:14px 16px;margin:16px 0}
 .cov .big{font:700 clamp(40px,6vw,58px)/1 Oswald,sans-serif;color:var(--gold)}
@@ -264,7 +310,7 @@ footer{background:var(--blk);color:#c9bdac;font-size:14px}
 footer .wrap{display:flex;flex-wrap:wrap;gap:10px 32px;justify-content:space-between}
 @media(max-width:980px){.weeks{grid-template-columns:repeat(2,minmax(0,1fr))}.hero .top{grid-template-columns:1fr}.ex5{grid-template-columns:repeat(2,minmax(0,1fr))}.rules{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){.cols,.dgrid,.fac,.norm,.two{grid-template-columns:1fr}.ns{grid-template-columns:repeat(auto-fit,minmax(9em,1fr))}.ns .btn{grid-column:1/-1}.ns b{font-size:28px}}
-@media(max-width:600px){.tg{grid-template-columns:1fr;gap:4px}.tg>span{padding-top:0}.tab{padding:0 11px;font-size:14px}.wtools{grid-template-columns:1fr 1fr}.wtools input{grid-column:1/-1}.weeks,.rules{grid-template-columns:1fr}.opts{grid-template-columns:1fr}.row{grid-template-columns:7.5em minmax(0,1fr) 3.4em}table{font-size:14px}th,td{padding:8px}.card{height:290px}.logo{font-size:18px}.links a{padding:8px 8px;font-size:14px}.nr{grid-template-columns:3em repeat(7,minmax(0,1fr));gap:4px}.abc{grid-template-columns:repeat(auto-fill,minmax(76px,1fr))}.lt b{font-size:26px}.rank svg{width:76px;height:76px}}
+@media(max-width:600px){.voice{grid-template-columns:1fr 1fr}.voice select{grid-column:1/-1}.caprow{grid-template-columns:auto 6em}.caprow span{grid-column:1/-1}.tg{grid-template-columns:1fr;gap:4px}.tg>span{padding-top:0}.tab{padding:0 11px;font-size:14px}.wtools{grid-template-columns:1fr 1fr}.wtools input{grid-column:1/-1}.weeks,.rules{grid-template-columns:1fr}.opts{grid-template-columns:1fr}.row{grid-template-columns:7.5em minmax(0,1fr) 3.4em}table{font-size:14px}th,td{padding:8px}.card{height:290px}.logo{font-size:18px}.links a{padding:8px 8px;font-size:14px}.nr{grid-template-columns:3em repeat(7,minmax(0,1fr));gap:4px}.abc{grid-template-columns:repeat(auto-fill,minmax(76px,1fr))}.lt b{font-size:26px}.rank svg{width:76px;height:76px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -275,7 +321,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 32px;justify-content:space-bet
 <a class="logo" href="#top"><svg width="22" height="22" viewBox="-11 -11 22 22"><use href="#star" fill="#c8161d"/></svg>РЫВОК</a>
 <button class="btn gold" id="install" type="button" hidden style="min-height:36px;padding:0 12px;font-size:14px;flex:none">Install</button>
 <div class="links">
-<a href="#manifesto">Manifesto</a><a href="#norm">Daily norm</a><a href="#plan">Plan</a><a href="#abc">Alphabet</a><a href="#grammar">Grammar</a><a href="#words">Words</a><a href="#list">Word list</a><a href="#factory">Case factory</a><a href="#paper">Reading</a><a href="#phrases">Phrases</a><a href="#test">Test</a><a href="#exam">Exam</a>
+<a href="#today">Today</a><a href="#manifesto">Manifesto</a><a href="#plan">Plan</a><a href="#norm">Daily norm</a><a href="#abc">Alphabet</a><a href="#grammar">Grammar</a><a href="#words">Words</a><a href="#list">Word list</a><a href="#factory">Case factory</a><a href="#verbs">Verbs</a><a href="#paper">Reading</a><a href="#phrases">Phrases</a><a href="#speak">Speak &amp; write</a><a href="#test">Test</a><a href="#mock">Mock exam</a><a href="#exam">Exam</a><a href="#backup">Backup</a>
 </div></div></nav>
 
 <header class="hero band" id="top">
@@ -298,6 +344,14 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 32px;justify-content:space-bet
 <div class="fig" id="curve" role="img" aria-label="Production chart: about 2,000 words cover roughly 80 percent of everyday Russian text"><svg id="cs"></svg></div>
 <div class="note">Approximate share of everyday Russian text covered by the most frequent words (dictionary forms), rounded from published frequency lists; exact numbers vary by corpus. The white dot is you, based on the words you mark as known.</div>
 </div></header>
+
+<section class="band dark" id="today"><div class="wrap">
+<div class="ruh">Сегодня</div>
+<h2 id="tTitle">Today</h2>
+<p class="lead">Your plan for today, worked out from your progress. Work through the cards from left to right.</p>
+<div class="tgrid" id="tgrid"></div>
+<div class="wbtn" style="margin-top:14px"><button class="btn" id="tRestart" type="button" style="color:#f2eadb">Restart the plan at week 1 today</button></div>
+</div></section>
 
 <section class="band" id="manifesto"><div class="wrap">
 <div class="ruh">Манифест 80/20</div>
@@ -331,7 +385,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 32px;justify-content:space-bet
 <div>
 <div class="ruh">Дневная норма</div>
 <h2>Fulfil the daily norm</h2>
-<p class="lead">One square per day: 56 days, 8 weeks. Tap a square when you have done your 60 minutes. Consistency beats intensity.</p>
+<p class="lead">One square per day: 56 days, 8 weeks. Today’s square has a gold border. It fills in by itself once you have answered 30 flashcards today, and you can also tap any square. Consistency beats intensity.</p>
 <div class="ng" id="ng"></div>
 </div>
 <div class="ns">
@@ -711,15 +765,19 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 32px;justify-content:space-bet
 <div class="card" id="card" tabindex="0" role="button" aria-label="Flashcard, tap to flip">
 <div class="in">
 <div class="face front"><span class="cat" id="cCat"></span><button class="say" id="say1" type="button" aria-label="Pronounce"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg></button><div class="big" id="cRu"></div><span class="hint">Tap to see the meaning</span></div>
-<div class="face back"><div class="tr" id="cEn"></div><div class="ex" id="cEx"></div><span class="hint">Tap to flip back</span></div>
+<div class="face back"><button class="say" id="say2" type="button" aria-label="Pronounce"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg></button><div class="tr" id="cEn"></div><div class="ex" id="cEx"></div><a id="cRev" class="rev" target="_blank" rel="noopener" hidden>More examples in context ↗</a><span class="hint">Tap to flip back</span></div>
 </div></div>
-<div class="ctl"><button class="btn" id="again" type="button">Again</button><button class="btn gold" id="know" type="button">Good</button><button class="btn" id="easy" type="button">Easy</button></div>
+<form class="inrow" id="pRow" hidden autocomplete="off" style="margin-top:24px"><input id="pIn" lang="ru" autocapitalize="off" spellcheck="false" placeholder="Type the Russian word…" aria-label="Russian word"><button class="btn gold" type="submit">Check</button></form>
+<div id="pFb" aria-live="polite" style="min-height:24px;margin-top:8px;font-weight:700"></div>
+<div class="ctl" style="margin-top:10px"><button class="btn" id="again" type="button">Again</button><button class="btn gold" id="know" type="button">Good</button><button class="btn" id="easy" type="button">Easy</button></div>
 </div>
 <div>
 <div class="ruh">Слова</div>
 <h2>Core word drill</h2>
-<p class="lead" style="margin-bottom:0">The <b id="nAll">2,000</b> most frequent Russian words in five frequency bands, plus themed decks with example sentences. Spaced repetition brings each word back just before you would forget it: after 1, 3, 7, 16, 35 and 90 days. Start each day with “Reviews due today”, then learn new words.</p>
+<p class="lead" style="margin-bottom:0">The <b id="nAll">2,000</b> most frequent Russian words in five frequency bands, plus themed decks with example sentences. Spaced repetition brings each word back just before you would forget it: after 1, 3, 7, 16, 35 and 90 days. Start each day with “Reviews due today”, then learn new words. Switch to English → Russian to practise producing the words you have learned: that is what speaking needs.</p>
 <div class="cov" aria-live="polite"><div class="big" id="covPct">0%</div><div class="bar"><i id="covBar"></i><b id="covMax"></b></div><small id="covTxt">of everyday text covered by the words you know</small></div>
+<div class="seg" role="group" aria-label="Direction"><button type="button" class="dbtn" id="dirR" aria-pressed="true">Russian → English</button><button type="button" class="dbtn" id="dirP" aria-pressed="false">English → Russian</button></div>
+<div class="caprow"><label for="capSel">New words per day</label><select id="capSel"><option>15</option><option>25</option><option>35</option><option>50</option><option>100</option></select><span id="newToday"></span></div>
 <label for="cat" style="font-size:15px">Deck</label>
 <select id="cat"></select>
 <div class="stats"><div><b id="sLeft">0</b><span>in this session</span></div><div><b id="sKnown">0</b><span>due today</span></div><div><b id="sTotal">0</b><span>words learned</span></div></div>
@@ -730,7 +788,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 32px;justify-content:space-bet
 <section class="band alt" id="list"><div class="wrap">
 <div class="ruh">Словарь: 80/20</div>
 <h2>The frequency word list</h2>
-<p class="lead">Ranked roughly by how often each word appears in everyday Russian. Ticking a word marks it as learned; it comes back for a check-up review in 16 days. The top 100 alone, mostly little words like и, в, не, это, make up around 40% of what you read and hear. Tick the words you already know so your coverage meter and the chart at the top are accurate. Ranks are approximate.</p>
+<p class="lead">Ranked roughly by how often each word appears in everyday Russian. Ticking a word marks it as learned; it comes back for a check-up review in 16 days. Tap ↗ beside a word to see it in real sentences. The top 100 alone, mostly little words like и, в, не, это, make up around 40% of what you read and hear. Tick the words you already know so your coverage meter and the chart at the top are accurate. Ranks are approximate.</p>
 <div class="bands" id="bands"></div>
 <div class="wtools"><input id="wq" type="search" placeholder="Search Russian or English…" aria-label="Search words"><select id="wb" aria-label="Frequency band"></select><select id="wf" aria-label="Show"><option value="all">All words</option><option value="new">Not known yet</option><option value="known">Known</option></select></div>
 <div class="wbtn"><button class="btn" type="button" id="wAll">Mark shown as known</button><button class="btn" type="button" id="wNone">Unmark shown</button><span id="wCount"></span></div>
@@ -764,6 +822,28 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 32px;justify-content:space-bet
 </div>
 </div></section>
 
+<section class="band" id="verbs"><div class="wrap">
+<div class="ruh">Завод глаголов</div>
+<h2>The verb factory</h2>
+<p class="lead">Production drills for everything the case factory doesn’t cover: present and past forms, aspect, motion verbs and plurals. Type answers with a Russian keyboard; stress marks are not needed and е counts for ё.</p>
+<div class="tabs" id="vtabs" style="margin-bottom:16px">
+<button class="tab" type="button" data-m="conj" aria-selected="true">Present tense</button>
+<button class="tab" type="button" data-m="past" aria-selected="false">Past tense</button>
+<button class="tab" type="button" data-m="asp" aria-selected="false">Aspect</button>
+<button class="tab" type="button" data-m="mot" aria-selected="false">Motion verbs</button>
+<button class="tab" type="button" data-m="plur" aria-selected="false">Plurals</button>
+</div>
+<div class="q" id="vq">
+<div class="meta"><span id="vMode"></span><span id="vScore">0 correct</span></div>
+<div class="stem" id="vPr"></div>
+<div style="color:var(--soft);font-size:15px;margin-bottom:12px" id="vGl"></div>
+<form class="inrow" id="vForm" autocomplete="off"><input id="vIn" lang="ru" autocapitalize="off" spellcheck="false" placeholder="Type the form…" aria-label="Your answer" style="flex:1 1 200px;min-height:50px;font:20px 'PT Sans',sans-serif;padding:0 14px;border:2px solid var(--ink);background:var(--bg);color:var(--ink);border-radius:0"><button class="btn red" type="submit">Check</button></form>
+<div class="opts" id="vOpts" hidden></div>
+<div class="why" id="vFb" aria-live="polite">&nbsp;</div>
+<div class="inrow"><button class="btn" type="button" id="vShow">Show answer</button><button class="btn red" type="button" id="vNext">Next</button></div>
+</div>
+</div></section>
+
 <section class="band alt" id="paper"><div class="wrap">
 <div class="ruh">Чтение</div>
 <h2>Read the bootcamp gazette</h2>
@@ -782,8 +862,41 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 32px;justify-content:space-bet
 <section class="band" id="phrases"><div class="wrap">
 <div class="ruh">Готовые фразы</div>
 <h2>50 chunks that sound like B1</h2>
-<p class="lead">Learn them whole. Tap the speaker to hear each one in your device's Russian voice.</p>
+<p class="lead">Learn them whole. Tap the speaker to hear each one in your device's Russian voice. Pick the most natural-sounding voice below; it is used everywhere on the site.</p>
+<div class="voice"><label for="voiceSel">Voice</label><select id="voiceSel"></select><label for="rate">Speed <span id="rateV"></span></label><input type="range" id="rate" min="0.5" max="1.2" step="0.05"><button class="btn" id="vTest" type="button">Test</button></div>
+<p id="voiceMsg" style="font-size:15px;color:var(--soft);margin-bottom:20px"></p>
 <div class="phr" id="phr"></div>
+</div></section>
+
+<section class="band dark" id="speak"><div class="wrap">
+<div class="ruh">Говорим и пишем</div>
+<h2>Speaking and writing practice</h2>
+<p class="lead">B1 tests what you can produce. Speak for three minutes on a topic, record yourself and listen back. Then write a short text and compare it with the model answer.</p>
+<div class="two">
+<div class="machine">
+<div class="cs">Speaking · 3 minutes</div>
+<div class="pr" id="sTopic" style="font-size:clamp(22px,3.4vw,30px)"></div>
+<ul class="subq" id="sSub"></ul>
+<div class="timer" id="sTime">3:00</div>
+<div class="inrow"><button class="btn gold" id="sGo" type="button">Start</button><button class="btn" id="sReset" type="button" style="color:#f2eadb">Reset</button><button class="btn red" id="sNew" type="button">New topic</button></div>
+<div class="inrow" style="margin-top:12px;align-items:center"><button class="btn" id="rec" type="button" style="color:#f2eadb">Record myself</button><audio id="recA" controls hidden style="max-width:100%"></audio></div>
+<p id="recMsg" style="font-size:14px;color:#c9bdac;margin-top:8px"></p>
+<h3 style="margin-top:12px">Did you…</h3>
+<ul class="chk" id="sChk"></ul>
+</div>
+<div class="machine">
+<div class="cs">Writing</div>
+<label for="wTask" style="font-size:14px;color:#c9bdac">Task</label>
+<select id="wTask"></select>
+<div class="pr" id="wQ" style="font-size:20px;line-height:1.3"></div>
+<textarea id="wText" rows="9" lang="ru" aria-label="Your text" placeholder="Пишите здесь…"></textarea>
+<p id="wcnt" style="font-size:14px;color:#c9bdac;margin:6px 0 0"></p>
+<h3 style="margin-top:12px">Check before you finish</h3>
+<ul class="chk" id="wChk"></ul>
+<button class="btn" id="wModel" type="button" style="color:#f2eadb">Show model answer</button>
+<div class="model" id="wModelBox" hidden></div>
+</div>
+</div>
 </div></section>
 
 <section class="band alt" id="test"><div class="wrap">
@@ -791,6 +904,13 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 32px;justify-content:space-bet
 <h2>Level check</h2>
 <p class="lead">Ten random questions from a bank of 35. Each wrong answer links to the week of the plan to go back to.</p>
 <div class="q" id="quiz"></div>
+</div></section>
+
+<section class="band" id="mock"><div class="wrap">
+<div class="ruh">Пробный экзамен</div>
+<h2>Mock B1 exam</h2>
+<p class="lead">A shortened practice exam in the ТРКИ-1 format: 20 grammar and vocabulary questions, a reading text and two listening texts. Aim for 66% in each part, as in the real exam. Check your writing and speaking with the practice section. Allow about 40 minutes.</p>
+<div id="mockBox"></div>
 </div></section>
 
 <section class="band dark" id="exam"><div class="wrap">
@@ -815,6 +935,20 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 32px;justify-content:space-bet
 </div>
 </div></section>
 
+<section class="band alt" id="backup"><div class="wrap">
+<div class="ruh">Резервная копия</div>
+<h2>Back up and move your progress</h2>
+<p class="lead">Your progress lives only in this browser. Create a backup code and keep it in your notes, or paste it into the site on another phone or computer to carry on there.</p>
+<div class="two">
+<div><h3 style="margin-bottom:10px">Make a backup</h3>
+<div class="wbtn"><button class="btn red" id="bMake" type="button">Create backup code</button><button class="btn" id="bCopy" type="button">Copy</button><button class="btn" id="bFile" type="button">Save as file</button></div>
+<textarea id="bOut" rows="5" readonly aria-label="Backup code"></textarea><p id="bMsg" style="font-size:15px;color:var(--soft);margin-top:6px"></p></div>
+<div><h3 style="margin-bottom:10px">Restore</h3>
+<textarea id="bIn" rows="5" placeholder="Paste a backup code here" aria-label="Paste backup code"></textarea>
+<div class="wbtn" style="margin-top:10px"><button class="btn red" id="bLoad" type="button">Restore progress</button></div><p id="bMsg2" style="font-size:15px;color:var(--soft)"></p></div>
+</div>
+</div></section>
+
 <section class="band redb cta"><div class="wrap">
 <div><div class="ruh">Вперёд, товарищ!</div><h2 style="margin:0">Start week 1 today</h2><p style="margin:8px 0 0">Sixty minutes a day, five days a week, eight weeks.</p></div>
 <a class="btn gold" href="#plan">Go to the plan</a>
@@ -829,9 +963,20 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 32px;justify-content:space-bet
 {
 const $=s=>document.querySelector(s);
 const store={get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
-const say=t=>{try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t.replace(/́/g,''));u.lang='ru-RU';u.rate=.9;speechSynthesis.speak(u)}catch(e){}};
+const say=t=>{try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t.replace(/́/g,''));u.lang='ru-RU';u.rate=VO.r;const v=ruVoices.find(x=>x.name===VO.v)||ruVoices[0];if(v)u.voice=v;speechSynthesis.speak(u)}catch(e){}};
 const spk='<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4z"/></svg>';
 const shuf=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const today=()=>Math.floor((Date.now()-new Date().getTimezoneOffset()*6e4)/864e5);
+const log=store.get('rb-log',{});
+const L=()=>log[today()]||(log[today()]=[0,0]);
+const saveLog=()=>store.set('rb-log',log);
+const cap=()=>+store.get('rb-cap',35);
+let START=store.get('rb-start',null);if(START===null){START=today();store.set('rb-start',START)}
+const weekNow=()=>Math.min(8,Math.max(1,Math.floor((today()-START)/7)+1));
+let todayDraw=()=>{},normAuto=()=>{};
+const VO={v:store.get('rb-voice',''),r:+store.get('rb-rate',.9)};
+let ruVoices=[];
+const nz=x=>x.toLowerCase().replace(/́/g,'').replace(/ё/g,'е').replace(/\s+/g,' ').trim();
 
 /* frequency list + coverage */
 const FREQ=`и=and;в=in, into;не=not;на=on, onto;я=I;быть=to be;он=he, it;с=with, from;что=what, that;а=and, but;по=along, by, on;э́то=this, it;она́=she;э́тот=this;к=towards, to;но=but;они́=they;мы=we;как=how, as;из=from, out of;у=at, near (have);кото́рый=which, who;то=that;за=behind, for;свой=one's own;весь=all, whole;год=year;от=from;так=so, like this;о=about;для=for;ты=you (informal);же=emphatic particle;всё=everything;тот=that (one);мочь=can, be able;вы=you (formal, plural);челове́к=person;тако́й=such, so;его́=his, him;сказа́ть=to say (once);то́лько=only;и́ли=or;ещё=still, more;бы=would (particle);себя́=oneself;оди́н=one;уже́=already;до=until, before;вре́мя=time;е́сли=if;сам=oneself (emphatic);когда́=when;друго́й=other;вот=here is;говори́ть=to speak, say;наш=our;мой=my;знать=to know;стать=to become;при=in the presence of;что́бы=in order to, so that;де́ло=matter, business;жизнь=life;кто=who;пе́рвый=first;о́чень=very;два=two;день=day;её=her, hers;но́вый=new;рука́=hand, arm;да́же=even;раз=time, once;где=where;там=there;под=under;мо́жно=may, it is possible;ну=well;како́й=which, what kind;по́сле=after;их=their, them;рабо́та=work, job;без=without;са́мый=the most;пото́м=then, later;на́до=it is necessary;хоте́ть=to want;ли=whether (particle);сло́во=word;идти́=to go on foot;большо́й=big;до́лжен=must;ме́сто=place;име́ть=to have;ничего́=nothing;ви́деть=to see;сейча́с=now;тут=here;лицо́=face;друг=friend;нет=no, there is no;тепе́рь=now, nowadays;ни=not a, neither;глаз=eye;то́же=also;тогда́=then, at that time;да=yes`;
@@ -877,12 +1022,13 @@ $('#routine').innerHTML=rt.map(r=>`<div class="row"><b>${r[0]}</b><div><div clas
 const norm=store.get('rb-norm',Array(56).fill(false));
 const NG=$('#ng');
 NG.innerHTML=Array.from({length:8},(_,w)=>`<div class="nr"><span>Нед. ${w+1}</span>${Array.from({length:7},(_,d)=>{const i=w*7+d;return `<button class="cell" type="button" data-i="${i}" aria-label="Week ${w+1}, day ${d+1}" aria-pressed="false"></button>`}).join('')}</div>`).join('');
-const normDraw=()=>{let best=0,cur=0;NG.querySelectorAll('.cell').forEach(c=>{const on=!!norm[c.dataset.i];c.classList.toggle('on',on);c.setAttribute('aria-pressed',on);c.innerHTML=on?'<svg width="60%" height="60%" viewBox="-11 -11 22 22"><use href="#star" fill="currentColor"/></svg>':''});
+const normDraw=()=>{let best=0,cur=0;NG.querySelectorAll('.cell').forEach(c=>{const on=!!norm[c.dataset.i];c.classList.toggle('on',on);c.setAttribute('aria-pressed',on);c.classList.toggle('now',+c.dataset.i===today()-START);c.innerHTML=on?'<svg width="60%" height="60%" viewBox="-11 -11 22 22"><use href="#star" fill="currentColor"/></svg>':''});
 norm.forEach(v=>{cur=v?cur+1:0;best=Math.max(best,cur)});const n=norm.filter(Boolean).length;$('#nDays').textContent=n;$('#nStreak').textContent=best;$('#nHours').textContent=n+' h';};
 NG.addEventListener('click',e=>{const c=e.target.closest('.cell');if(!c)return;norm[c.dataset.i]=!norm[c.dataset.i];store.set('rb-norm',norm);normDraw()});
 const confirm2=(b,label,fn)=>{if(b.dataset.c){fn();b.textContent=label;delete b.dataset.c}else{b.dataset.c=1;b.textContent='Tap again to confirm';setTimeout(()=>{if(b.dataset.c){b.textContent=label;delete b.dataset.c}},4000)}};
 $('#nReset').addEventListener('click',e=>confirm2(e.currentTarget,'Clear the norm',()=>{norm.fill(false);store.set('rb-norm',norm);normDraw()}));
 normDraw();
+normAuto=()=>{const i=today()-START;if(i>=0&&i<56&&L()[1]>=30&&!norm[i]){norm[i]=true;store.set('rb-norm',norm);normDraw()}};
 
 /* plan + ranks */
 const weeks=[
@@ -893,7 +1039,7 @@ const weeks=[
 ['Plans and movement','Future, motion, imperative',['Word list: words 1001–1250','буду + imperf. vs perfective future','идти/ходить, ехать/ездить + 5 prefixes','Imperative: читай, скажи, давай…','Describe your next weekend','Case factory with adjectives']],
 ['People and opinions','Dative, instrumental, свой',['Word list: words 1251–1500','Dative: мне нравится / нужно / холодно','Instrumental: с кем, заниматься чем','Verb + case table: 20 verbs','Possessives and свой','Agree and disagree chunks']],
 ['Linking ideas','B1 complex sentences',['Word list: words 1501–1750','который in every case','Comparatives: лучше, больше, интереснее','если vs если бы, чтобы','потому что / поэтому / хотя','Write a 150-word opinion text']],
-['Fluency sprint','ТРКИ-1 style practice',['Words 1751–2000+: reach ≈80% coverage','Three 3-minute monologues a day','Role-play: shop, doctor, bank','Gazette issue 8 without the translation','Timed 150-word letter','Retake the level check']]];
+['Fluency sprint','ТРКИ-1 style practice',['Words 1751–2000+: reach ≈80% coverage','Three 3-minute monologues a day','Role-play: shop, doctor, bank','Gazette issue 8 without the translation','Timed 150-word letter','Take the mock exam']]];
 const TT=weeks.reduce((a,w)=>a+w[2].length,0);
 const ranks=[[0,'Октябрёнок','Little Octobrist'],[Math.round(TT*.125),'Пионер','Pioneer'],[Math.round(TT*.375),'Комсомолец','Komsomol member'],[Math.round(TT*.625),'Ударник','Shock worker'],[Math.round(TT*.875),'Стахановец','Record-breaker'],[TT,'Герой труда','Hero of labour']];
 const done=store.get('rb-done2',{});
@@ -932,45 +1078,63 @@ const decks=[...bandsDef.map(([a,b])=>({name:`Frequency ${a+1}–${b}`,items:FL.
 ...[...new Set(words.map(w=>w[0]))].map(c=>({name:c+' (with examples)',items:words.filter(w=>w[0]===c).map(w=>({w:w[1],t:w[2],k:strip(w[1]),c,ex:w[3]}))}))];
 $('#cat').innerHTML=decks.map((d,i)=>`<option value="${i}">${d.name} · ${d.items.length}</option>`).join('');
 const INT=[0,1,3,7,16,35,90];
-const today=()=>Math.floor((Date.now()-new Date().getTimezoneOffset()*6e4)/864e5);
 let srs=store.get('rb-srs',null);
 if(!srs){srs={};store.get('rb-known',[]).map(strip).forEach((k,i)=>srs[k]=[3,today()+(i%7)]);}
-const known=new Set(Object.keys(srs));
+const known=new Set(Object.keys(srs).filter(k=>k[0]!=='>'));
 const saveK=()=>store.set('rb-srs',srs);
-const learn=(k,b)=>{srs[k]=[b,today()+INT[b]];known.add(k)};
-const forget=k=>{delete srs[k];known.delete(k)};
+const learn=(k,b)=>{srs[k]=[b,today()+INT[b]];if(k[0]!=='>')known.add(k)};
+const forget=k=>{delete srs[k];delete srs['>'+k];known.delete(k)};
 const ALL=new Map();decks.forEach(d=>d.items.forEach(it=>{if(!ALL.has(it.k))ALL.set(it.k,it)}));
-const isDue=k=>srs[k]&&srs[k][1]<=today();
-const dueKeys=()=>Object.keys(srs).filter(k=>isDue(k)&&ALL.has(k));
-const catOpts=()=>{const v=$('#cat').value,due=dueKeys().length;
-$('#cat').innerHTML=`<option value="due">Reviews due today · ${due}</option>`+decks.map((d,i)=>`<option value="${i}">New: ${d.name} · ${d.items.filter(w=>!known.has(w.k)).length} left</option>`).join('');
+let dir=store.get('rb-dir','r');
+const kk=w=>dir==='p'?'>'+w.k:w.k;
+const isDue=k=>!!srs[k]&&srs[k][1]<=today();
+const dueKeys=()=>Object.keys(srs).filter(k=>isDue(k)&&ALL.has(k.replace(/^>/,'')));
+const dueDir=()=>dueKeys().filter(k=>(k[0]==='>')===(dir==='p')).map(k=>ALL.get(k.replace(/^>/,'')));
+const newLeft=()=>Math.max(0,cap()-L()[0]);
+const fresh=w=>dir==='p'?known.has(w.k)&&!srs['>'+w.k]:!known.has(w.k);
+const catOpts=()=>{const v=$('#cat').value,due=dueDir().length,P=dir==='p';
+$('#cat').innerHTML=`<option value="due">Reviews due today · ${due}</option>`+decks.map((d,i)=>`<option value="${i}">${P?'Practise':'New'}: ${d.name} · ${d.items.filter(fresh).length} ${P?'ready':'left'}</option>`).join('');
 $('#cat').value=v||(due?'due':'0');if(!$('#cat').value)$('#cat').value='0'};
-catOpts();if(dueKeys().length)$('#cat').value='due';
+catOpts();if(dueDir().length)$('#cat').value='due';
 let q=[];const card=$('#card');
-const deck=()=>{const v=$('#cat').value;return v==='due'?dueKeys().map(k=>ALL.get(k)):decks[+v].items};
+const deck=()=>{const v=$('#cat').value;return v==='due'?dueDir():decks[+v].items};
 const days=n=>n===1?'1 day':n+' days';
 const coverage=()=>{let c=0,n=0;FL.forEach((e,i)=>{if(known.has(e.k)){c+=WT[i];n++}});youN=n;youC=c;const mx=covN(NW);
 $('#covPct').textContent='≈'+Math.round(c)+'%';$('#covBar').style.width=c+'%';$('#covMax').style.left=mx+'%';
 $('#covTxt').textContent=`of everyday text covered by the ${n} list words you have learned. All ${NW.toLocaleString('en')} words → ≈${Math.round(mx)}% (white line): the 80/20 target.`;
 $('#nAll').textContent=NW.toLocaleString('en');draw();bandsDraw();};
-const show=()=>{card.classList.remove('flip');$('#sLeft').textContent=q.length;$('#sKnown').textContent=dueKeys().length;$('#sTotal').textContent=known.size;
-const w=q[0];
-if(!w){$('#know').textContent='Good';$('#easy').textContent='Easy';$('#cCat').textContent='';$('#cRu').textContent='Норма выполнена!';$('#cEn').textContent=$('#cat').value==='due'?'No reviews due':'Deck finished';$('#cEx').textContent=$('#cat').value==='due'?'Pick a “New” deck to learn more words.':'Pick the next deck, or come back tomorrow for reviews.';return}
-const b=srs[w.k]?srs[w.k][0]:0,g=b?Math.min(b+1,6):1,e=b?Math.min(b+2,6):4;
+const show=()=>{card.classList.remove('flip');$('#pFb').textContent='';$('#pIn').value='';
+$('#sLeft').textContent=q.length;$('#sKnown').textContent=dueKeys().length;$('#sTotal').textContent=known.size;
+$('#newToday').textContent=`${L()[0]} learned today`;
+const w=q[0],P=dir==='p';$('#pRow').hidden=!P||!w;$('#say1').style.visibility=P?'hidden':'visible';
+if(!w){$('#know').textContent='Good';$('#easy').textContent='Easy';$('#cCat').textContent='';$('#cRu').textContent='Норма выполнена!';$('#cRev').hidden=true;
+const due=$('#cat').value==='due',lim=!due&&!P&&newLeft()===0;
+$('#cEn').textContent=due?'No reviews due':lim?'Daily limit reached':'Deck finished';
+$('#cEx').textContent=due?'Pick a deck to learn or practise more words.':lim?`You have learned ${cap()} new words today. Come back tomorrow, or raise the daily limit.`:P?'Learn more words in Russian → English first; they then appear here.':'Pick the next deck, or come back tomorrow for reviews.';return}
+const b=srs[kk(w)]?srs[kk(w)][0]:0,g=b?Math.min(b+1,6):1,e=b?Math.min(b+2,6):4;
 $('#know').textContent='Good · '+days(INT[g]);$('#easy').textContent='Easy · '+days(INT[e]);
-$('#cCat').textContent=w.c+(b?' · review':' · new');$('#cRu').textContent=w.w;$('#cEn').textContent=w.t;$('#cEx').textContent=w.ex;};
-const build=()=>{const d=deck();q=$('#cat').value==='due'?shuf(d.slice()):[...shuf(d.filter(w=>isDue(w.k))),...shuf(d.filter(w=>!known.has(w.k)))];show()};
+$('#cCat').textContent=w.c+(b?' · review':' · new');
+$('#cRu').textContent=P?w.t:w.w;$('#cEn').textContent=P?w.w:w.t;$('#cEx').textContent=w.ex;
+const r=$('#cRev');r.hidden=false;r.href='https://context.reverso.net/translation/russian-english/'+encodeURIComponent(w.k);};
+const build=()=>{const d=deck();if($('#cat').value==='due'){q=shuf(d.slice())}else{const nw=shuf(d.filter(fresh));q=[...shuf(d.filter(w=>isDue(kk(w)))),...(dir==='p'?nw:nw.slice(0,newLeft()))]}show()};
 const syncRow=k=>{const i=$('#wlist').querySelector(`input[data-k="${CSS.escape(k)}"]`);if(i){i.checked=known.has(k);i.closest('.wl').classList.toggle('k',i.checked)}};
-const after=k=>{saveK();show();coverage();syncRow(k);catOpts()};
-card.addEventListener('click',e=>{if(e.target.closest('.say'))return;card.classList.toggle('flip')});
+const tick=()=>{L()[1]++;saveLog();todayDraw();normAuto()};
+const after=k=>{saveK();show();coverage();syncRow(k);catOpts();tick()};
+card.addEventListener('click',e=>{if(e.target.closest('.say,a'))return;card.classList.toggle('flip')});
 card.addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();card.classList.toggle('flip')}});
-$('#say1').addEventListener('click',()=>q[0]&&say(q[0].w+(q[0].ex?'. '+q[0].ex:'')));
-$('#again').addEventListener('click',()=>{if(!q.length)return;const w=q.shift();if(srs[w.k])srs[w.k]=[1,today()];q.splice(Math.min(3,q.length),0,w);saveK();show()});
-const grade=easy=>{if(!q.length)return;const w=q.shift(),b=srs[w.k]?srs[w.k][0]:0;learn(w.k,easy?(b?Math.min(b+2,6):4):(b?Math.min(b+1,6):1));after(w.k)};
+const sayCard=()=>q[0]&&say(q[0].w+(q[0].ex?'. '+q[0].ex:''));
+$('#say1').addEventListener('click',sayCard);$('#say2').addEventListener('click',sayCard);
+$('#again').addEventListener('click',()=>{if(!q.length)return;const w=q.shift();if(srs[kk(w)])srs[kk(w)]=[1,today()];q.splice(Math.min(3,q.length),0,w);saveK();show();tick()});
+const grade=easy=>{if(!q.length)return;const w=q.shift(),k=kk(w),b=srs[k]?srs[k][0]:0;if(!b&&dir==='r')L()[0]++;learn(k,easy?(b?Math.min(b+2,6):4):(b?Math.min(b+1,6):1));after(w.k)};
 $('#know').addEventListener('click',()=>grade(false));
 $('#easy').addEventListener('click',()=>grade(true));
 $('#shuffle').addEventListener('click',e=>confirm2(e.currentTarget,'Reset this deck',()=>{deck().forEach(w=>forget(w.k));saveK();build();coverage();wlDraw();catOpts()}));
 $('#cat').addEventListener('change',build);
+const setDir=d=>{dir=d;store.set('rb-dir',d);$('#dirR').setAttribute('aria-pressed',d==='r');$('#dirP').setAttribute('aria-pressed',d==='p');catOpts();if(dueDir().length)$('#cat').value='due';build()};
+$('#dirR').setAttribute('aria-pressed',dir==='r');$('#dirP').setAttribute('aria-pressed',dir==='p');
+$('#dirR').addEventListener('click',()=>setDir('r'));$('#dirP').addEventListener('click',()=>setDir('p'));
+$('#capSel').value=String(cap());$('#capSel').addEventListener('change',e=>{store.set('rb-cap',+e.target.value);build();todayDraw()});
+$('#pRow').addEventListener('submit',e=>{e.preventDefault();const w=q[0];if(!w)return;const ok=nz($('#pIn').value)===nz(w.w);$('#pFb').textContent=ok?'Верно! Now grade yourself below.':'Answer: '+strip(w.w)+'. Press Again to see it soon.';$('#pFb').style.color=ok?'#fff':'var(--gold)';card.classList.add('flip')});
 
 /* word list */
 const bandsDraw=()=>{$('#bands').innerHTML=bandsDef.map(([a,b])=>{const sl=FL.slice(a,b),k=sl.filter(e=>known.has(e.k)).length,cv=WT.slice(a,b).reduce((x,y)=>x+y,0);return `<div><b>${a+1}–${b}</b><span>≈${Math.round(cv)}% of text · ${k}/${sl.length} known</span><i><u style="width:${k/sl.length*100}%"></u></i></div>`}).join('')};
@@ -979,7 +1143,7 @@ let shown=[];
 const wlDraw=()=>{const qv=strip($('#wq').value.trim().toLowerCase()),bi=+$('#wb').value,f=$('#wf').value;
 shown=FL.filter(e=>(bi<0||(e.r>bandsDef[bi][0]&&e.r<=bandsDef[bi][1]))&&(!qv||e.k.toLowerCase().includes(qv)||e.t.toLowerCase().includes(qv))&&(f==='all'||(f==='known')===known.has(e.k)));
 $('#wCount').textContent=`${shown.length} shown`;
-$('#wlist').innerHTML=shown.length?shown.map(e=>{const k=known.has(e.k);return `<label class="wl${k?' k':''}"><input type="checkbox" data-k="${e.k}" ${k?'checked':''}><span class="r">#${e.r}</span><div><b>${e.w}</b><span>${e.t}</span></div></label>`}).join(''):'<p style="padding:16px">No words match. Try another search or band.</p>';};
+$('#wlist').innerHTML=shown.length?shown.map(e=>{const k=known.has(e.k);return `<label class="wl${k?' k':''}"><input type="checkbox" data-k="${e.k}" ${k?'checked':''}><span class="r">#${e.r}</span><div><b>${e.w}</b><span>${e.t}</span><a class="rv" href="https://context.reverso.net/translation/russian-english/${encodeURIComponent(e.k)}" target="_blank" rel="noopener" aria-label="Examples for ${e.k}">↗</a></div></label>`}).join(''):'<p style="padding:16px">No words match. Try another search or band.</p>';};
 $('#wlist').addEventListener('change',e=>{const k=e.target.dataset.k;if(e.target.checked)learn(k,4);else forget(k);e.target.closest('.wl').classList.toggle('k',e.target.checked);saveK();coverage();catOpts();build()});
 ['wq','wb','wf'].forEach(id=>$('#'+id).addEventListener('input',wlDraw));
 $('#wAll').addEventListener('click',()=>{shown.forEach(e=>{if(!known.has(e.k))learn(e.k,4)});saveK();wlDraw();coverage();catOpts();build()});
@@ -1080,6 +1244,124 @@ Q.querySelectorAll('.opt').forEach((b,j)=>{b.disabled=true;if(j===x[2])b.classLi
 if(ok)score++;else miss.push(x[4]);$('#why').innerHTML=(ok?'<b style="color:var(--ok)">Верно.</b> ':'<b style="color:var(--bad)">Not quite.</b> ')+x[3];$('#next').hidden=false;$('#next').focus({preventScroll:true});return}
 if(e.target.id==='next'){qi++;renderQ()}});
 start();
+
+/* voices */
+const loadVoices=()=>{try{ruVoices=speechSynthesis.getVoices().filter(v=>/^ru/i.test(v.lang))}catch(e){ruVoices=[]}
+$('#voiceSel').innerHTML=ruVoices.length?ruVoices.map(v=>`<option${v.name===VO.v?' selected':''}>${v.name}</option>`).join(''):'<option>No Russian voice found</option>';
+$('#voiceMsg').textContent=ruVoices.length?'':'Your device has no Russian voice yet, so the speaker buttons may be silent or sound English. Android: Settings → search “Text-to-speech” → Google → install voice data → Russian. iPhone: Settings → Accessibility → Spoken Content → Voices → Russian.';};
+loadVoices();try{speechSynthesis.onvoiceschanged=loadVoices}catch(e){}
+$('#rate').value=VO.r;$('#rateV').textContent=VO.r.toFixed(2)+'×';
+$('#rate').addEventListener('input',e=>{VO.r=+e.target.value;store.set('rb-rate',VO.r);$('#rateV').textContent=VO.r.toFixed(2)+'×'});
+$('#voiceSel').addEventListener('change',e=>{VO.v=e.target.value;store.set('rb-voice',VO.v)});
+$('#vTest').addEventListener('click',()=>say('Здравствуйте! Давайте учить русский язык вместе.'));
+
+/* verb factory */
+const DAT={"VB": [["чита́ть", "to read", ["читаю", "читаешь", "читает", "читаем", "читаете", "читают"]], ["де́лать", "to do", ["делаю", "делаешь", "делает", "делаем", "делаете", "делают"]], ["рабо́тать", "to work", ["работаю", "работаешь", "работает", "работаем", "работаете", "работают"]], ["понима́ть", "to understand", ["понимаю", "понимаешь", "понимает", "понимаем", "понимаете", "понимают"]], ["говори́ть", "to speak", ["говорю", "говоришь", "говорит", "говорим", "говорите", "говорят"]], ["люби́ть", "to love", ["люблю", "любишь", "любит", "любим", "любите", "любят"]], ["ви́деть", "to see", ["вижу", "видишь", "видит", "видим", "видите", "видят"]], ["смотре́ть", "to watch", ["смотрю", "смотришь", "смотрит", "смотрим", "смотрите", "смотрят"]], ["писа́ть", "to write", ["пишу", "пишешь", "пишет", "пишем", "пишете", "пишут"]], ["жить", "to live", ["живу", "живёшь", "живёт", "живём", "живёте", "живут"], ["жил", "жила", "жили"]], ["идти́", "to go on foot", ["иду", "идёшь", "идёт", "идём", "идёте", "идут"], ["шёл", "шла", "шли"]], ["е́хать", "to go by transport", ["еду", "едешь", "едет", "едем", "едете", "едут"]], ["хоте́ть", "to want", ["хочу", "хочешь", "хочет", "хотим", "хотите", "хотят"]], ["мочь", "can", ["могу", "можешь", "может", "можем", "можете", "могут"], ["мог", "могла", "могли"]], ["есть", "to eat", ["ем", "ешь", "ест", "едим", "едите", "едят"], ["ел", "ела", "ели"]], ["пить", "to drink", ["пью", "пьёшь", "пьёт", "пьём", "пьёте", "пьют"], ["пил", "пила", "пили"]], ["дава́ть", "to give", ["даю", "даёшь", "даёт", "даём", "даёте", "дают"]], ["учи́ться", "to study", ["учусь", "учишься", "учится", "учимся", "учитесь", "учатся"], ["учился", "училась", "учились"]], ["ходи́ть", "to walk (habit)", ["хожу", "ходишь", "ходит", "ходим", "ходите", "ходят"]], ["е́здить", "to travel (habit)", ["езжу", "ездишь", "ездит", "ездим", "ездите", "ездят"]], ["спать", "to sleep", ["сплю", "спишь", "спит", "спим", "спите", "спят"], ["спал", "спала", "спали"]], ["брать", "to take", ["беру", "берёшь", "берёт", "берём", "берёте", "берут"], ["брал", "брала", "брали"]], ["ждать", "to wait", ["жду", "ждёшь", "ждёт", "ждём", "ждёте", "ждут"], ["ждал", "ждала", "ждали"]], ["сказа́ть", "to say (once)", ["скажу", "скажешь", "скажет", "скажем", "скажете", "скажут"], null, 1], ["купи́ть", "to buy (once)", ["куплю", "купишь", "купит", "купим", "купите", "купят"], null, 1], ["помо́чь", "to help (once)", ["помогу", "поможешь", "поможет", "поможем", "поможете", "помогут"], ["помог", "помогла", "помогли"], 1]], "ASP": [["Вчера я весь вечер ___ телевизор.", ["смотрел", "посмотрел"], 0, "Duration (весь вечер) → imperfective."], ["Я ___ фильм до конца и пошёл спать.", ["смотрел", "посмотрел"], 1, "Finished, then the next action → perfective."], ["Обычно я ___ кофе утром.", ["пью", "выпью"], 0, "Habit → imperfective."], ["Подожди минуту, я сейчас ___ кофе, и пойдём.", ["пью", "выпью"], 1, "One finished action before the next → perfective future."], ["Каждое лето мы ___ на море.", ["ездили", "съездили"], 0, "Repeated action → imperfective."], ["Он ___ письмо и сразу отправил его.", ["писал", "написал"], 1, "Result, then the next action → perfective."], ["Не ___ окно, пожалуйста, холодно.", ["открывай", "открой"], 0, "“Don’t” commands → imperfective."], ["___ окно, пожалуйста, очень жарко.", ["Открывай", "Открой"], 1, "One request for a result → perfective."], ["Завтра я ___ тебе в шесть.", ["буду звонить", "позвоню"], 1, "One action in the future → perfective."], ["Летом я ___ русский каждый день.", ["буду учить", "выучу"], 0, "Ongoing, repeated future → буду + imperfective."], ["Ты уже ___ домашнее задание? Можно гулять?", ["делал", "сделал"], 1, "Asking about the result → perfective."], ["Я долго ___ ключи, но так и не нашёл.", ["искал", "поискал"], 0, "A long process with no result → imperfective."], ["Когда я ___ на работу, я встретил друга.", ["шёл", "пошёл"], 0, "Background process (while walking) → imperfective."], ["Мне нужно ___ хлеб, дома ничего нет.", ["покупать", "купить"], 1, "One specific purchase → perfective."], ["Он ___ курить в прошлом году.", ["бросал", "бросил"], 1, "A completed change → perfective."], ["Я часто ___ эту песню.", ["слушаю", "послушаю"], 0, "Often → imperfective."], ["Ты ___ мне вчера? Я не слышал телефон.", ["звонил", "позвонил"], 0, "Asking whether something happened at all → imperfective."], ["Сколько времени ты ___ этот текст?", ["переводил", "перевёл"], 0, "How long → imperfective (process)."]], "MOT": [["Сейчас я ___ в магазин.", ["иду", "хожу"], 0, "Now, in one direction → идти."], ["Я каждый день ___ в спортзал.", ["иду", "хожу"], 1, "Habit → ходить."], ["Завтра мы ___ в Казань на поезде.", ["едем", "ездим"], 0, "One planned trip in one direction → ехать."], ["Вчера я ___ в театр. Спектакль был отличный.", ["шёл", "ходил"], 1, "Went and came back → ходил."], ["Прошлым летом мы ___ в Сочи.", ["ехали", "ездили"], 1, "A round trip in the past → ездили."], ["Он ___ домой в семь часов.", ["пришёл", "ушёл"], 0, "Arrived → при-."], ["Её нет: она ___ на работу час назад.", ["пришла", "ушла"], 1, "Left → у-."], ["___ ко мне вечером на чай!", ["Зайди", "Выйди"], 0, "Drop by → за-."], ["Я ___ из дома в восемь утра.", ["вышел", "зашёл"], 0, "Went out of → вы-."], ["Смотри, самолёт ___ в Москву!", ["летит", "летает"], 0, "Right now, one direction → лететь."], ["Он всегда ___ с собой зонтик.", ["несёт", "носит"], 1, "Carries habitually → носить."], ["Дети любят ___ в парке.", ["бежать", "бегать"], 1, "Running around for fun → бегать."], ["Мой брат ___ в Германию. Он будет там жить.", ["уехал", "приехал"], 0, "Moved away → у-."]], "PL": [["стол", "table", "столы", "столов"], ["кни́га", "book", "книги", "книг"], ["окно́", "window", "окна", "окон"], ["музе́й", "museum", "музеи", "музеев"], ["неде́ля", "week", "недели", "недель"], ["учи́тель", "teacher", "учителя", "учителей"], ["врач", "doctor", "врачи", "врачей"], ["маши́на", "car", "машины", "машин"], ["письмо́", "letter", "письма", "писем"], ["го́род", "city", "города", "городов"], ["друг", "friend", "друзья", "друзей"], ["ребёнок", "child", "дети", "детей"], ["день", "day", "дни", "дней"], ["рубль", "rouble", "рубли", "рублей"], ["мину́та", "minute", "минуты", "минут"], ["сло́во", "word", "слова", "слов"], ["брат", "brother", "братья", "братьев"], ["сестра́", "sister", "сёстры", "сестёр"], ["мо́ре", "sea", "моря", "морей"], ["тетра́дь", "notebook", "тетради", "тетрадей"], ["челове́к", "person", "люди", "людей"], ["студе́нт", "student", "студенты", "студентов"], ["дом", "house", "дома", "домов"], ["де́рево", "tree", "деревья", "деревьев"], ["я́блоко", "apple", "яблоки", "яблок"]], "TOP": [["Расскажите о себе и своей семье.", ["Откуда вы и где живёте?", "Кто есть в вашей семье?", "Чем вы занимаетесь в свободное время?"]], ["Расскажите о своём городе.", ["Где он находится и какой он?", "Что там можно посмотреть?", "Что вам нравится и что не нравится?"]], ["Как вы провели прошлые выходные?", ["Где вы были?", "С кем вы были?", "Что было самым интересным?"]], ["Расскажите о своей работе или учёбе.", ["Где вы работаете или учитесь?", "Что вы делаете каждый день?", "Что вам нравится в работе или учёбе?"]], ["Какие у вас планы на лето?", ["Куда вы поедете?", "С кем?", "Что вы будете там делать?"]], ["Почему вы учите русский язык?", ["Когда вы начали?", "Что для вас самое трудное?", "Как вы будете использовать русский?"]], ["Расскажите о своём лучшем путешествии.", ["Куда и когда вы ездили?", "Что вы видели?", "Что вам запомнилось больше всего?"]], ["Где лучше жить: в городе или в деревне?", ["Плюсы жизни в городе", "Плюсы жизни в деревне", "Ваше мнение и почему"]], ["Расскажите о своём лучшем друге.", ["Как вы познакомились?", "Какой он или она человек?", "Что вы делаете вместе?"]], ["Как вы обычно проводите свободное время?", ["Чем вы занимаетесь по вечерам?", "Что вы делаете в выходные?", "Какое у вас хобби?"]], ["Интернет: польза и вред.", ["Как вы используете интернет?", "Чем он полезен?", "Какие у него минусы?"]], ["Ваш любимый праздник.", ["Какой это праздник?", "Как его отмечают в вашей стране?", "Как вы отмечали его в последний раз?"]]], "WT": [["Письмо другу: напишите о своём новом городе (около 100 слов).", "Привет, Саша!\nКак у тебя дела? Я уже месяц живу в Новосибирске и хочу рассказать тебе о своей новой жизни. Город большой, но очень зелёный: рядом с моим домом есть парк и река. Я снимаю небольшую квартиру на пятом этаже. Работа мне нравится, коллеги дружные и всегда помогают. Правда, зима здесь очень холодная, поэтому я купил тёплую куртку и шапку. По выходным я хожу в театр или катаюсь на лыжах. Мне не хватает только друзей. Приезжай ко мне в гости весной! Я покажу тебе город.\nПиши!\nТвой Марк"], ["Записка соседке: вы уезжаете на неделю и просите поливать цветы и забирать почту.", "Здравствуйте, Анна Петровна!\nВ субботу я уезжаю в командировку в Москву на неделю. Не могли бы вы мне помочь? Пожалуйста, поливайте мои цветы два раза в неделю и забирайте почту из почтового ящика. Ключ от квартиры я оставлю вам в пятницу вечером. Вернусь я в следующее воскресенье. Если будут вопросы, звоните мне в любое время. Заранее большое спасибо!\nС уважением, Игорь из квартиры 12"], ["Отзыв: напишите о кафе или ресторане, где вы были (около 100 слов).", "Вчера мы с подругой ужинали в кафе «Самовар» в центре города. Нам очень понравилась атмосфера: там уютно, тихо и играет приятная музыка. Мы заказали борщ, пельмени и блины со сметаной. Всё было очень вкусно, а цены вполне нормальные. Единственный минус — официант долго не приносил счёт. Но в целом я советую это кафе всем, кто хочет попробовать настоящую русскую кухню. Мы обязательно придём туда ещё раз!"], ["Ваше мнение: нужен ли детям смартфон? (100–150 слов)", "Сегодня у многих детей есть смартфон, и родители часто спорят, хорошо это или плохо.\nС одной стороны, смартфон помогает родителям всегда знать, где их ребёнок. Кроме того, в интернете много полезной информации для учёбы.\nС другой стороны, дети проводят перед экраном слишком много времени. Они меньше гуляют, меньше читают и плохо спят. Некоторые игры и сайты могут быть опасными.\nПо-моему, детям до десяти лет смартфон не нужен. Если ребёнку нужно позвонить родителям, можно купить простой телефон. А подросткам смартфон можно дать, но родители должны объяснить правила и следить за временем.\nМне кажется, главное — не запрещать, а учить детей пользоваться техникой разумно."]], "RD": ["Объявление. Языковой центр «Слово» приглашает на летние курсы русского языка. Занятия проходят с 1 июня по 31 августа три раза в неделю, по вечерам, с 18:00 до 20:00. В группе не больше восьми человек. Стоимость — 12 000 рублей в месяц. Студентам скидка 10%. Первое занятие — бесплатно! Запись по телефону или на сайте.", [["Как часто проходят занятия?", ["каждый день", "три раза в неделю", "раз в неделю"], 1], ["Когда проходят занятия?", ["утром", "днём", "вечером"], 2], ["Сколько человек может быть в группе?", ["не больше восьми", "не больше десяти", "не больше двенадцати"], 0], ["Кто получает скидку?", ["пенсионеры", "студенты", "дети"], 1], ["Сколько стоит первое занятие?", ["12 000 рублей", "на 10% меньше", "ничего, оно бесплатное"], 2]]], "LS": [["Уважаемые пассажиры! Поезд номер сорок два Москва — Санкт-Петербург отправляется с третьего пути в восемнадцать часов тридцать минут. Время в пути — четыре часа. Вагон-ресторан находится в середине поезда, в пятом вагоне. Просим пассажиров занять свои места. Счастливого пути!", [["Куда идёт поезд?", ["в Москву", "в Санкт-Петербург", "в Казань"], 1], ["С какого пути отправляется поезд?", ["с первого", "с третьего", "с пятого"], 1], ["Во сколько отправляется поезд?", ["в 18:30", "в 8:30", "в 16:30"], 0], ["Сколько времени поезд в пути?", ["два часа", "четыре часа", "шесть часов"], 1], ["Где находится вагон-ресторан?", ["в первом вагоне", "в пятом вагоне", "в последнем вагоне"], 1]]], ["— Алло, Оля? Привет, это Игорь. — Привет, Игорь! — Слушай, ты свободна в субботу? Хочу пригласить тебя в кино. — В субботу я не могу, я еду к бабушке. А в воскресенье? — В воскресенье отлично. Фильм начинается в семь. Встретимся в половине седьмого у метро? — Договорились. До воскресенья!", [["Почему Оля не может пойти в кино в субботу?", ["она работает", "она едет к бабушке", "она болеет"], 1], ["Во сколько начинается фильм?", ["в 18:30", "в 19:00", "в 19:30"], 1], ["Где они встретятся?", ["у кинотеатра", "у метро", "у бабушки"], 1]]]]};
+const {VB,ASP,MOT,PL,TOP,WT:WTK,RD,LS}=DAT;
+const PRN=['я','ты','он / она','мы','вы','они'];
+const pastOf=v=>v[3]||(()=>{const st=strip(v[0]).replace(/ть$/,'');return [st+'л',st+'ла',st+'ли']})();
+const VM={conj:'Present tense',past:'Past tense',asp:'Aspect',mot:'Motion verbs',plur:'Plurals'};
+let vm=store.get('rb-vmode','conj'),vc=null,vok=0,vtry=0,vdone=false;
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const vNew=()=>{vdone=false;$('#vFb').innerHTML='&nbsp;';$('#vIn').value='';let pr,gl,ans=null,opts=null,ci=0,why='';
+if(vm==='conj'){const v=pick(VB),i=Math.floor(Math.random()*6);pr=`${PRN[i]} ___`;gl=`${v[0]} (${v[1]}), ${v[4]?'future (perfective)':'present tense'}`;ans=v[2][i]}
+else if(vm==='past'){const v=pick(VB),i=Math.floor(Math.random()*3);pr=`${['он','она','они'][i]} ___`;gl=`${v[0]} (${v[1]}), past tense`;ans=pastOf(v)[i]}
+else if(vm==='plur'){const n=pick(PL),g=Math.random()<.5;pr=g?'много ___':'Вот ___ .';gl=`${n[0]} (${n[1]}), ${g?'genitive plural':'nominative plural'}`;ans=g?n[3]:n[2]}
+else{const x=pick(vm==='asp'?ASP:MOT),o=x[1].map((t,i)=>[t,i===x[2]]);shuf(o);pr=x[0];opts=o.map(a=>a[0]);ci=o.findIndex(a=>a[1]);why=x[3];gl=vm==='asp'?'Choose the right aspect':'Choose the right verb of motion'}
+vc={ans,opts,ci,why};$('#vMode').textContent=VM[vm];$('#vPr').textContent=pr;$('#vGl').textContent=gl;
+$('#vForm').hidden=!!opts;$('#vOpts').hidden=!opts;$('#vOpts').innerHTML=opts?opts.map((o,i)=>`<button class="opt" type="button" data-i="${i}">${o}</button>`).join(''):'';};
+const vStat=()=>{$('#vScore').textContent=`${vok} of ${vtry} correct`};
+const vMark=ok=>{vtry++;if(ok)vok++;vdone=true;vStat()};
+$('#vForm').addEventListener('submit',e=>{e.preventDefault();if(vdone){vNew();return}const v=nz($('#vIn').value);if(!v)return;const ok=v===nz(vc.ans);vMark(ok);
+$('#vFb').innerHTML=(ok?'<b style="color:var(--ok)">Верно!</b> ':'<b style="color:var(--bad)">Not quite.</b> Answer: ')+`<b>${vc.ans}</b>. Press Enter for the next one.`});
+$('#vOpts').addEventListener('click',e=>{const o=e.target.closest('.opt');if(!o||vdone)return;const i=+o.dataset.i,ok=i===vc.ci;vMark(ok);
+$('#vOpts').querySelectorAll('.opt').forEach((b,j)=>{b.disabled=true;if(j===vc.ci)b.classList.add('ok');else if(j===i)b.classList.add('no')});
+$('#vFb').innerHTML=(ok?'<b style="color:var(--ok)">Верно.</b> ':'<b style="color:var(--bad)">Not quite.</b> ')+vc.why});
+$('#vShow').addEventListener('click',()=>{if(!vdone)vMark(false);$('#vFb').innerHTML=vc.opts?`Answer: <b>${vc.opts[vc.ci]}</b>. ${vc.why}`:`Answer: <b>${vc.ans}</b>`;if(vc.opts)$('#vOpts').querySelectorAll('.opt').forEach((b,j)=>{b.disabled=true;if(j===vc.ci)b.classList.add('ok')})});
+$('#vNext').addEventListener('click',vNew);
+$('#vtabs').addEventListener('click',e=>{const t=e.target.closest('.tab');if(!t)return;vm=t.dataset.m;store.set('rb-vmode',vm);$('#vtabs').querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-selected',b===t));vNew()});
+$('#vtabs').querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-selected',b.dataset.m===vm));
+vNew();
+
+/* speaking */
+const SCHK=['Start with «Я хочу рассказать о…»','Answer all three questions, each with a detail','Use at least one past and one future sentence','Use three linking words: во-первых, потому что, кроме того, поэтому','Finish with your opinion: «Мне кажется, что…»'];
+const WCHK=['Greeting and sign-off, if it is a letter','At least 100 words','Clear start, middle and end','Past, present and future forms','Three or more linking words','Read it aloud once and fix the endings'];
+const chk=(id,a)=>{$(id).innerHTML=a.map((t,i)=>`<li><label><input type="checkbox">${t}</label></li>`).join('')};
+let ti=0;const sTopic=()=>{const t=TOP[ti];$('#sTopic').textContent=t[0];$('#sSub').innerHTML=t[1].map(x=>`<li>${x}</li>`).join('');chk('#sChk',SCHK)};
+$('#sNew').addEventListener('click',()=>{ti=(ti+1+Math.floor(Math.random()*(TOP.length-1)))%TOP.length;sTopic();sRst()});
+let sLeft=180,sInt=null;const sFmt=()=>{$('#sTime').textContent=sLeft>0?`${Math.floor(sLeft/60)}:${String(sLeft%60).padStart(2,'0')}`:'Время!'};
+const sRst=()=>{clearInterval(sInt);sInt=null;sLeft=180;$('#sGo').textContent='Start';sFmt()};
+$('#sGo').addEventListener('click',()=>{if(sInt){clearInterval(sInt);sInt=null;$('#sGo').textContent='Resume';return}if(sLeft<=0)sLeft=180;$('#sGo').textContent='Pause';sInt=setInterval(()=>{sLeft--;sFmt();if(sLeft<=0){clearInterval(sInt);sInt=null;$('#sGo').textContent='Start'}},1000)});
+$('#sReset').addEventListener('click',sRst);
+ti=Math.floor(Math.random()*TOP.length);sTopic();sFmt();
+let mr=null,chunks=[];
+$('#rec').addEventListener('click',async()=>{const b=$('#rec');
+if(mr&&mr.state==='recording'){mr.stop();return}
+try{const st=await navigator.mediaDevices.getUserMedia({audio:true});chunks=[];mr=new MediaRecorder(st);
+mr.ondataavailable=e=>chunks.push(e.data);
+mr.onstop=()=>{st.getTracks().forEach(t=>t.stop());const a=$('#recA');a.src=URL.createObjectURL(new Blob(chunks,{type:mr.mimeType||'audio/webm'}));a.hidden=false;b.textContent='Record again';$('#recMsg').textContent='Listen back: check endings, stress and where you hesitated.'};
+mr.start();b.textContent='Stop recording';$('#recMsg').textContent='Recording… speak now.'}
+catch(e){$('#recMsg').textContent='Recording is not available here. Open the GitHub version of the site in Chrome or Safari and allow the microphone.'}});
+/* writing */
+$('#wTask').innerHTML=WTK.map((w,i)=>`<option value="${i}">Task ${i+1}</option>`).join('');
+const wDraw=()=>{const i=+$('#wTask').value;$('#wQ').textContent=WTK[i][0];$('#wText').value=store.get('rb-w'+i,'');$('#wModelBox').textContent=WTK[i][1];$('#wModelBox').hidden=true;$('#wModel').textContent='Show model answer';chk('#wChk',WCHK);wCount()};
+const wCount=()=>{const n=($('#wText').value.match(/[\p{L}\d-]+/gu)||[]).length;$('#wcnt').textContent=`${n} words${n<100?' · aim for 100–150':' · good length'}`};
+$('#wTask').addEventListener('change',wDraw);
+$('#wText').addEventListener('input',()=>{store.set('rb-w'+$('#wTask').value,$('#wText').value);wCount()});
+$('#wModel').addEventListener('click',()=>{const b=$('#wModelBox');b.hidden=!b.hidden;$('#wModel').textContent=b.hidden?'Show model answer':'Hide model answer'});
+wDraw();
+
+/* backup */
+const bCode=()=>{const o={};try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k.startsWith('rb-'))o[k]=localStorage.getItem(k)}}catch(e){}return 'RYBOK1:'+btoa(unescape(encodeURIComponent(JSON.stringify(o))))};
+$('#bMake').addEventListener('click',()=>{const c=bCode();$('#bOut').value=c;$('#bMsg').textContent=`Backup created (${Math.round(c.length/1024)} KB). Copy it somewhere safe, such as your notes app.`});
+$('#bCopy').addEventListener('click',async()=>{if(!$('#bOut').value)$('#bOut').value=bCode();try{await navigator.clipboard.writeText($('#bOut').value);$('#bMsg').textContent='Copied.'}catch(e){$('#bOut').select();$('#bMsg').textContent='Select the code above and copy it.'}});
+$('#bFile').addEventListener('click',()=>{try{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([bCode()],{type:'text/plain'}));a.download='rybok-backup-'+new Date().toISOString().slice(0,10)+'.txt';document.body.appendChild(a);a.click();a.remove();$('#bMsg').textContent='File saved, if your browser allows downloads here.'}catch(e){$('#bMsg').textContent='Saving files is blocked here; use Copy instead.'}});
+$('#bLoad').addEventListener('click',e=>{const v=$('#bIn').value.trim();let o=null;try{if(!v.startsWith('RYBOK1:'))throw 0;o=JSON.parse(decodeURIComponent(escape(atob(v.slice(7)))));if(!o||typeof o!=='object')throw 0}catch(err){$('#bMsg2').textContent='That doesn’t look like a backup code from this site.';return}
+confirm2(e.currentTarget,'Restore progress',()=>{try{Object.keys(o).forEach(k=>{if(k.startsWith('rb-'))localStorage.setItem(k,o[k])});$('#bMsg2').textContent='Restored. Reloading…';setTimeout(()=>location.reload(),600)}catch(err){$('#bMsg2').textContent='Could not save here: storage is blocked in this browser.'}});
+if(!e.currentTarget.dataset.c)return;$('#bMsg2').textContent='This replaces the progress in this browser. Tap again to confirm.'});
+
+/* mock exam */
+const MB=$('#mockBox');let mt0=0,mInt=null,mParts=null;
+const mq=(id,q,opts)=>`<div class="mq" data-q="${id}"><p>${q}</p>${opts.map((o,i)=>`<label class="mo"><input type="radio" name="${id}" value="${i}">${o}</label>`).join('')}</div>`;
+const mStart0=()=>{const last=store.get('rb-mock',null);MB.innerHTML=`<div class="mpart"><h3>Ready when you are</h3><p>Four parts on one page. Answer everything, then press “Finish and score” at the bottom. Each listening text can be played twice, as in the exam.</p>${last?`<p>Last attempt (${last.d}): grammar ${last.s[0]}%, reading ${last.s[1]}%, listening ${last.s[2]}%.</p>`:''}<button class="btn red" id="mGo" type="button">Start the mock exam</button></div>`;$('#mGo').addEventListener('click',mRun)};
+const mRun=()=>{const pool=[...bank.map(x=>x.slice(0,4)),...ASP,...MOT];const G=shuf(pool.slice()).slice(0,20).map(x=>{const o=x[1].map((t,i)=>[t,i===x[2]]);shuf(o);return [x[0],o.map(a=>a[0]),o.findIndex(a=>a[1])]});
+mParts={G,R:RD[1],L:[...LS[0][1],...LS[1][1]]};
+MB.innerHTML=`<div class="mbar"><span>Mock exam · time <b id="mClock">0:00</b></span><button class="btn gold" id="mFin2" type="button">Finish and score</button></div>
+<div class="mpart"><h3>Part 1 · Grammar and vocabulary</h3><p>Choose the correct option.</p>${G.map((x,i)=>mq('g'+i,(i+1)+'. '+x[0],x[1])).join('')}</div>
+<div class="mpart"><h3>Part 2 · Reading</h3><div class="mtext">${RD[0]}</div>${RD[1].map((x,i)=>mq('r'+i,x[0],x[1])).join('')}</div>
+<div class="mpart"><h3>Part 3 · Listening</h3><p>Listen without reading. Each text can be played twice.</p>${LS.map((t,j)=>`<div class="mtext"><button class="btn red" type="button" data-play="${j}">Play text ${j+1}</button> <span id="mPl${j}" style="font-size:14px;color:var(--soft)">2 plays left</span><div id="mTr${j}" hidden style="margin-top:8px">${t[0]}</div></div>${t[1].map((x,i)=>mq('l'+j+'_'+i,x[0],x[1])).join('')}`).join('')}</div>
+<div class="mpart"><h3>Part 4 · Writing and speaking</h3><p>Do one writing task and one speaking topic in the <a href="#speak">practice section</a> with the timer, then tick what you managed.</p><ul class="chk">${['I wrote at least 100 words on the task','My text had a clear start, middle and end','I spoke for 3 minutes without long pauses','I used past and future tenses correctly'].map(t=>`<li><label><input type="checkbox" class="mself">${t}</label></li>`).join('')}</ul></div>
+<button class="btn red" id="mFin" type="button">Finish and score</button>`;
+const plays=[2,2];MB.querySelectorAll('[data-play]').forEach(b=>b.addEventListener('click',()=>{const j=+b.dataset.play;if(plays[j]<=0)return;plays[j]--;say(LS[j][0]);$('#mPl'+j).textContent=plays[j]?'1 play left':'No plays left';if(!plays[j])b.disabled=true}));
+mt0=Date.now();clearInterval(mInt);mInt=setInterval(()=>{const s=Math.floor((Date.now()-mt0)/1000);const c=$('#mClock');if(c)c.textContent=`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`},1000);
+$('#mFin').addEventListener('click',mScore);$('#mFin2').addEventListener('click',mScore);MB.scrollIntoView({block:'start'})};
+const mScore=()=>{clearInterval(mInt);const val=id=>{const c=MB.querySelector(`input[name="${id}"]:checked`);return c?+c.value:-1};
+const mark=(id,ci)=>{const v=val(id);MB.querySelectorAll(`input[name="${id}"]`).forEach((r,i)=>{r.disabled=true;const l=r.closest('.mo');if(i===ci)l.classList.add('ok');else if(i===v)l.classList.add('no')});return v===ci};
+const g=mParts.G.filter((x,i)=>mark('g'+i,x[2])).length,r=RD[1].filter((x,i)=>mark('r'+i,x[2])).length;
+let l=0;LS.forEach((t,j)=>t[1].forEach((x,i)=>{if(mark('l'+j+'_'+i,x[2]))l++;}));LS.forEach((t,j)=>{$('#mTr'+j).hidden=false});
+const nL=LS[0][1].length+LS[1][1].length,sc=[Math.round(g/20*100),Math.round(r/RD[1].length*100),Math.round(l/nL*100)],self=MB.querySelectorAll('.mself:checked').length;
+store.set('rb-mock',{d:new Date().toLocaleDateString('en-GB'),s:sc});
+const row=(n,x,t)=>`<tr><td class="k">${n}</td><td style="text-align:right">${x}</td><td class="${t?'pass':'fail'}">${t?'Pass':'Not yet'}</td></tr>`;
+const res=document.createElement('div');res.className='mpart';res.innerHTML=`<h3>Your result</h3><div class="scroll"><table><thead><tr><th>Part</th><th style="text-align:right">Score</th><th>66% needed</th></tr></thead><tbody>${row('Grammar and vocabulary',sc[0]+'%',sc[0]>=66)}${row('Reading',sc[1]+'%',sc[1]>=66)}${row('Listening',sc[2]+'%',sc[2]>=66)}${row('Writing and speaking (self-check)',self+' of 4',self>=3)}</tbody></table></div><p style="margin-top:12px">${sc.every(x=>x>=66)&&self>=3?'On this sample you would pass B1. Keep reviewing and take the real ТРКИ-1 when you feel ready.':'Correct answers are marked in green below. Go back to the weeks behind your weakest part, then try again.'}</p><div class="wbtn"><button class="btn red" id="mAgain" type="button">New mock exam</button></div>`;
+MB.prepend(res);MB.querySelectorAll('#mFin,#mFin2').forEach(b=>b.disabled=true);$('#mAgain').addEventListener('click',mRun);res.scrollIntoView({block:'start'})};
+mStart0();
+
+/* today */
+todayDraw=()=>{const d=today()-START,wk=weekNow(),done8=d>=56;$('#tTitle').textContent=done8?'Plan complete: keep your reviews going':`Today: week ${wk}, day ${d%7+1}`;
+const due=dueKeys().length,nl=L()[0],c=cap(),gr=L()[1],W=weeks[wk-1],wd=W[2].filter((t,j)=>done[(wk-1)+'-'+j]).length,iss=ISS[wk-1];
+const card=(ok,big,txt,btn,go)=>`<div class="tc${ok?' ok':''}"><b>${big}</b><span>${txt}</span><button class="btn" type="button" data-go="${go}">${btn}</button></div>`;
+$('#tgrid').innerHTML=card(!due,due?due:'✓',due?'flashcard reviews due today. Do these first.':'No reviews due. Nice work.','Start reviews','rev')
++card(nl>=c,`${nl}/${c}`,'new words learned today','Learn new words','new')
++card(wd===W[2].length,`${wd}/${W[2].length}`,`tasks done in week ${wk}: ${W[0]}`,`Open week ${wk}`,'week')
++card(false,`№ ${wk}`,`This week’s reading: «${iss.t}»`,'Read it','read')
++card(gr>=30,`${Math.min(gr,30)}/30`,gr>=30?'cards answered: today’s norm is fulfilled.':'cards answered today. 30 fills today’s norm square.','Open the drill','drill');};
+$('#tgrid').addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(!b)return;const g=b.dataset.go,wk=weekNow();
+if(g==='rev'){setDir('r');$('#cat').value='due';build();$('#words').scrollIntoView()}
+else if(g==='new'||g==='drill'){if(g==='new'){setDir('r');const i=decks.findIndex(d=>d.items.some(fresh));$('#cat').value=String(Math.max(0,i));build()}$('#words').scrollIntoView()}
+else if(g==='week'){$('#w'+(wk-1)).scrollIntoView()}
+else if(g==='read'){rIssue(wk-1);$('#paper').scrollIntoView()}});
+$('#tRestart').addEventListener('click',e=>confirm2(e.currentTarget,'Restart the plan at week 1 today',()=>{START=today();store.set('rb-start',START);todayDraw();normDraw()}));
+todayDraw();normAuto();
 }
 </script>
 <script>
