@@ -4,6 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Russian A2→B1 Bootcamp</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#16110e">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="РЫВОК">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -266,6 +273,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 32px;justify-content:space-bet
 
 <nav aria-label="Sections"><div class="in">
 <a class="logo" href="#top"><svg width="22" height="22" viewBox="-11 -11 22 22"><use href="#star" fill="#c8161d"/></svg>РЫВОК</a>
+<button class="btn gold" id="install" type="button" hidden style="min-height:36px;padding:0 12px;font-size:14px;flex:none">Install</button>
 <div class="links">
 <a href="#manifesto">Manifesto</a><a href="#norm">Daily norm</a><a href="#plan">Plan</a><a href="#abc">Alphabet</a><a href="#grammar">Grammar</a><a href="#words">Words</a><a href="#list">Word list</a><a href="#factory">Case factory</a><a href="#paper">Reading</a><a href="#phrases">Phrases</a><a href="#test">Test</a><a href="#exam">Exam</a>
 </div></div></nav>
@@ -1045,6 +1053,15 @@ Q.querySelectorAll('.opt').forEach((b,j)=>{b.disabled=true;if(j===x[2])b.classLi
 if(ok)score++;else miss.push(x[4]);$('#why').innerHTML=(ok?'<b style="color:var(--ok)">Верно.</b> ':'<b style="color:var(--bad)">Not quite.</b> ')+x[3];$('#next').hidden=false;$('#next').focus({preventScroll:true});return}
 if(e.target.id==='next'){qi++;renderQ()}});
 start();
+}
+</script>
+<script>
+{
+let ev=null;const b=document.getElementById('install');
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();ev=e;b.hidden=false});
+b.addEventListener('click',async()=>{if(!ev)return;ev.prompt();try{await ev.userChoice}catch(e){}ev=null;b.hidden=true});
+window.addEventListener('appinstalled',()=>{b.hidden=true});
+try{if('serviceWorker' in navigator&&isSecureContext)navigator.serviceWorker.register('sw.js').catch(()=>{})}catch(e){}
 }
 </script>
 </body>
