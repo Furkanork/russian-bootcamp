@@ -17,4 +17,7 @@ A single-page, phone-friendly study site for taking Russian from A2 to B1 in eig
 - 35-question level check and a mock ТРКИ-1 (B1) exam
 - Backup code to move progress between devices
 
+## Accuracy
+Stress marks, word forms and all drill answers were checked against the [OpenRussian](https://en.openrussian.org) dictionary data (CC BY-SA) and the pymorphy3 morphological dictionary; all Russian sentences were run through LanguageTool. A native-speaker review is still recommended.
+
 Everything is in `index.html`. Progress is saved in your browser only.
