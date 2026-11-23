@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Russian A2→B1 Bootcamp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* VOICE playful Soviet propaganda-poster pastiche around a serious study plan
+   IDEA a constructivist poster + workers' Five-Year-Plan ledger: quotas, ranks, a production chart
+   PICTURE the 80/20 "production chart" in the hero, plus a rank star that grows as tasks are fulfilled
+   COLOUR poster red, near-black, newsprint paper, gold for what matters; night = black paper, same red
+   TYPE Oswald (condensed poster capitals, Cyrillic) + PT Sans (ParaType, Cyrillic)
+   LAYOUT bands alternate red / paper / black; laptop: title + rank card, chart full width; phone: stacked */
+:root{color-scheme:light dark;
+--bg:light-dark(#f2eadb,#14110f);
+--paper:light-dark(#e9dfcb,#1d1916);
+--card:light-dark(#fbf7ef,#231e1a);
+--ink:light-dark(#1a1411,#f2eadb);
+--soft:light-dark(#5a4f46,#b6aa9b);
+--line:light-dark(#cfc2ab,#3a322b);
+--red:#c8161d;
+--redt:light-dark(#b3141a,#ff5a4f);
+--blk:#16110e;
+--gold:#f0b323;
+--ok:light-dark(#1f7a3a,#5fd18a);
+--bad:light-dark(#b3141a,#ff7b72)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:66px}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "PT Sans",system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:Oswald,"Arial Narrow",sans-serif;font-weight:700;line-height:1.05;text-transform:uppercase;text-wrap:balance;margin:0}
+h2{font-size:clamp(30px,4.6vw,48px)}
+h3{font-size:20px;font-weight:600}
+.ruh{font:600 clamp(17px,2vw,21px)/1.2 Oswald,sans-serif;color:var(--redt);text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.ruh svg{flex:none}
+p{margin:0 0 12px;max-width:68ch}
+a{color:inherit}
+.band{padding-block:clamp(36px,5vw,76px);padding-left:max(5vw,16px,env(safe-area-inset-left,0px));padding-right:max(5vw,16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1240px;margin:0 auto}
+.lead{font-size:18px;color:var(--soft);margin:10px 0 28px}
+.alt{background:var(--paper)}
+.dark{background:var(--blk);color:#f2eadb}
+.dark .lead{color:#c9bdac}
+.dark .ruh,.redb .ruh{color:var(--gold)}
+.redb{background:var(--red);color:#fff}
+.redb .lead{color:#fff;opacity:.92}
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:var(--blk);color:#f2eadb;padding-top:env(safe-area-inset-top,0px);border-bottom:4px solid var(--red)}
+nav .in{display:flex;align-items:center;gap:16px;padding:0 max(5vw,16px);height:56px}
+.logo{flex:none;display:flex;align-items:center;gap:8px;font:700 21px Oswald,sans-serif;text-decoration:none;letter-spacing:.02em}
+.links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;margin-left:auto}
+.links::-webkit-scrollbar{display:none}
+.links a{flex:none;text-decoration:none;padding:8px 11px;font:500 15px Oswald,sans-serif;text-transform:uppercase;border-radius:4px}
+.links a:hover,.links a:focus-visible{background:var(--red);outline:none}
+/* hero */
+.hero{background:var(--red);color:#fff;position:relative;overflow:hidden}
+.hero .wedge{position:absolute;inset:0;pointer-events:none}
+.hero .wrap{position:relative}
+.hero .top{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:36px;align-items:end;margin-bottom:24px}
+.hero .ruh{color:var(--gold);font-size:clamp(18px,2.4vw,24px)}
+.hero h1{font-size:clamp(40px,5.6vw,70px);line-height:1}
+.hero p{font-size:18px;margin-top:16px;opacity:.95}
+.rank{background:var(--blk);color:#f2eadb;padding:18px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:center;box-shadow:10px 10px 0 rgba(0,0,0,.25)}
+.rank svg{width:96px;height:96px}
+.rank .rn{font:700 26px/1.05 Oswald,sans-serif;text-transform:uppercase;color:var(--gold)}
+.rank .re{font-size:14px;color:#c9bdac}
+.rank .bar{grid-column:1/-1;height:12px;background:#3a322b;overflow:hidden}
+.rank .bar i{display:block;height:100%;width:0;background:var(--gold);transition:width .6s}
+.rank small{grid-column:1/-1;font-size:14px;color:#c9bdac;margin-top:-6px}
+.rank .bt{grid-column:1/-1;display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border:2px solid currentColor;background:transparent;color:inherit;font:600 16px Oswald,sans-serif;text-transform:uppercase;letter-spacing:.02em;cursor:pointer;text-decoration:none;border-radius:2px}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:var(--blk)}
+.btn.red{background:var(--red);border-color:var(--red);color:#fff}
+.btn:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.fig{position:relative;height:clamp(260px,32vw,370px)}
+.fig>svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.fig text{font:400 13px "PT Sans",sans-serif;fill:#fff}
+.note{font-size:13px;opacity:.85;margin-top:10px}
+/* manifesto */
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.list{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:10px}
+.list li{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;background:var(--card);border:1px solid var(--line);padding:14px 16px}
+.list .w{font:700 18px Oswald,sans-serif;background:var(--red);color:#fff;min-width:38px;text-align:center;padding:4px 8px}
+.skip .w{background:var(--line);color:var(--ink);font-size:14px}
+.list b{display:block;font-size:17px}
+.list span{color:var(--soft);font-size:15.5px}
+.routine{margin-top:16px;display:grid;gap:8px}
+.row{display:grid;grid-template-columns:10em minmax(0,1fr) 4em;gap:12px;align-items:center}
+.row .t{height:32px;background:var(--blk);color:#f2eadb;display:flex;align-items:center;padding-left:10px;font-size:14px;white-space:nowrap;overflow:hidden}
+:root[data-theme=dark] .row .t{background:var(--red)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .row .t{background:var(--red)}}
+.row .m{text-align:right;font:600 17px Oswald,sans-serif;white-space:nowrap}
+/* norm */
+.norm{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,300px);gap:32px;align-items:start}
+.ng{display:grid;gap:6px}
+.nr{display:grid;grid-template-columns:4.2em repeat(7,minmax(0,1fr));gap:6px;align-items:center}
+.nr span{font:500 14px Oswald,sans-serif;text-transform:uppercase;color:#c9bdac}
+.cell{aspect-ratio:1;max-height:52px;min-height:36px;border:2px solid #4a4038;background:transparent;cursor:pointer;color:var(--blk);font:700 14px Oswald,sans-serif;display:grid;place-items:center;padding:0}
+.cell.on{background:var(--red);border-color:var(--red);color:var(--gold)}
+.ns{display:grid;gap:12px}
+.ns div{border-left:6px solid var(--red);padding:6px 14px;background:#211b17}
+.ns b{display:block;font:700 34px Oswald,sans-serif;color:var(--gold)}
+.ns span{font-size:15px;color:#c9bdac}
+/* plan */
+.weeks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.wk{background:var(--card);border:1px solid var(--line);padding:18px;position:relative}
+.wk.done{border:2px solid var(--red)}
+.wk.done::after{content:"Выполнено!";position:absolute;top:14px;right:-6px;background:var(--red);color:#fff;font:600 13px Oswald,sans-serif;text-transform:uppercase;padding:3px 10px;transform:rotate(4deg)}
+.wk .n{font:700 40px/1 Oswald,sans-serif;color:var(--redt)}
+.wk .f{font-size:14px;color:var(--soft);margin:2px 0 4px}
+.wk h3{margin:0 0 10px;font-size:19px}
+.wk label{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px dashed var(--line);font-size:15.5px;cursor:pointer}
+.wk input{width:20px;height:20px;flex:none;margin-top:2px;accent-color:var(--red)}
+.wk input:checked+span{color:var(--soft);text-decoration:line-through}
+/* alphabet */
+.abc{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}
+.lt{border:none;background:var(--card);color:var(--ink);padding:10px 8px 8px;cursor:pointer;text-align:left;border-top:6px solid var(--line);min-height:96px;font:15px "PT Sans",sans-serif}
+.lt b{display:block;font:700 30px/1 Oswald,sans-serif}
+.lt i{font-style:normal;color:var(--soft);font-size:13.5px;display:block}
+.lt.g1{border-top-color:#8a8076}.lt.g2{border-top-color:var(--gold)}.lt.g3{border-top-color:var(--red)}.lt.g4{border-top-color:var(--blk)}
+:root[data-theme=dark] .lt.g4{border-top-color:#f2eadb}
+.key{display:flex;flex-wrap:wrap;gap:8px 20px;margin:0 0 16px;font-size:15px}
+.key span{display:flex;align-items:center;gap:8px}
+.key i{width:22px;height:6px;display:inline-block}
+.rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:28px}
+.rules div{background:var(--card);border:1px solid var(--line);padding:14px 16px;font-size:15.5px}
+.rules b{display:block;font:600 17px Oswald,sans-serif;text-transform:uppercase;margin-bottom:4px}
+/* grammar */
+.tg{display:grid;grid-template-columns:8.5em minmax(0,1fr);gap:10px;align-items:start;margin-bottom:10px}
+.tg>span{font:600 15px Oswald,sans-serif;text-transform:uppercase;color:var(--soft);padding-top:11px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+#gtabs{margin-bottom:22px}
+.tab{flex:none;min-height:44px;padding:0 14px;border:2px solid var(--ink);background:transparent;color:var(--ink);font:600 15px Oswald,sans-serif;text-transform:uppercase;cursor:pointer}
+.tab[aria-selected=true]{background:var(--red);border-color:var(--red);color:#fff}
+.scroll{overflow-x:auto;border:1px solid var(--line);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:15.5px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--blk);color:#f2eadb;font:500 15px Oswald,sans-serif;text-transform:uppercase;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.k{font-weight:700;white-space:nowrap}
+td em{font-style:normal;color:var(--redt);font-weight:700}
+.pane[hidden]{display:none}
+.tip{margin-top:14px;background:color-mix(in srgb,var(--gold) 28%,var(--card));padding:12px 16px;font-size:15.5px;border-left:6px solid var(--gold)}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+/* cards */
+.dgrid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:36px;align-items:center}
+.card{perspective:1200px;height:310px;cursor:pointer;outline:none}
+.card .in{position:relative;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.card.flip .in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;background:#f6efe1;color:#1a1411;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;box-shadow:12px 12px 0 var(--blk);border:3px solid var(--blk)}
+.face.back{transform:rotateY(180deg);background:var(--gold)}
+.face .big{font:700 clamp(34px,6.5vw,54px)/1.05 Oswald,sans-serif;color:#b3141a}
+.face .tr{font:600 26px/1.15 Oswald,sans-serif;text-transform:uppercase;margin-bottom:10px}
+.face .ex{font-size:18px}
+.face .cat{position:absolute;top:14px;left:16px;font:500 14px Oswald,sans-serif;text-transform:uppercase;color:#5a4f46}
+.face .hint{position:absolute;bottom:12px;font-size:13px;color:#5a4f46}
+.say{width:44px;height:44px;border-radius:50%;border:0;background:var(--gold);color:var(--blk);cursor:pointer;display:inline-grid;place-items:center;flex:none}
+.face .say{position:absolute;top:10px;right:10px;background:var(--blk);color:var(--gold)}
+.ctl{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.ctl .btn{flex:1 1 130px}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0}
+.stats div{background:rgba(0,0,0,.22);padding:10px 14px}
+.stats b{display:block;font:700 32px Oswald,sans-serif}
+.stats span{font-size:14px}
+select{min-height:44px;font:16px "PT Sans",sans-serif;padding:0 12px;border:2px solid #fff;background:transparent;color:#fff;width:100%;border-radius:0}
+select option{color:#1a1411}
+/* coverage + word list */
+.cov{background:rgba(0,0,0,.22);padding:14px 16px;margin:16px 0}
+.cov .big{font:700 clamp(40px,6vw,58px)/1 Oswald,sans-serif;color:var(--gold)}
+.cov .bar{position:relative;height:14px;background:rgba(255,255,255,.2);margin:10px 0 8px}
+.cov .bar i{position:absolute;inset:0 auto 0 0;background:var(--gold);width:0;transition:width .5s}
+.cov .bar b{position:absolute;top:-4px;bottom:-4px;width:3px;background:#fff}
+.cov small{font-size:14.5px;display:block}
+.wtools{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;margin-bottom:12px}
+.wtools input,.wtools select{min-height:46px;font:16px "PT Sans",sans-serif;padding:0 12px;border:2px solid var(--ink);background:var(--card);color:var(--ink);border-radius:0;width:100%}
+.wtools select option{color:inherit}
+.wbtn{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
+.wbtn span{font-size:15px;color:var(--soft);margin-left:auto}
+.wlist{max-height:520px;overflow-y:auto;border:1px solid var(--line);background:var(--card);display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr))}
+.wl{display:grid;grid-template-columns:auto 3.2em minmax(0,1fr);gap:10px;align-items:center;padding:9px 12px;border-bottom:1px solid var(--line);cursor:pointer;font-size:15.5px}
+.wl input{width:20px;height:20px;accent-color:var(--red);margin:0}
+.wl .r{font:500 13px Oswald,sans-serif;color:var(--soft);text-align:right}
+.wl b{color:var(--redt);margin-right:6px}
+.wl span{color:var(--soft)}
+.wl.k b{color:var(--ok)}
+.bands{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:22px}
+.bands div{background:var(--card);border:1px solid var(--line);padding:12px 14px}
+.bands b{display:block;font:700 22px Oswald,sans-serif}
+.bands span{font-size:14px;color:var(--soft)}
+.bands i{display:block;height:6px;background:var(--line);margin-top:8px}
+.bands i u{display:block;height:100%;background:var(--red);width:0}
+/* factory */
+.fac{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:32px;align-items:start}
+.machine{background:#211b17;border:3px solid var(--red);padding:clamp(18px,3vw,28px)}
+.machine .cs{font:600 15px Oswald,sans-serif;text-transform:uppercase;color:var(--gold)}
+.machine .pr{font:700 clamp(28px,5vw,44px)/1.15 Oswald,sans-serif;margin:8px 0 4px}
+.machine .pr u{text-decoration:none;border-bottom:4px solid var(--gold);display:inline-block;min-width:3em}
+.machine .gl{color:#c9bdac;font-size:15px;margin-bottom:16px}
+.inrow{display:flex;gap:10px;flex-wrap:wrap}
+.inrow input{flex:1 1 200px;min-height:50px;font:20px "PT Sans",sans-serif;padding:0 14px;border:2px solid #6b5f55;background:#14110f;color:#f2eadb;border-radius:0}
+.fb{min-height:28px;margin:14px 0 6px;font-size:16px}
+.fb.y{color:#5fd18a}.fb.n{color:#ff7b72}
+.cases{display:flex;flex-wrap:wrap;gap:6px}
+.cases label{display:flex;gap:8px;align-items:center;border:1px solid #4a4038;padding:8px 12px;cursor:pointer;font-size:15px}
+.cases input{accent-color:var(--red);width:18px;height:18px}
+/* newspaper */
+.paper{background:var(--card);border:1px solid var(--line);padding:clamp(18px,3.5vw,40px);box-shadow:10px 10px 0 var(--red)}
+.mast{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;border-bottom:4px double var(--ink);padding-bottom:8px;margin-bottom:16px}
+.mast b{font:700 clamp(44px,8vw,78px)/.9 Oswald,sans-serif;color:var(--redt)}
+.mast span{font-size:14px;color:var(--soft)}
+.paper h3{font-size:clamp(24px,3.4vw,34px);margin-bottom:14px}
+.art{columns:2 300px;column-gap:32px;column-rule:1px solid var(--line)}
+.art .pp{break-inside:avoid;margin-bottom:14px}
+.art .pp p{margin-bottom:4px}
+.art .en{color:var(--soft);font-style:italic;font-size:15.5px}
+.art .en[hidden]{display:none}
+.lk{background:none;border:0;padding:4px 0;color:var(--redt);font:600 14px Oswald,sans-serif;text-transform:uppercase;cursor:pointer;min-height:32px}
+.gloss{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:15px;border-top:1px solid var(--line);padding-top:12px;margin-top:6px}
+.tf{display:grid;gap:10px;margin-top:22px}
+.tfq{display:flex;gap:10px;align-items:center;flex-wrap:wrap;border-top:1px dashed var(--line);padding-top:10px}
+.tfq p{flex:1 1 240px;margin:0;font-weight:700}
+.tfq button{min-height:44px;min-width:76px;border:2px solid var(--ink);background:transparent;color:var(--ink);font:600 15px Oswald,sans-serif;text-transform:uppercase;cursor:pointer}
+.tfq button.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+.tfq button.no{background:var(--bad);border-color:var(--bad);color:#fff}
+/* phrases */
+.phr{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:10px}
+.ph{display:flex;gap:12px;align-items:center;border:1px solid var(--line);padding:12px 14px;background:var(--card)}
+.ph div{flex:1}
+.ph b{display:block;color:var(--redt);font-size:17.5px}
+.ph span{font-size:15px;color:var(--soft)}
+.ph .say{background:var(--blk);color:var(--gold)}
+/* quiz */
+.q{max-width:780px;background:var(--card);border:3px solid var(--ink);padding:clamp(18px,3vw,30px)}
+.q .meta{display:flex;justify-content:space-between;font:500 15px Oswald,sans-serif;text-transform:uppercase;color:var(--soft);margin-bottom:10px}
+.q .stem{font:700 clamp(21px,3vw,27px)/1.3 "PT Sans",sans-serif;margin-bottom:6px}
+.q .why{min-height:24px;font-size:16px;margin:14px 0}
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.opt{min-height:54px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font:700 18px "PT Sans",sans-serif;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--red)}
+.opt.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 16%,var(--bg))}
+.opt.no{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,var(--bg))}
+/* exam + library */
+.ex5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:20px 0 36px}
+.ex5 div{background:#211b17;border-top:6px solid var(--red);padding:14px}
+.ex5 b{display:block;font:600 18px Oswald,sans-serif;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.ex5 span{font-size:15px;color:#d8ccbb}
+.lib{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:10px}
+.lib a{display:block;text-decoration:none;border:1px solid #4a4038;padding:14px 16px}
+.lib a:hover{border-color:var(--gold)}
+.lib b{display:block;font:600 18px Oswald,sans-serif;text-transform:uppercase;color:var(--gold)}
+.lib span{font-size:15px;color:#d8ccbb}
+.cta .wrap{display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between}
+footer{background:var(--blk);color:#c9bdac;font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:10px 32px;justify-content:space-between}
+@media(max-width:980px){.bands{grid-template-columns:repeat(2,minmax(0,1fr))}.weeks{grid-template-columns:repeat(2,minmax(0,1fr))}.hero .top{grid-template-columns:1fr}.ex5{grid-template-columns:repeat(2,minmax(0,1fr))}.rules{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.cols,.dgrid,.fac,.norm,.two{grid-template-columns:1fr}.ns{grid-template-columns:repeat(auto-fit,minmax(9em,1fr))}.ns .btn{grid-column:1/-1}.ns b{font-size:28px}}
+@media(max-width:600px){.tg{grid-template-columns:1fr;gap:4px}.tg>span{padding-top:0}.tab{padding:0 11px;font-size:14px}.wtools{grid-template-columns:1fr 1fr}.wtools input{grid-column:1/-1}.weeks,.rules{grid-template-columns:1fr}.opts{grid-template-columns:1fr}.row{grid-template-columns:7.5em minmax(0,1fr) 3.4em}table{font-size:14px}th,td{padding:8px}.card{height:290px}.logo{font-size:18px}.links a{padding:8px 8px;font-size:14px}.nr{grid-template-columns:3em repeat(7,minmax(0,1fr));gap:4px}.abc{grid-template-columns:repeat(auto-fill,minmax(76px,1fr))}.lt b{font-size:26px}.rank svg{width:76px;height:76px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><path id="star" d="M0,-10 L2.35,-3.24 L9.51,-3.09 L3.8,1.24 L5.88,8.09 L0,4 L-5.88,8.09 L-3.8,1.24 L-9.51,-3.09 L-2.35,-3.24Z"/></defs></svg>
+
+<nav aria-label="Sections"><div class="in">
+<a class="logo" href="#top"><svg width="22" height="22" viewBox="-11 -11 22 22"><use href="#star" fill="#c8161d"/></svg>РЫВОК</a>
+<div class="links">
+<a href="#manifesto">Manifesto</a><a href="#norm">Daily norm</a><a href="#plan">Plan</a><a href="#abc">Alphabet</a><a href="#grammar">Grammar</a><a href="#words">Words</a><a href="#list">Word list</a><a href="#factory">Case factory</a><a href="#paper">Reading</a><a href="#phrases">Phrases</a><a href="#test">Test</a><a href="#exam">Exam</a>
+</div></div></nav>
+
+<header class="hero band" id="top">
+<svg class="wedge" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polygon points="62,0 100,0 100,38" fill="#16110e" opacity=".22"/><polygon points="0,100 0,90 18,100" fill="#16110e" opacity=".22"/></svg>
+<div class="wrap">
+<div class="top">
+<div>
+<div class="ruh">Пятилетку — за восемь недель!</div>
+<h1>Comrade, take Russian from A2 to B1 in eight weeks</h1>
+<p>A study plan built on the 80/20 rule. Spend most of your time on the 20% that does 80% of the work: the most common words, three cases, verb aspect and ready-made phrases. Then use them out loud every day.</p>
+</div>
+<div class="rank" aria-live="polite">
+<svg viewBox="-60 -60 120 120" id="badge" aria-hidden="true"></svg>
+<div><div class="re">Your rank</div><div class="rn" id="rname">Октябрёнок</div><div class="re" id="rnext">5 tasks to Пионер</div></div>
+<div class="bar"><i id="pbar"></i></div>
+<small id="ptxt">0 of 40 plan tasks fulfilled · 0%</small>
+<div class="bt"><a class="btn gold" href="#plan">Open the plan</a><a class="btn" href="#test">Test my level</a></div>
+</div>
+</div>
+<div class="fig" id="curve" role="img" aria-label="Production chart: about 2,000 words cover roughly 80 percent of everyday Russian text"><svg id="cs"></svg></div>
+<div class="note">Approximate share of everyday Russian text covered by the most frequent words (dictionary forms), rounded from published frequency lists; exact numbers vary by corpus. The white dot is you, based on the words you mark as known.</div>
+</div></header>
+
+<section class="band" id="manifesto"><div class="wrap">
+<div class="ruh">Манифест 80/20</div>
+<h2>Learn the 20% first. The other 80% can wait.</h2>
+<p class="lead">At B1 you can handle daily life, give your opinion and tell a story about the past. These six blocks get you most of the way there. Everything on the right can wait until after B1.</p>
+<div class="cols">
+<div><h3>The high-yield 20%</h3>
+<ul class="list">
+<li><span class="w">1</span><div><b>The most frequent 1,000 words</b><span>Ranked in the word list below. They cover about 70% of everyday text; listening and reading take you on to 2,000 words and about 80%.</span></div></li>
+<li><span class="w">2</span><div><b>Prepositional, accusative, genitive</b><span>Where? Where to? Of / not / have. Most of the case endings you produce come from these three.</span></div></li>
+<li><span class="w">3</span><div><b>Verb aspect in past and future</b><span>читал (process, habit) vs прочитал (done, result). This is the biggest step from A2 to B1.</span></div></li>
+<li><span class="w">4</span><div><b>Six motion verbs</b><span>идти/ходить, ехать/ездить, нести/носить plus prefixes при-, у-, вы-, за-, по-.</span></div></li>
+<li><span class="w">5</span><div><b>Linking words</b><span>потому что, поэтому, который, если, чтобы, хотя turn sentences into speech.</span></div></li>
+<li><span class="w">6</span><div><b>50 ready-made chunks</b><span>Memorise whole phrases like «Мне кажется, что…» instead of building them.</span></div></li>
+</ul></div>
+<div class="skip"><h3>The 80% you can postpone</h3>
+<ul class="list">
+<li><span class="w">Later</span><div><b>Participles and gerunds</b><span>Recognise читающий, прочитав when reading. Don't produce them yet.</span></div></li>
+<li><span class="w">Later</span><div><b>Every motion-verb prefix</b><span>Пере-, об-, раз-…ся can wait. Five prefixes carry daily speech.</span></div></li>
+<li><span class="w">Later</span><div><b>Rare plural endings</b><span>Learn the genitive plurals you meet constantly: лет, людей, раз, денег, минут.</span></div></li>
+<li><span class="w">Later</span><div><b>Literary and bureaucratic vocabulary</b><span>News and classics come after conversation feels comfortable.</span></div></li>
+<li><span class="w">Later</span><div><b>A perfect accent</b><span>Get word stress right. Your vowel reduction will improve with listening time.</span></div></li>
+<li><span class="w">Later</span><div><b>Cursive handwriting</b><span>Only if your exam or school asks for it. Type and read print.</span></div></li>
+</ul></div>
+</div>
+<h3 style="margin-top:44px">The daily norm: 60 minutes</h3>
+<div class="routine" id="routine"></div>
+</div></section>
+
+<section class="band dark" id="norm"><div class="wrap norm">
+<div>
+<div class="ruh">Дневная норма</div>
+<h2>Fulfil the daily norm</h2>
+<p class="lead">One square per day: 56 days, 8 weeks. Tap a square when you have done your 60 minutes. Consistency beats intensity.</p>
+<div class="ng" id="ng"></div>
+</div>
+<div class="ns">
+<div><b id="nDays">0</b><span>days fulfilled of 56</span></div>
+<div><b id="nStreak">0</b><span>longest streak, days</span></div>
+<div><b id="nHours">0 h</b><span>hours of study logged</span></div>
+<button class="btn" id="nReset" type="button" style="color:#f2eadb">Clear the norm</button>
+</div>
+</div></section>
+
+<section class="band alt" id="plan"><div class="wrap">
+<div class="ruh">План на восемь недель</div>
+<h2>The eight-week plan</h2>
+<p class="lead">Five tasks a week. Each tick is saved in this browser and raises your rank, from Октябрёнок to Герой труда.</p>
+<div class="weeks" id="weeks"></div>
+<div style="margin-top:18px"><button class="btn" id="reset" type="button">Reset plan progress</button></div>
+</div></section>
+
+<section class="band" id="abc"><div class="wrap">
+<div class="ruh">Азбука</div>
+<h2>The alphabet, sorted by effort</h2>
+<p class="lead">33 letters, but only about a dozen are really new. Tap a letter to hear its example word.</p>
+<div class="key"><span><i style="background:#8a8076"></i>Same as English</span><span><i style="background:var(--gold)"></i>False friends</span><span><i style="background:var(--red)"></i>New shapes</span><span><i style="background:var(--ink)"></i>Signs</span></div>
+<div class="abc" id="abcg"></div>
+<div class="rules">
+<div><b>Stress is free</b>It can fall on any syllable and changes vowels. Learn every word with its stress mark: молоко́, го́род, вода́.</div>
+<div><b>Unstressed О → «а»</b>молоко́ sounds like «малако́», хорошо́ like «харашо́». This one rule fixes most pronunciation.</div>
+<div><b>Unstressed Е, Я → «и»</b>сейча́с ≈ «сичас», язы́к ≈ «изык», тепе́рь ≈ «типерь».</div>
+<div><b>Final consonants go voiceless</b>хлеб → «хлеп», го́род → «го́рат», друг → «друк».</div>
+<div><b>Ь softens</b>The soft sign makes the consonant before it soft: брат vs брать, мат vs мать.</div>
+<div><b>Ё is always stressed</b>It is often printed as Е. If you see ё, you know where the stress is: ещё, всё, идёт.</div>
+</div>
+</div></section>
+
+<section class="band alt" id="grammar"><div class="wrap">
+<div class="ruh">Грамматика</div>
+<h2>The grammar cheat sheet</h2>
+<p class="lead">Everything B1 needs, in 19 tables grouped into nouns, verbs and sentences. Endings are in red. Start with cases, aspect and motion verbs; they do the most work.</p>
+<div id="gtabs" role="tablist">
+<div class="tg"><span>Nouns &amp; cases</span><div class="tabs">
+<button class="tab" role="tab" aria-selected="true" data-p="g1" id="t-g1">Cases</button>
+<button class="tab" role="tab" aria-selected="false" data-p="g2" id="t-g2">Case triggers</button>
+<button class="tab" role="tab" aria-selected="false" data-p="g3" id="t-g3">Pronouns</button>
+<button class="tab" role="tab" aria-selected="false" data-p="g9" id="t-g9">Possessives &amp; свой</button>
+<button class="tab" role="tab" aria-selected="false" data-p="g10" id="t-g10">Adjectives</button>
+<button class="tab" role="tab" aria-selected="false" data-p="g4" id="t-g4">Plurals</button>
+<button class="tab" role="tab" aria-selected="false" data-p="g8" id="t-g8">Numbers &amp; time</button>
+</div></div>
+<div class="tg"><span>Verbs</span><div class="tabs">
+<button class="tab" role="tab" aria-selected="false" data-p="g5" id="t-g5">Present tense</button>
+<button class="tab" role="tab" aria-selected="false" data-p="g6" id="t-g6">Aspect</button>
+<button class="tab" role="tab" aria-selected="false" data-p="g7" id="t-g7">Motion verbs</button>
+<button class="tab" role="tab" aria-selected="false" data-p="g11" id="t-g11">-ся verbs</button>
+<button class="tab" role="tab" aria-selected="false" data-p="g12" id="t-g12">Imperative</button>
+<button class="tab" role="tab" aria-selected="false" data-p="g13" id="t-g13">Verb + case</button>
+<button class="tab" role="tab" aria-selected="false" data-p="g14" id="t-g14">Put &amp; place</button>
+</div></div>
+<div class="tg"><span>Sentences</span><div class="tabs">
+<button class="tab" role="tab" aria-selected="false" data-p="g15" id="t-g15">Который</button>
+<button class="tab" role="tab" aria-selected="false" data-p="g16" id="t-g16">Comparison</button>
+<button class="tab" role="tab" aria-selected="false" data-p="g17" id="t-g17">Если &amp; чтобы</button>
+<button class="tab" role="tab" aria-selected="false" data-p="g18" id="t-g18">Negation</button>
+<button class="tab" role="tab" aria-selected="false" data-p="g19" id="t-g19">Мне холодно</button>
+</div></div>
+</div>
+<div class="pane" id="g1">
+<div class="scroll"><table>
+<thead><tr><th>Case</th><th>Question</th><th>Masculine</th><th>Feminine</th><th>Neuter</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td class="k">Nominative</td><td>кто? что?</td><td>дом, музей</td><td>мам<em>а</em>, недел<em>я</em></td><td>окн<em>о</em>, мор<em>е</em></td><td>Это мой брат.</td></tr>
+<tr><td class="k">Genitive</td><td>кого? чего?</td><td>дом<em>а</em>, музе<em>я</em></td><td>мам<em>ы</em>, недел<em>и</em></td><td>окн<em>а</em>, мор<em>я</em></td><td>У меня нет машин<em>ы</em>.</td></tr>
+<tr><td class="k">Dative</td><td>кому? чему?</td><td>дом<em>у</em>, музе<em>ю</em></td><td>мам<em>е</em>, недел<em>е</em></td><td>окн<em>у</em>, мор<em>ю</em></td><td>Я звоню мам<em>е</em>.</td></tr>
+<tr><td class="k">Accusative</td><td>кого? что?</td><td>дом · брат<em>а</em> (alive)</td><td>мам<em>у</em>, недел<em>ю</em></td><td>окн<em>о</em>, мор<em>е</em></td><td>Я вижу брат<em>а</em> и машин<em>у</em>.</td></tr>
+<tr><td class="k">Instrumental</td><td>кем? чем?</td><td>дом<em>ом</em>, музе<em>ем</em></td><td>мам<em>ой</em>, недел<em>ей</em></td><td>окн<em>ом</em>, мор<em>ем</em></td><td>Я пишу ручк<em>ой</em>.</td></tr>
+<tr><td class="k">Prepositional</td><td>о ком? о чём?</td><td>дом<em>е</em>, музе<em>е</em></td><td>мам<em>е</em>, недел<em>е</em></td><td>окн<em>е</em>, мор<em>е</em></td><td>Я живу в Москв<em>е</em>.</td></tr>
+</tbody></table></div>
+<div class="tip">Feminine nouns in -ь have their own small pattern: дверь → двер<b>и</b> (gen, dat, prep), двер<b>ью</b> (instr). Spelling rule: after г к х ж ш щ ч write и, never ы (книги).</div>
+</div>
+<div class="pane" id="g2" hidden>
+<div class="scroll"><table>
+<thead><tr><th>Case</th><th>Common triggers</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td class="k">Genitive</td><td>у, из, от, без, для, после, до, около; нет; numbers 2+; много, мало, сколько</td><td>Я из Турции. Пять минут.</td></tr>
+<tr><td class="k">Dative</td><td>к, по; нравится, нужно, можно, надо, кажется; age (мне 25 лет)</td><td>Мне нравится музыка.</td></tr>
+<tr><td class="k">Accusative</td><td>в / на + direction (куда?), через, про; direct object; days (в понедельник)</td><td>Я иду в школу.</td></tr>
+<tr><td class="k">Instrumental</td><td>с (with), за, под, над, перед, между; быть / стать / работать кем; заниматься чем</td><td>Я работаю врачом.</td></tr>
+<tr><td class="k">Prepositional</td><td>в / на + location (где?), о / об (about); months and years (в мае, в 2026 году)</td><td>Мы говорим о работе.</td></tr>
+</tbody></table></div>
+<div class="tip">Ask «где?» → prepositional, «куда?» → accusative. That one question fixes half of all case mistakes.</div>
+</div>
+<div class="pane" id="g3" hidden>
+<div class="scroll"><table>
+<thead><tr><th>Nom.</th><th>Gen. / Acc.</th><th>Dat.</th><th>Instr.</th><th>Prep.</th></tr></thead>
+<tbody>
+<tr><td class="k">я</td><td>меня</td><td>мне</td><td>мной</td><td>(обо) мне</td></tr>
+<tr><td class="k">ты</td><td>тебя</td><td>тебе</td><td>тобой</td><td>(о) тебе</td></tr>
+<tr><td class="k">он, оно</td><td>его (у н<em>его</em>)</td><td>ему (к н<em>ему</em>)</td><td>им (с н<em>им</em>)</td><td>(о) н<em>ём</em></td></tr>
+<tr><td class="k">она</td><td>её (у н<em>её</em>)</td><td>ей (к н<em>ей</em>)</td><td>ей (с н<em>ей</em>)</td><td>(о) н<em>ей</em></td></tr>
+<tr><td class="k">мы</td><td>нас</td><td>нам</td><td>нами</td><td>(о) нас</td></tr>
+<tr><td class="k">вы</td><td>вас</td><td>вам</td><td>вами</td><td>(о) вас</td></tr>
+<tr><td class="k">они</td><td>их (у н<em>их</em>)</td><td>им (к н<em>им</em>)</td><td>ими (с н<em>ими</em>)</td><td>(о) н<em>их</em></td></tr>
+</tbody></table></div>
+<div class="tip">After a preposition, он / она / они add н-: у него, к ней, с ними. Without one: Я вижу его.</div>
+</div>
+<div class="pane" id="g4" hidden>
+<div class="scroll"><table>
+<thead><tr><th>Case</th><th>Masculine</th><th>Feminine</th><th>Neuter</th></tr></thead>
+<tbody>
+<tr><td class="k">Nominative</td><td>стол<em>ы</em>, музе<em>и</em></td><td>книг<em>и</em>, недел<em>и</em></td><td>окн<em>а</em>, мор<em>я</em></td></tr>
+<tr><td class="k">Genitive</td><td>стол<em>ов</em>, музе<em>ев</em>, врач<em>ей</em></td><td>книг, недель, тетрад<em>ей</em></td><td>окон, мор<em>ей</em></td></tr>
+<tr><td class="k">Dative</td><td colspan="3">-<em>ам</em> / -<em>ям</em>: стол<em>ам</em>, книг<em>ам</em>, мор<em>ям</em></td></tr>
+<tr><td class="k">Accusative</td><td colspan="3">= nominative for things, = genitive for people and animals: вижу книги, вижу друзей</td></tr>
+<tr><td class="k">Instrumental</td><td colspan="3">-<em>ами</em> / -<em>ями</em>: стол<em>ами</em>, книг<em>ами</em>, мор<em>ями</em></td></tr>
+<tr><td class="k">Prepositional</td><td colspan="3">-<em>ах</em> / -<em>ях</em>: о стол<em>ах</em>, о книг<em>ах</em>, о мор<em>ях</em></td></tr>
+</tbody></table></div>
+<div class="tip">Plural dative, instrumental and prepositional are the same for all genders. Only the genitive plural is tricky, so learn the common ones as words: людей, детей, лет, денег, друзей, минут, рублей.</div>
+</div>
+<div class="pane" id="g5" hidden>
+<div class="two">
+<div class="scroll"><table>
+<thead><tr><th></th><th>1st: читать</th><th>2nd: говорить</th></tr></thead>
+<tbody>
+<tr><td class="k">я</td><td>чита<em>ю</em></td><td>говор<em>ю</em></td></tr>
+<tr><td class="k">ты</td><td>чита<em>ешь</em></td><td>говор<em>ишь</em></td></tr>
+<tr><td class="k">он, она</td><td>чита<em>ет</em></td><td>говор<em>ит</em></td></tr>
+<tr><td class="k">мы</td><td>чита<em>ем</em></td><td>говор<em>им</em></td></tr>
+<tr><td class="k">вы</td><td>чита<em>ете</em></td><td>говор<em>ите</em></td></tr>
+<tr><td class="k">они</td><td>чита<em>ют</em></td><td>говор<em>ят</em></td></tr>
+</tbody></table></div>
+<div class="scroll"><table>
+<thead><tr><th>Must-know irregulars</th><th>я · ты · они</th></tr></thead>
+<tbody>
+<tr><td class="k">хотеть</td><td>хочу · хочешь · хотят</td></tr>
+<tr><td class="k">мочь</td><td>могу · можешь · могут</td></tr>
+<tr><td class="k">есть (eat)</td><td>ем · ешь · едят</td></tr>
+<tr><td class="k">жить</td><td>живу · живёшь · живут</td></tr>
+<tr><td class="k">идти</td><td>иду · идёшь · идут</td></tr>
+<tr><td class="k">дать (fut.)</td><td>дам · дашь · дадут</td></tr>
+</tbody></table></div>
+</div>
+<div class="tip">Past tense is easy: drop -ть, add -л / -ла / -ло / -ли (читал, читала, читали). Exceptions to learn: мочь → мог, могла; идти → шёл, шла.</div>
+</div>
+<div class="pane" id="g6" hidden>
+<div class="scroll"><table>
+<thead><tr><th>Imperfective: process, habit</th><th>Perfective: once, result</th><th>Meaning</th></tr></thead>
+<tbody id="aspect"></tbody></table></div>
+<div class="tip">Perfective has no present tense: «я прочитаю» already means <b>I will read it (and finish)</b>. «Я буду читать» means I will be reading.</div>
+</div>
+<div class="pane" id="g7" hidden>
+<div class="scroll"><table>
+<thead><tr><th></th><th>One direction, now</th><th>Round trip or habit</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td class="k">On foot</td><td>идти: иду, идёшь</td><td>ходить: хожу, ходишь</td><td>Сейчас я иду домой. Я часто хожу в парк.</td></tr>
+<tr><td class="k">By transport</td><td>ехать: еду, едешь</td><td>ездить: езжу, ездишь</td><td>Завтра я еду в Казань. Каждый год я езжу на море.</td></tr>
+<tr><td class="k">Carrying</td><td>нести: несу</td><td>носить: ношу</td><td>Я несу сумку. Он носит очки.</td></tr>
+</tbody></table></div>
+<div class="scroll" style="margin-top:14px"><table>
+<thead><tr><th>Prefix</th><th>Meaning</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td class="k">при-</td><td>arrive</td><td>Он пришёл домой в шесть.</td></tr>
+<tr><td class="k">у-</td><td>leave</td><td>Она уехала в Петербург.</td></tr>
+<tr><td class="k">вы-</td><td>go out</td><td>Я вышел из метро.</td></tr>
+<tr><td class="k">за-</td><td>drop by</td><td>Зайди ко мне вечером!</td></tr>
+<tr><td class="k">по-</td><td>set off</td><td>Поехали!</td></tr>
+</tbody></table></div>
+</div>
+<div class="pane" id="g8" hidden>
+<div class="two">
+<div class="scroll"><table>
+<thead><tr><th>Number ends in</th><th>Noun form</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td class="k">1 (not 11)</td><td>nom. singular</td><td>один рубль, 21 минута</td></tr>
+<tr><td class="k">2, 3, 4</td><td>gen. singular</td><td>два рубля, 23 минуты</td></tr>
+<tr><td class="k">5–20, 0</td><td>gen. plural</td><td>пять рублей, 11 минут</td></tr>
+<tr><td class="k">Age</td><td>год / года / лет</td><td>мне 21 год, 22 года, 25 лет</td></tr>
+</tbody></table></div>
+<div class="scroll"><table>
+<thead><tr><th>Ask</th><th>Answer</th></tr></thead>
+<tbody>
+<tr><td class="k">Который час?</td><td>Сейчас три часа. Пять минут второго.</td></tr>
+<tr><td class="k">Во сколько?</td><td>В два часа. В половине третьего (2:30).</td></tr>
+<tr><td class="k">Какое сегодня число?</td><td>Сегодня двадцать третье ноября.</td></tr>
+<tr><td class="k">Когда?</td><td>В понедельник. В мае. В 2026 году.</td></tr>
+</tbody></table></div>
+</div>
+<div class="tip">The last digit decides: 21 год, 22 года, 25 лет. The teens (11–19) always take genitive plural: 12 лет.</div>
+</div>
+
+<div class="pane" id="g9" hidden>
+<div class="two">
+<div class="scroll"><table>
+<thead><tr><th></th><th>Masc.</th><th>Fem.</th><th>Neut.</th><th>Plural</th></tr></thead>
+<tbody>
+<tr><td class="k">my</td><td>мой</td><td>мо<em>я</em></td><td>мо<em>ё</em></td><td>мо<em>и</em></td></tr>
+<tr><td class="k">your</td><td>твой</td><td>тво<em>я</em></td><td>тво<em>ё</em></td><td>тво<em>и</em></td></tr>
+<tr><td class="k">our</td><td>наш</td><td>наш<em>а</em></td><td>наш<em>е</em></td><td>наш<em>и</em></td></tr>
+<tr><td class="k">your (pl.)</td><td>ваш</td><td>ваш<em>а</em></td><td>ваш<em>е</em></td><td>ваш<em>и</em></td></tr>
+<tr><td class="k">his, her, their</td><td colspan="4">его, её, их never change: его мама, её брат, их дети</td></tr>
+<tr><td class="k">whose?</td><td>чей</td><td>чь<em>я</em></td><td>чь<em>ё</em></td><td>чь<em>и</em></td></tr>
+</tbody></table></div>
+<div class="scroll"><table>
+<thead><tr><th>Case</th><th>Masc. / Neut.</th><th>Fem.</th><th>Plural</th></tr></thead>
+<tbody>
+<tr><td class="k">Gen.</td><td>мо<em>его</em></td><td>мо<em>ей</em></td><td>мо<em>их</em></td></tr>
+<tr><td class="k">Dat.</td><td>мо<em>ему</em></td><td>мо<em>ей</em></td><td>мо<em>им</em></td></tr>
+<tr><td class="k">Acc.</td><td>= nom. / gen.</td><td>мо<em>ю</em></td><td>= nom. / gen.</td></tr>
+<tr><td class="k">Instr.</td><td>мо<em>им</em></td><td>мо<em>ей</em></td><td>мо<em>ими</em></td></tr>
+<tr><td class="k">Prep.</td><td>мо<em>ём</em></td><td>мо<em>ей</em></td><td>мо<em>их</em></td></tr>
+</tbody></table></div>
+</div>
+<div class="tip"><b>свой</b> means “one’s own” and points back to the subject. Он любит <b>свою</b> жену = his own wife. Он любит <b>его</b> жену = another man’s wife. Never use свой in the subject itself: <i>Его</i> жена дома.</div>
+</div>
+<div class="pane" id="g10" hidden>
+<div class="scroll"><table>
+<thead><tr><th>Case</th><th>Masc.</th><th>Neut.</th><th>Fem.</th><th>Plural</th></tr></thead>
+<tbody>
+<tr><td class="k">Nom.</td><td>нов<em>ый</em></td><td>нов<em>ое</em></td><td>нов<em>ая</em></td><td>нов<em>ые</em></td></tr>
+<tr><td class="k">Gen.</td><td colspan="2">нов<em>ого</em> (said «-ово»)</td><td>нов<em>ой</em></td><td>нов<em>ых</em></td></tr>
+<tr><td class="k">Dat.</td><td colspan="2">нов<em>ому</em></td><td>нов<em>ой</em></td><td>нов<em>ым</em></td></tr>
+<tr><td class="k">Acc.</td><td>= nom. or gen.</td><td>нов<em>ое</em></td><td>нов<em>ую</em></td><td>= nom. or gen.</td></tr>
+<tr><td class="k">Instr.</td><td colspan="2">нов<em>ым</em></td><td>нов<em>ой</em></td><td>нов<em>ыми</em></td></tr>
+<tr><td class="k">Prep.</td><td colspan="2">нов<em>ом</em></td><td>нов<em>ой</em></td><td>нов<em>ых</em></td></tr>
+</tbody></table></div>
+<div class="tip">Three spelling tweaks cover almost everything. After г к х ж ш щ ч write и: русск<b>ие</b>, хорош<b>ий</b>. After ж ш щ ч ц an unstressed о becomes е: хорош<b>его</b>, хорош<b>ее</b>. Stressed endings in -ой: больш<b>ой</b>, молод<b>ой</b>. Soft adjectives use я/е/ю/и: син<b>ий</b>, син<b>яя</b>, син<b>его</b>, син<b>юю</b>.</div>
+</div>
+<div class="pane" id="g11" hidden>
+<div class="two">
+<div class="scroll"><table>
+<thead><tr><th>Meaning</th><th>Examples</th></tr></thead>
+<tbody>
+<tr><td class="k">Yourself</td><td>одева́ться, мы́ться, умыва́ться</td></tr>
+<tr><td class="k">Each other</td><td>встреча́ться, ви́деться, знако́миться</td></tr>
+<tr><td class="k">It happens</td><td>начина́ться, конча́ться, открыва́ться</td></tr>
+<tr><td class="k">Feelings</td><td>нра́виться, боя́ться, смея́ться, улыба́ться</td></tr>
+<tr><td class="k">Studying</td><td>учи́ться, занима́ться, гото́виться</td></tr>
+</tbody></table></div>
+<div class="scroll"><table>
+<thead><tr><th></th><th>учи́ться</th></tr></thead>
+<tbody>
+<tr><td class="k">я</td><td>учу́<em>сь</em></td></tr>
+<tr><td class="k">ты</td><td>у́чишь<em>ся</em></td></tr>
+<tr><td class="k">он, она</td><td>у́чит<em>ся</em> (said «-ца»)</td></tr>
+<tr><td class="k">мы / вы</td><td>у́чим<em>ся</em> / у́чите<em>сь</em></td></tr>
+<tr><td class="k">они</td><td>у́чат<em>ся</em></td></tr>
+<tr><td class="k">past</td><td>учи́л<em>ся</em>, учи́ла<em>сь</em>, учи́ли<em>сь</em></td></tr>
+</tbody></table></div>
+</div>
+<div class="tip">-ся after a consonant, -сь after a vowel. A -ся verb never takes a direct object: Я <b>учу</b> русский язык, but Я <b>учусь</b> в университете. Урок <b>начинается</b> в 9, but Учитель <b>начинает</b> урок.</div>
+</div>
+<div class="pane" id="g12" hidden>
+<div class="scroll"><table>
+<thead><tr><th>Infinitive</th><th>они-form</th><th>Imperative (ты / вы)</th><th>Rule</th></tr></thead>
+<tbody>
+<tr><td class="k">чита́ть</td><td>чита́-ют</td><td>чита́<em>й</em> / чита́<em>йте</em></td><td>stem ends in a vowel → -й</td></tr>
+<tr><td class="k">говори́ть</td><td>говор-я́т</td><td>говори́ / говори́<em>те</em></td><td>stress on ending → -и</td></tr>
+<tr><td class="k">писа́ть</td><td>пи́ш-ут</td><td>пиши́ / пиши́<em>те</em></td><td>я пишу́ stressed at end → -и</td></tr>
+<tr><td class="k">гото́вить</td><td>гото́в-ят</td><td>гото́в<em>ь</em> / гото́в<em>ьте</em></td><td>stem stressed → -ь</td></tr>
+<tr><td class="k">Irregular</td><td colspan="3">дать → дай, есть → ешь, пить → пей, сесть → сади́сь, встать → встава́й, е́хать → поезжа́й</td></tr>
+</tbody></table></div>
+<div class="tip">Asking once, for a result → perfective: <b>Закройте</b> окно, пожалуйста. Invitations, general advice and “don’t” → imperfective: <b>Садитесь!</b> <b>Не закрывай</b> окно. “Let’s” = давай / давайте + мы-form: <b>Давай поговорим.</b></div>
+</div>
+<div class="pane" id="g13" hidden>
+<div class="scroll"><table>
+<thead><tr><th>Case</th><th>Verbs</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td class="k">Genitive</td><td>боя́ться, жела́ть, достига́ть; ждать (something abstract)</td><td>Я боюсь соба́к. Желаю удачи!</td></tr>
+<tr><td class="k">Dative</td><td>звони́ть, помога́ть, сове́товать, меша́ть, ве́рить, обеща́ть, дава́ть, нра́виться, отвеча́ть (кому)</td><td>Я помогаю брату. Позвони маме!</td></tr>
+<tr><td class="k">Accusative</td><td>люби́ть, ви́деть, знать, ждать (кого), спра́шивать, проси́ть, слу́шать</td><td>Я жду подругу. Спроси учителя.</td></tr>
+<tr><td class="k">Instrumental</td><td>занима́ться, интересова́ться, по́льзоваться, горди́ться, быть / стать, рабо́тать</td><td>Я занимаюсь спортом. Он стал врачом.</td></tr>
+<tr><td class="k">о + prep.</td><td>ду́мать, говори́ть, мечта́ть, рассказа́ть, забо́титься</td><td>Я мечтаю о море.</td></tr>
+<tr><td class="k">Watch out</td><td>игра́ть <b>в</b> + acc. (games) vs игра́ть <b>на</b> + prep. (instruments); учи́ть что vs учи́ться чему</td><td>Играю в футбол и на гитаре.</td></tr>
+</tbody></table></div>
+<div class="tip">English has no case for “call”, “help” or “do sport”, so these are where mistakes hide. Learn each verb with its question word: звонить <b>кому?</b>, заниматься <b>чем?</b></div>
+</div>
+<div class="pane" id="g14" hidden>
+<div class="scroll"><table>
+<thead><tr><th>Position</th><th>Be there (где? + prep.)</th><th>Put there (куда? + acc.)</th></tr></thead>
+<tbody>
+<tr><td class="k">Standing</td><td>стоя́ть: Книга стоит на полке.</td><td>ста́вить / поста́вить: Я ставлю книгу на полку.</td></tr>
+<tr><td class="k">Lying</td><td>лежа́ть: Телефон лежит на столе.</td><td>класть / положи́ть: Положи телефон на стол.</td></tr>
+<tr><td class="k">Sitting</td><td>сиде́ть: Он сидит на диване.</td><td>сади́ться / сесть: Садитесь на диван.</td></tr>
+<tr><td class="k">Hanging</td><td>висе́ть: Картина висит на стене.</td><td>ве́шать / пове́сить: Повесь картину на стену.</td></tr>
+</tbody></table></div>
+<div class="tip">Russian says how things are placed. Bottles, cups and books on a shelf stand; phones, keys and papers lie. Being in a place → prepositional, putting into it → accusative.</div>
+</div>
+<div class="pane" id="g15" hidden>
+<div class="scroll"><table>
+<thead><tr><th>Case in the clause</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td class="k">Nom.</td><td>Это друг, кото́р<em>ый</em> живёт в Москве.</td></tr>
+<tr><td class="k">Gen.</td><td>Это друг, у кото́р<em>ого</em> есть машина.</td></tr>
+<tr><td class="k">Dat.</td><td>Это подруга, кото́р<em>ой</em> я звоню.</td></tr>
+<tr><td class="k">Acc.</td><td>Это книга, кото́р<em>ую</em> я читаю.</td></tr>
+<tr><td class="k">Instr.</td><td>Это коллеги, с кото́р<em>ыми</em> я работаю.</td></tr>
+<tr><td class="k">Prep.</td><td>Это город, в кото́р<em>ом</em> я живу.</td></tr>
+</tbody></table></div>
+<div class="tip">Two questions: gender and number come from the noun it describes (друг → masc.). Case comes from its job inside its own clause (я звоню кому? → dative). It declines like новый.</div>
+</div>
+<div class="pane" id="g16" hidden>
+<div class="two">
+<div class="scroll"><table>
+<thead><tr><th>Adjective</th><th>Comparative</th></tr></thead>
+<tbody>
+<tr><td class="k">Regular -ее</td><td>интере́сный → интере́сн<em>ее</em>, бы́стрый → быстр<em>е́е</em></td></tr>
+<tr><td class="k">хоро́ший / плохо́й</td><td>лу́чше / ху́же</td></tr>
+<tr><td class="k">большо́й / ма́ленький</td><td>бо́льше / ме́ньше</td></tr>
+<tr><td class="k">дорого́й / дешёвый</td><td>доро́же / деше́вле</td></tr>
+<tr><td class="k">молодо́й / ста́рый</td><td>моло́же / ста́рше</td></tr>
+<tr><td class="k">лёгкий / просто́й</td><td>ле́гче / про́ще</td></tr>
+<tr><td class="k">высо́кий / бли́зкий</td><td>вы́ше / бли́же</td></tr>
+</tbody></table></div>
+<div class="scroll"><table>
+<thead><tr><th>Pattern</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td class="k">than: чем</td><td>Москва больше, чем Казань.</td></tr>
+<tr><td class="k">than: genitive</td><td>Москва больше Казани.</td></tr>
+<tr><td class="k">much more</td><td>гора́здо / намно́го лучше</td></tr>
+<tr><td class="k">the most</td><td>са́мый интересный фильм</td></tr>
+<tr><td class="k">as … as possible</td><td>как мо́жно быстрее</td></tr>
+<tr><td class="k">the more … the</td><td>чем больше, тем лучше</td></tr>
+</tbody></table></div>
+</div>
+</div>
+<div class="pane" id="g17" hidden>
+<div class="scroll"><table>
+<thead><tr><th>Meaning</th><th>Pattern</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td class="k">Real condition</td><td>е́сли + future, future</td><td>Если <b>будет</b> время, я <b>позвоню</b>.</td></tr>
+<tr><td class="k">Unreal condition</td><td>е́сли бы + past, past + бы</td><td>Если бы у меня <b>было</b> время, я бы <b>поехал</b>.</td></tr>
+<tr><td class="k">Polite wish</td><td>я бы + past</td><td>Я бы хотел кофе.</td></tr>
+<tr><td class="k">Purpose, same person</td><td>что́бы + infinitive</td><td>Я учу русский, чтобы <b>работать</b> в Москве.</td></tr>
+<tr><td class="k">Want someone else to</td><td>что́бы + past</td><td>Я хочу, чтобы ты <b>пришёл</b>.</td></tr>
+<tr><td class="k">Whether</td><td>verb + ли</td><td>Я не знаю, <b>придёт ли</b> он.</td></tr>
+</tbody></table></div>
+<div class="tip">English says “if I have time” in the present. Russian uses the future: «Если <b>будет</b> время…». This is one of the most common B1 mistakes.</div>
+</div>
+<div class="pane" id="g18" hidden>
+<div class="two">
+<div class="scroll"><table>
+<thead><tr><th>ни- word</th><th>Example (always with не)</th></tr></thead>
+<tbody>
+<tr><td class="k">никто́</td><td>Никто не звонил.</td></tr>
+<tr><td class="k">ничего́</td><td>Я ничего не понимаю.</td></tr>
+<tr><td class="k">никогда́</td><td>Я никогда не был в Сибири.</td></tr>
+<tr><td class="k">нигде́ / никуда́</td><td>Я нигде не был. Я никуда не иду.</td></tr>
+<tr><td class="k">никако́й</td><td>Нет никакой проблемы.</td></tr>
+<tr><td class="k">ни … ни</td><td>Ни мяса, ни рыбы.</td></tr>
+</tbody></table></div>
+<div class="scroll"><table>
+<thead><tr><th>Pattern</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td class="k">нет / не было / не будет + gen.</td><td>Вчера не было дождя.</td></tr>
+<tr><td class="k">не́чего / не́где / не́кому + inf.</td><td>Мне нечего делать. Негде сесть.</td></tr>
+<tr><td class="k">-то: someone specific</td><td>Кто-то звонил.</td></tr>
+<tr><td class="k">-нибудь: anyone at all</td><td>Кто-нибудь звонил?</td></tr>
+</tbody></table></div>
+</div>
+<div class="tip">Russian stacks negatives: Я <b>никогда никому ничего не</b> говорю = I never tell anyone anything. Нечего (nothing to do) has the stress on не-; ничего (nothing) has it at the end.</div>
+</div>
+<div class="pane" id="g19" hidden>
+<div class="scroll"><table>
+<thead><tr><th>Pattern</th><th>Present</th><th>Past / future</th></tr></thead>
+<tbody>
+<tr><td class="k">Feelings: dat. + -о</td><td>Мне хо́лодно / жа́рко / ску́чно / интере́сно.</td><td>Мне было холодно. Тебе будет интересно.</td></tr>
+<tr><td class="k">Need, may, must not</td><td>Мне ну́жно / на́до / мо́жно / нельзя́ идти.</td><td>Мне нужно было идти.</td></tr>
+<tr><td class="k">It’s time</td><td>Нам пора́ домой.</td><td>Нам было пора.</td></tr>
+<tr><td class="k">Feel like</td><td>Мне хо́чется спать.</td><td>Мне хотелось спать.</td></tr>
+<tr><td class="k">Seem, like</td><td>Мне ка́жется… Мне нра́вится…</td><td>Мне казалось… Мне понравилось.</td></tr>
+<tr><td class="k">Weather</td><td>Хо́лодно. Идёт дождь / снег.</td><td>Было тепло. Будет снег.</td></tr>
+</tbody></table></div>
+<div class="tip">Russian talks about feelings as something that happens <b>to you</b>, so the person goes in the dative. «Я холодный» means “I am a cold person”, not “I feel cold”.</div>
+</div>
+</div></section>
+
+<section class="band redb" id="words"><div class="wrap dgrid">
+<div>
+<div class="card" id="card" tabindex="0" role="button" aria-label="Flashcard, tap to flip">
+<div class="in">
+<div class="face front"><span class="cat" id="cCat"></span><button class="say" id="say1" type="button" aria-label="Pronounce"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg></button><div class="big" id="cRu"></div><span class="hint">Tap to see the meaning</span></div>
+<div class="face back"><div class="tr" id="cEn"></div><div class="ex" id="cEx"></div><span class="hint">Tap to flip back</span></div>
+</div></div>
+<div class="ctl"><button class="btn" id="again" type="button">Again</button><button class="btn gold" id="know" type="button">I know it</button></div>
+</div>
+<div>
+<div class="ruh">Слова</div>
+<h2>Core word drill</h2>
+<p class="lead" style="margin-bottom:0">The <b id="nAll">1,000</b> most frequent Russian words, in four frequency bands, plus themed decks with example sentences. Every word you mark as known adds to your text coverage.</p>
+<div class="cov" aria-live="polite"><div class="big" id="covPct">0%</div><div class="bar"><i id="covBar"></i><b id="covMax"></b></div><small id="covTxt">of everyday text covered by the words you know</small></div>
+<label for="cat" style="font-size:15px">Deck</label>
+<select id="cat"></select>
+<div class="stats"><div><b id="sLeft">0</b><span>left today</span></div><div><b id="sKnown">0</b><span>known</span></div><div><b id="sTotal">0</b><span>in deck</span></div></div>
+<button class="btn" id="shuffle" type="button">Shuffle and restart deck</button>
+</div>
+</div></section>
+
+<section class="band alt" id="list"><div class="wrap">
+<div class="ruh">Словарь: 80/20</div>
+<h2>The frequency word list</h2>
+<p class="lead">Ranked roughly by how often each word appears in everyday Russian. The top 100 alone, mostly little words like и, в, не, это, make up around 40% of what you read and hear. Tick the words you already know so your coverage meter and the chart at the top are accurate. Ranks are approximate.</p>
+<div class="bands" id="bands"></div>
+<div class="wtools"><input id="wq" type="search" placeholder="Search Russian or English…" aria-label="Search words"><select id="wb" aria-label="Frequency band"></select><select id="wf" aria-label="Show"><option value="all">All words</option><option value="new">Not known yet</option><option value="known">Known</option></select></div>
+<div class="wbtn"><button class="btn" type="button" id="wAll">Mark shown as known</button><button class="btn" type="button" id="wNone">Unmark shown</button><span id="wCount"></span></div>
+<div class="wlist" id="wlist"></div>
+</div></section>
+
+<section class="band dark" id="factory"><div class="wrap fac">
+<div>
+<div class="ruh">Завод падежей</div>
+<h2>The case factory</h2>
+<p class="lead">Recognising endings is easy. Producing them is what B1 tests. Type the correct form of the noun and press Enter. Use a Russian keyboard; stress marks are not needed, and е counts for ё.</p>
+<div class="machine">
+<div class="cs" id="fCase">Genitive</div>
+<div class="pr" id="fPr"></div>
+<div class="gl" id="fGl"></div>
+<form class="inrow" id="fForm" autocomplete="off">
+<input id="fIn" lang="ru" autocapitalize="off" spellcheck="false" placeholder="Type the form…" aria-label="Your answer">
+<button class="btn gold" type="submit">Check</button>
+</form>
+<div class="fb" id="fFb" aria-live="polite"></div>
+<div class="inrow"><button class="btn" type="button" id="fShow" style="color:#f2eadb">Show answer</button><button class="btn red" type="button" id="fNext">Next noun</button></div>
+</div>
+</div>
+<div>
+<h3 style="margin-bottom:12px">Output</h3>
+<div class="ns" style="margin-bottom:22px"><div><b id="fOk">0</b><span>correct parts produced</span></div><div><b id="fRate">—</b><span>quality rate</span></div></div>
+<h3 style="margin-bottom:10px">Cases on the line</h3>
+<div class="cases" id="fCases"></div>
+<h3 style="margin:18px 0 10px">Difficulty</h3>
+<div class="cases"><label><input type="checkbox" id="fAdj">Add an adjective (новый брат → нового брата)</label></div>
+</div>
+</div></section>
+
+<section class="band alt" id="paper"><div class="wrap">
+<div class="ruh">Чтение</div>
+<h2>Read the bootcamp gazette</h2>
+<p class="lead">A short B1-level article. Read it once without help, then open the translation for any paragraph and answer the four questions.</p>
+<article class="paper">
+<div class="mast"><b>РЫВОК</b><span>Газета для тех, кто учит русский · Выпуск № 1</span></div>
+<h3>Как я заговорил по-русски за два месяца</h3>
+<div class="art" id="art"></div>
+<div class="gloss"><span><b>всё подряд</b> — everything, one after another</span><span><b>посоветовать</b> — to advise</span><span><b>по дороге</b> — on the way</span><span><b>тёща</b> — wife’s mother</span><span><b>слишком</b> — too</span></div>
+<div class="tf" id="tf"></div>
+<p style="font-size:13px;color:var(--soft);margin:16px 0 0">Sample text written for this page; Mark is not a real person.</p>
+</article>
+</div></section>
+
+<section class="band" id="phrases"><div class="wrap">
+<div class="ruh">Готовые фразы</div>
+<h2>50 chunks that sound like B1</h2>
+<p class="lead">Learn them whole. Tap the speaker to hear each one in your device's Russian voice.</p>
+<div class="phr" id="phr"></div>
+</div></section>
+
+<section class="band alt" id="test"><div class="wrap">
+<div class="ruh">Проверка</div>
+<h2>Level check</h2>
+<p class="lead">Ten random questions from a bank of 35. Each wrong answer links to the week of the plan to go back to.</p>
+<div class="q" id="quiz"></div>
+</div></section>
+
+<section class="band dark" id="exam"><div class="wrap">
+<div class="ruh">ТРКИ-1</div>
+<h2>What B1 means on paper</h2>
+<p class="lead">The official Russian B1 certificate is ТРКИ-1 (TORFL-1). It assumes a vocabulary of about 2,300 words and has five parts. You usually need about 66% on each part to pass.</p>
+<div class="ex5">
+<div><b>Lexicon &amp; grammar</b><span>Cases, aspect, motion verbs, word choice. Your case factory work.</span></div>
+<div><b>Reading</b><span>Short articles, ads and letters. Weekly gazette practice.</span></div>
+<div><b>Listening</b><span>Dialogues and announcements. Your daily 20 minutes of input.</span></div>
+<div><b>Writing</b><span>A letter or short text of about 150 words. Week 7–8 tasks.</span></div>
+<div><b>Speaking</b><span>Role-plays and a short monologue. Your daily shadowing.</span></div>
+</div>
+<h3 style="margin-bottom:12px">The library</h3>
+<div class="lib">
+<a href="https://www.youtube.com/@EasyRussian"><b>Easy Russian</b><span>Street interviews with Russian and English subtitles. Great listening input.</span></a>
+<a href="https://www.russianwithmax.com"><b>Russian with Max</b><span>Podcast in slow, clear Russian on everyday topics.</span></a>
+<a href="https://en.openrussian.org"><b>OpenRussian</b><span>Dictionary with stress, full declension tables and examples.</span></a>
+<a href="https://forvo.com/languages/ru/"><b>Forvo</b><span>Native speakers pronouncing almost any word.</span></a>
+<a href="https://context.reverso.net/translation/russian-english/"><b>Reverso Context</b><span>See a word or phrase in hundreds of real sentences.</span></a>
+<a href="https://apps.ankiweb.net"><b>Anki</b><span>Spaced-repetition flashcards for the words beyond this page.</span></a>
+</div>
+</div></section>
+
+<section class="band redb cta"><div class="wrap">
+<div><div class="ruh">Вперёд, товарищ!</div><h2 style="margin:0">Start week 1 today</h2><p style="margin:8px 0 0">Sixty minutes a day, five days a week, eight weeks.</p></div>
+<a class="btn gold" href="#plan">Go to the plan</a>
+</div></section>
+
+<footer class="band" style="padding-block:28px"><div class="wrap">
+<span>РЫВОК is a self-study bootcamp for learners of Russian, A2 to B1 (ТРКИ-1). The Soviet poster style is just for fun.</span>
+<span>All progress is stored only in this browser.</span>
+</div></footer>
+
+<script>
+{
+const $=s=>document.querySelector(s);
+const store={get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const say=t=>{try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t.replace(/́/g,''));u.lang='ru-RU';u.rate=.9;speechSynthesis.speak(u)}catch(e){}};
+const spk='<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4z"/></svg>';
+const shuf=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+
+/* frequency list + coverage */
+const FREQ=`и=and;в=in, into;не=not;на=on, onto;я=I;быть=to be;он=he, it;с=with, from;что=what, that;а=and, but;по=along, by, on;э́то=this, it;она́=she;э́тот=this;к=towards, to;но=but;они́=they;мы=we;как=how, as;из=from, out of;у=at, near (have);кото́рый=which, who;то=that;за=behind, for;свой=one's own;весь=all, whole;год=year;от=from;так=so, like this;о=about;для=for;ты=you (informal);же=emphatic particle;всё=everything;тот=that (one);мочь=can, be able;вы=you (formal, plural);челове́к=person;тако́й=such, so;его́=his, him;сказа́ть=to say (once);то́лько=only;и́ли=or;ещё=still, more;бы=would (particle);себя́=oneself;оди́н=one;уже́=already;до=until, before;вре́мя=time;е́сли=if;сам=oneself (emphatic);когда́=when;друго́й=other;вот=here is;говори́ть=to speak, say;наш=our;мой=my;знать=to know;стать=to become;при=in the presence of;что́бы=in order to, so that;де́ло=matter, business;жизнь=life;кто=who;пе́рвый=first;о́чень=very;два=two;день=day;её=her, hers;но́вый=new;рука́=hand, arm;да́же=even;раз=time, once;где=where;там=there;под=under;мо́жно=may, it is possible;ну=well;како́й=which, what kind;по́сле=after;их=their, them;рабо́та=work, job;без=without;са́мый=the most;пото́м=then, later;на́до=it is necessary;хоте́ть=to want;ли=whether (particle);сло́во=word;идти́=to go on foot;большо́й=big;до́лжен=must;ме́сто=place;име́ть=to have;ничего́=nothing;ви́деть=to see;сейча́с=now;тут=here;лицо́=face;друг=friend;нет=no, there is no;тепе́рь=now, nowadays;ни=not a, neither;глаз=eye;то́же=also;тогда́=then, at that time;да=yes`;
+const FREQ2=`дом=house, home;сторона́=side;страна́=country;мир=world, peace;слу́чай=case, occasion;голова́=head;ребёнок=child;си́ла=strength, force;коне́ц=end;вид=look, kind, view;систе́ма=system;часть=part;го́род=city, town;отноше́ние=relation, attitude;же́нщина=woman;де́ньги=money;земля́=earth, land;маши́на=car, machine;вода́=water;оте́ц=father;пробле́ма=problem;час=hour;пра́во=right, law;нога́=leg, foot;реше́ние=decision;дверь=door;о́браз=image, way;исто́рия=history, story;власть=power, authority;зако́н=law;война́=war;го́лос=voice;ты́сяча=thousand;кни́га=book;возмо́жность=possibility;результа́т=result;ночь=night;стол=table;и́мя=name;о́бласть=region, field;статья́=article;число́=number, date;компа́ния=company;наро́д=people, nation;жена́=wife;гру́ппа=group;разви́тие=development;проце́сс=process;усло́вие=condition;нача́ло=beginning;свет=light, world;пора́=it is time;путь=way, path;душа́=soul;у́ровень=level;фо́рма=form;связь=connection;мину́та=minute;у́лица=street;ве́чер=evening;ка́чество=quality;мысль=thought;доро́га=road;мать=mother;де́йствие=action;ме́сяц=month;госуда́рство=state;язы́к=language, tongue;любо́вь=love;взгляд=glance, view;ма́ма=mum;век=century;шко́ла=school;цель=goal;о́бщество=society;организа́ция=organisation;ко́мната=room;поря́док=order;моме́нт=moment;теа́тр=theatre;письмо́=letter;у́тро=morning;по́мощь=help;ситуа́ция=situation;роль=role;рубль=rouble;смысл=sense, meaning;состоя́ние=state, condition;кварти́ра=flat, apartment;внима́ние=attention;те́ло=body;сын=son;ме́ра=measure;ры́нок=market;програ́мма=programme;зада́ча=task;разгово́р=conversation;информа́ция=information;положе́ние=position, situation;центр=centre;отве́т=answer;муж=husband;а́втор=author;стена́=wall;интере́с=interest;лес=forest;ле́то=summer;зима́=winter;весна́=spring;о́сень=autumn;пе́сня=song;фильм=film;му́зыка=music;сде́лать=to do, make (once);ду́мать=to think;спроси́ть=to ask (once);понима́ть=to understand;жить=to live;рабо́тать=to work;смотре́ть=to watch, look;явля́ться=to be (formal);каза́ться=to seem;дать=to give (once);дава́ть=to give;пойти́=to go, set off;уйти́=to leave (on foot);прийти́=to come, arrive;взять=to take (once);получи́ть=to receive, get;сиде́ть=to sit;стоя́ть=to stand;лежа́ть=to lie;люби́ть=to love, like;находи́ться=to be located;писа́ть=to write;ходи́ть=to walk, go (habit);сто́ить=to cost;чу́вствовать=to feel;ждать=to wait;нача́ть=to begin (once);пыта́ться=to try;оста́ться=to stay, remain;поня́ть=to understand (once);рассказа́ть=to tell (a story);верну́ться=to return;по́мнить=to remember;спра́шивать=to ask;отвеча́ть=to answer;отве́тить=to answer (once);появи́ться=to appear;оказа́ться=to turn out;слы́шать=to hear;слу́шать=to listen;уви́деть=to see (once);найти́=to find;иска́ть=to look for;встре́тить=to meet (once);помо́чь=to help (once);позвони́ть=to call (once);проси́ть=to ask, request;чита́ть=to read;держа́ть=to hold, keep;занима́ться=to do, study, practise;называ́ть=to call, name;продолжа́ть=to continue;поду́мать=to think (once);счита́ть=to count, consider;зави́сеть=to depend;реши́ть=to decide, solve;хоте́ться=to feel like;боя́ться=to be afraid;ве́рить=to believe;есть=to eat;пить=to drink;спать=to sleep;е́хать=to go by transport;е́здить=to travel (habit);купи́ть=to buy (once);плати́ть=to pay;учи́ть=to learn, teach;учи́ться=to study;игра́ть=to play;откры́ть=to open;закры́ть=to close;нра́виться=to please (like);забы́ть=to forget;измени́ть=to change;гото́вить=to cook, prepare;роди́ться=to be born;вспо́мнить=to recall;хоро́ший=good;ста́рый=old;ма́ленький=small;молодо́й=young;ну́жный=needed;после́дний=last;ру́сский=Russian;ра́зный=different, various;высо́кий=tall, high;бе́лый=white;чёрный=black;кра́сный=red;лу́чший=best;ва́жный=important;изве́стный=famous, known;по́лный=full;гла́вный=main;пра́вый=right;плохо́й=bad;тру́дный=difficult;бы́стрый=fast;ти́хий=quiet;дорого́й=dear, expensive;дешёвый=cheap;холо́дный=cold;тёплый=warm;хорошо́=well, good;пло́хо=badly;бы́стро=quickly;ме́дленно=slowly;ско́ро=soon;сего́дня=today;за́втра=tomorrow;вчера́=yesterday;всегда́=always;никогда́=never;иногда́=sometimes;ча́сто=often;ре́дко=rarely;давно́=long ago, for a long time;сра́зу=at once;опя́ть=again;сно́ва=again, anew;почти́=almost;совсе́м=completely;мно́го=much, many;ма́ло=little, few;немно́го=a little;бо́льше=more;ме́ньше=less;лу́чше=better;ху́же=worse;наве́рное=probably;коне́чно=of course;вообще́=in general, at all;про́сто=simply;и́менно=exactly, namely;здесь=here;туда́=there (to);сюда́=here (to);отку́да=from where;куда́=where to;почему́=why;заче́м=what for;ско́лько=how much, how many;потому́ что=because;поэ́тому=that is why;хотя́=although;три=three;четы́ре=four;пять=five;де́сять=ten;сто=hundred`;
+const FREQ3=`семья́=family;брат=brother;сестра́=sister;дочь=daughter;па́па=dad;ба́бушка=grandmother;де́душка=grandfather;роди́тели=parents;учи́тель=teacher;врач=doctor;студе́нт=student;сосе́д=neighbour;гость=guest;хозя́ин=owner, host;де́вушка=girl, young woman;па́рень=guy;мужчи́на=man;де́ти=children;лю́ди=people;се́рдце=heart;во́лосы=hair;спина́=back;зуб=tooth;у́хо=ear;нос=nose;рот=mouth;окно́=window;ку́хня=kitchen;крова́ть=bed;стул=chair;ключ=key;телефо́н=phone;компью́тер=computer;су́мка=bag;оде́жда=clothes;пла́тье=dress;руба́шка=shirt;еда́=food;хлеб=bread;мя́со=meat;ры́ба=fish;молоко́=milk;чай=tea;ко́фе=coffee;сок=juice;сыр=cheese;я́блоко=apple;о́вощи=vegetables;фру́кты=fruit;са́хар=sugar;соль=salt;суп=soup;за́втрак=breakfast;обе́д=lunch;у́жин=dinner;рестора́н=restaurant;магази́н=shop;метро́=metro;авто́бус=bus;по́езд=train;самолёт=plane;вокза́л=railway station;аэропо́рт=airport;остано́вка=stop;пло́щадь=square;парк=park;музе́й=museum;больни́ца=hospital;апте́ка=pharmacy;банк=bank;гости́ница=hotel;мост=bridge;река́=river;мо́ре=sea;гора́=mountain;не́бо=sky;со́лнце=sun;снег=snow;дождь=rain;ве́тер=wind;пого́да=weather;неде́ля=week;выходны́е=weekend;пра́здник=holiday, celebration;о́тпуск=vacation, leave;иде́я=idea;приме́р=example;вопро́с=question;оши́бка=mistake;пра́вда=truth;причи́на=reason;план=plan;па́мять=memory;мечта́=dream;страх=fear;сча́стье=happiness;здоро́вье=health;боле́знь=illness;пода́рок=gift;цвет=colour;звук=sound;цена́=price;профе́ссия=profession;зарпла́та=salary;о́пыт=experience;образова́ние=education;университе́т=university;уро́к=lesson;экза́мен=exam;зада́ние=assignment, task;пра́вило=rule;предложе́ние=sentence, offer;текст=text;газе́та=newspaper;журна́л=magazine;но́вость=news item;интерне́т=internet;сайт=website;сообще́ние=message;фотогра́фия=photograph;встава́ть=to get up;ложи́ться=to lie down;одева́ться=to get dressed;мыть=to wash;гуля́ть=to walk, stroll;отдыха́ть=to rest;танцева́ть=to dance;петь=to sing;рисова́ть=to draw;бе́гать=to run;пла́вать=to swim;лете́ть=to fly;нести́=to carry;брать=to take;класть=to put (lying);положи́ть=to put (lying, once);ста́вить=to put (standing);принести́=to bring;уе́хать=to leave (by transport);прие́хать=to arrive (by transport);выходи́ть=to go out;войти́=to enter;сесть=to sit down;встать=to stand up;боле́ть=to be ill, hurt;помога́ть=to help;меша́ть=to disturb, stir;обеща́ть=to promise;объясня́ть=to explain;переводи́ть=to translate;повтори́ть=to repeat;узна́ть=to find out, recognise;выбира́ть=to choose;про́бовать=to try, taste;пригласи́ть=to invite;поздра́вить=to congratulate;благодари́ть=to thank;жени́ться=to marry (of a man);расти́=to grow;изуча́ть=to study (in depth);ко́нчиться=to end;начина́ться=to begin (intr.);случи́ться=to happen;происходи́ть=to happen, occur;посмотре́ть=to look, watch (once);встреча́ться=to meet (each other);знако́миться=to get acquainted;звони́ть=to call, ring;отпра́вить=to send;получа́ть=to receive;зараба́тывать=to earn;тра́тить=to spend;меня́ть=to change, exchange;убира́ть=to tidy, clean;опа́здывать=to be late;спеши́ть=to hurry;уста́ть=to get tired;волнова́ться=to worry;смея́ться=to laugh;пла́кать=to cry;улыба́ться=to smile;ра́доваться=to be glad;интересова́ться=to be interested in;пока́зывать=to show;показа́ть=to show (once);сове́товать=to advise;спо́рить=to argue;согласи́ться=to agree;реша́ть=to decide, solve;мечта́ть=to dream;наде́яться=to hope;собира́ться=to plan to, gather;гото́виться=to prepare;уме́ть=to know how to;си́ний=dark blue;зелёный=green;жёлтый=yellow;се́рый=grey;све́тлый=light, bright;тёмный=dark;дли́нный=long;коро́ткий=short;широ́кий=wide;у́зкий=narrow;тяжёлый=heavy;лёгкий=light, easy;чи́стый=clean;гря́зный=dirty;бога́тый=rich;бе́дный=poor;весёлый=cheerful;гру́стный=sad;счастли́вый=happy;до́брый=kind;у́мный=clever;глу́пый=stupid;занято́й=busy;свобо́дный=free;больно́й=ill, sick;здоро́вый=healthy;голо́дный=hungry;вку́сный=tasty;интере́сный=interesting;ску́чный=boring;удо́бный=comfortable;краси́вый=beautiful;стра́шный=scary;гро́мкий=loud;сла́бый=weak;си́льный=strong;бли́зкий=close;далёкий=distant;пра́вильный=correct;по́здний=late;сле́дующий=next;про́шлый=last, past;бу́дущий=future;совреме́нный=modern;иностра́нный=foreign;родно́й=native, own;англи́йский=English;просто́й=simple;сло́жный=complex;гото́вый=ready;ведь=after all;вдруг=suddenly;лишь=only;пока́=while, bye;пусть=let;ка́ждый=each, every;любо́й=any;не́который=some;никто́=nobody;что́-то=something;кто́-то=someone;где́-то=somewhere;о́ба=both;вме́сте=together;ме́жду=between;пе́ред=in front of, before;над=above;че́рез=through, in (time);о́коло=near, about;про́тив=against;вме́сто=instead of;кро́ме=except;среди́=among;наприме́р=for example;кста́ти=by the way;спаси́бо=thank you;пожа́луйста=please;извини́те=excuse me;здра́вствуйте=hello;приве́т=hi`;
+const FREQ4=`а́дрес=address;биле́т=ticket;бума́га=paper;вещь=thing;вкус=taste;во́здух=air;враг=enemy;встре́ча=meeting;вы́ход=exit;грани́ца=border;да́ча=country house;движе́ние=movement, traffic;де́тство=childhood;до́ктор=doctor;докуме́нт=document;дя́дя=uncle;тётя=aunt;жела́ние=wish;живо́тное=animal;заво́д=factory;заня́тие=class, activity;звезда́=star;зда́ние=building;знако́мый=acquaintance;зна́ние=knowledge;игра́=game;иску́сство=art;карти́на=painting;ка́рта=map, card;кино́=cinema;класс=class;ко́шка=cat;соба́ка=dog;конце́рт=concert;костю́м=suit;кровь=blood;культу́ра=culture;ле́стница=stairs;ли́ния=line;ло́жка=spoon;ви́лка=fork;нож=knife;таре́лка=plate;ча́шка=cup;стака́н=glass;буты́лка=bottle;ло́шадь=horse;пти́ца=bird;цвето́к=flower;де́рево=tree;трава́=grass;по́ле=field;о́зеро=lake;о́стров=island;бе́рег=shore;лёд=ice;нау́ка=science;приро́да=nature;о́тдых=rest;па́спорт=passport;пе́нсия=pension;переры́в=break;пиро́г=pie;пи́во=beer;вино́=wine;во́дка=vodka;ка́ша=porridge;карто́шка=potatoes;капу́ста=cabbage;яйцо́=egg;ма́сло=butter, oil;колбаса́=sausage;конфе́та=sweet;моро́женое=ice cream;торт=cake;пе́рец=pepper;поку́пка=purchase;ка́сса=till, ticket office;сда́ча=change (money);ски́дка=discount;разме́р=size;пальто́=coat;ку́ртка=jacket;брю́ки=trousers;ю́бка=skirt;ша́пка=hat;сапоги́=boots;очки́=glasses;часы́=watch, clock;зо́нтик=umbrella;поли́ция=police;пожа́р=fire;по́чта=post office;посо́льство=embassy;ви́за=visa;тамо́жня=customs;бага́ж=luggage;чемода́н=suitcase;путеше́ствие=journey;пое́здка=trip;экску́рсия=guided tour;тури́ст=tourist;гид=guide;сувени́р=souvenir;но́мер=number, hotel room;эта́ж=floor, storey;лифт=lift;балко́н=balcony;сад=garden;двор=yard;кры́ша=roof;пол=floor;потоло́к=ceiling;шкаф=wardrobe, cupboard;по́лка=shelf;дива́н=sofa;холоди́льник=fridge;плита́=stove;душ=shower;полоте́нце=towel;мы́ло=soap;зе́ркало=mirror;каранда́ш=pencil;ру́чка=pen;тетра́дь=notebook;слова́рь=dictionary;перево́д=translation;грамма́тика=grammar;произноше́ние=pronunciation;ударе́ние=stress (accent);бу́ква=letter (of alphabet);звоно́к=call, bell;спор=argument;сове́т=advice, council;про́сьба=request;поздравле́ние=congratulations;день рожде́ния=birthday;сва́дьба=wedding;Но́вый год=New Year;ёлка=fir tree;кани́кулы=school holidays;нача́льник=boss;колле́га=colleague;клие́нт=client;фи́рма=firm;о́фис=office;собра́ние=meeting, assembly;догово́р=contract;рекла́ма=advertising;това́р=goods;услу́га=service;эконо́мика=economy;поли́тика=politics;вы́боры=elections;па́ртия=party (political);револю́ция=revolution;сове́тский=Soviet;о́бщий=common, shared;рабо́чий=worker;крестья́нин=peasant;спорт=sport;футбо́л=football;кома́нда=team;игро́к=player;побе́да=victory;зал=hall;трениро́вка=training;бассе́йн=swimming pool;лы́жи=skis;велосипе́д=bicycle;лека́рство=medicine;температу́ра=temperature;боль=pain;табле́тка=pill;сон=sleep, dream;ра́дость=joy;наде́жда=hope;ве́ра=faith;ложь=lie;секре́т=secret;успе́х=success;учёный=scientist;иссле́дование=research;откры́тие=discovery;рома́н=novel;стихи́=poems;писа́тель=writer;поэ́т=poet;худо́жник=artist;актёр=actor;певе́ц=singer;зри́тель=spectator;сце́на=stage;переда́ча=TV programme;телеви́зор=TV set;ра́дио=radio;та́нец=dance;ро́дина=homeland;столи́ца=capital;дере́вня=village;райо́н=district;Росси́я=Russia;Москва́=Moscow;иностра́нец=foreigner;гра́жданин=citizen;внук=grandson;вну́чка=granddaughter;шесть=six;семь=seven;во́семь=eight;де́вять=nine;два́дцать=twenty;три́дцать=thirty;со́рок=forty;пятьдеся́т=fifty;полови́на=half;че́тверть=quarter;второ́й=second;тре́тий=third;понеде́льник=Monday;вто́рник=Tuesday;среда́=Wednesday;четве́рг=Thursday;пя́тница=Friday;суббо́та=Saturday;воскресе́нье=Sunday;янва́рь=January;февра́ль=February;март=March;апре́ль=April;май=May;ию́нь=June;ию́ль=July;а́вгуст=August;сентя́брь=September;октя́брь=October;ноя́брь=November;дека́брь=December;возвраща́ться=to return;вы́играть=to win (a game);проигра́ть=to lose (a game);потеря́ть=to lose (an item);заказа́ть=to order;заплати́ть=to pay (once);просыпа́ться=to wake up;засыпа́ть=to fall asleep;умыва́ться=to wash (face);ре́зать=to cut;вари́ть=to boil, cook;жа́рить=to fry;стира́ть=to do laundry;гла́дить=to iron, stroke;чини́ть=to repair;стро́ить=to build;проверя́ть=to check;прове́рить=to check (once);сдать=to pass (an exam);поступи́ть=to enrol, enter;око́нчить=to graduate;преподава́ть=to teach;описа́ть=to describe;сравни́ть=to compare;обсужда́ть=to discuss;выступа́ть=to perform, speak publicly;голосова́ть=to vote;боро́ться=to fight, struggle;защища́ть=to defend;победи́ть=to win, defeat;служи́ть=to serve;простуди́ться=to catch a cold;дыша́ть=to breathe;замеча́ть=to notice;заме́тить=to notice (once);узнава́ть=to recognise, find out;представля́ть=to imagine, introduce;удивля́ться=to be surprised;сомнева́ться=to doubt;привыка́ть=to get used to;скуча́ть=to miss, be bored;ненави́деть=to hate;прости́ть=to forgive;обижа́ться=to take offence;ссо́риться=to quarrel;переезжа́ть=to move house;снима́ть=to rent, take off, film;покупа́ть=to buy;продава́ть=to sell;прода́ть=to sell (once);дари́ть=to give (a gift);посыла́ть=to send;печа́тать=to type, print;включа́ть=to switch on;выключа́ть=to switch off;заряжа́ть=to charge;скача́ть=to download;теря́ть=to lose;находи́ть=to find;пря́тать=to hide;броса́ть=to throw, quit;лови́ть=to catch;поднима́ть=to lift, raise;па́дать=to fall;упа́сть=to fall (once);пры́гать=to jump;лета́ть=to fly (around);шуме́ть=to make noise;молча́ть=to be silent;крича́ть=to shout;звуча́ть=to sound;горе́ть=to burn;цвести́=to bloom;умира́ть=to die;умере́ть=to die (once);появля́ться=to appear;исчеза́ть=to disappear;существова́ть=to exist;принадлежа́ть=to belong;состоя́ть=to consist;входи́ть=to enter;пропуска́ть=to miss, skip;успева́ть=to manage in time;успе́ть=to make it in time;опозда́ть=to be late (once);оста́вить=to leave (something);забра́ть=to pick up;провожа́ть=to see off;ва́жно=it is important;интере́сно=it is interesting;гро́мко=loudly;ти́хо=quietly;легко́=easily, it is easy;тру́дно=it is hard;хо́лодно=it is cold;тепло́=it is warm;жа́рко=it is hot;ве́село=it is fun;гру́стно=it is sad;ску́чно=it is boring;нельзя́=it is not allowed;жаль=it is a pity;рад=glad;согла́сен=agree(d);прав=right;за́нят=busy;ра́ньше=earlier, before;по́зже=later;снача́ла=at first;наконе́ц=finally;неда́вно=recently;обы́чно=usually;навсегда́=forever;впереди́=ahead;сза́ди=behind;сле́ва=on the left;спра́ва=on the right;пря́мо=straight;напра́во=to the right;нале́во=to the left;внизу́=downstairs, below;наверху́=upstairs, above;нигде́=nowhere;никуда́=(to) nowhere;ника́к=in no way;приме́рно=approximately;то́чно=exactly, for sure;специа́льно=on purpose;случа́йно=by chance;зна́чит=so, that means;наоборо́т=on the contrary;одна́ко=however;зато́=but then, on the other hand;ра́зве=really? (doubt);неуже́ли=really? (surprise);вряд ли=hardly;ви́дно=evidently;к сожале́нию=unfortunately;к сча́стью=fortunately;во-пе́рвых=firstly;во-вторы́х=secondly;в конце́ концо́в=in the end;на са́мом де́ле=actually;так как=since, as;как то́лько=as soon as;несмотря́ на=despite;ста́рший=older, senior;мла́дший=younger;све́жий=fresh;горя́чий=hot;о́стрый=spicy, sharp;сла́дкий=sweet;солёный=salty;го́рький=bitter;мя́гкий=soft;твёрдый=hard, firm;глубо́кий=deep;ни́зкий=low;то́лстый=fat, thick;худо́й=thin;споко́йный=calm;не́рвный=nervous;ми́лый=sweet, nice;прия́тный=pleasant;ужа́сный=terrible;прекра́сный=wonderful;отли́чный=excellent;обы́чный=usual;стра́нный=strange;ре́дкий=rare;пусто́й=empty;откры́тый=open;закры́тый=closed;живо́й=alive;мёртвый=dead;ли́чный=personal;наро́дный=folk, people's;госуда́рственный=state;городско́й=urban, city;ле́тний=summer (adj.);зи́мний=winter (adj.);дома́шний=home, homemade;еди́нственный=only, sole;це́лый=whole;серьёзный=serious;опа́сный=dangerous;безопа́сный=safe;че́стный=honest;лени́вый=lazy;трудолюби́вый=hard-working;акти́вный=active;популя́рный=popular;мо́дный=fashionable;дре́вний=ancient`;
+
+const strip=w=>w.replace(/\u0301/g,'');
+const FL=[];{const seen=new Set();[FREQ,FREQ2,FREQ3,FREQ4].join(';').split(';').forEach(e=>{const [w,t]=e.split('=');const k=strip(w);if(!seen.has(k)){seen.add(k);FL.push({w,t,k,r:FL.length+1})}})}
+const NW=FL.length;
+const Hn=n=>{let s=0;for(let i=1;i<=n;i++)s+=1/i;return s};const H100=Hn(100);
+const cpts=[[100,40],[300,55],[500,62],[1000,70],[2000,80],[3000,85],[5000,90],[7500,93],[10000,95]];
+const covN=n=>{if(n<=0)return 0;if(n<=100)return 40*Hn(n)/H100;for(let i=1;i<cpts.length;i++){const [a,ca]=cpts[i-1],[b,cb]=cpts[i];if(n<=b)return ca+(cb-ca)*Math.log(n/a)/Math.log(b/a)}return 95};
+const WT=FL.map(e=>covN(e.r)-covN(e.r-1));
+let youN=0,youC=0;
+const youMark=(x,y,sm)=>{if(!youN)return'';const X=x(Math.min(youN,10000)),Y=y(youC),lab=`You: ${youN} words ≈ ${Math.round(youC)}%`;
+return `<circle cx="${X}" cy="${Y}" r="8" fill="#fff" stroke="#16110e" stroke-width="3"/><text x="${X+14}" y="${Y+26}" style="font:700 ${sm?14:16}px Oswald,sans-serif;paint-order:stroke;stroke:#c8161d;stroke-width:5px">${lab}</text>`};
+/* production chart */
+const pts=[[0,0],[100,40],[300,55],[500,62],[1000,70],[2000,80],[3000,85],[5000,90],[7500,93],[10000,95]];
+const cs=$('#cs');
+const draw=()=>{const W=cs.clientWidth,H=cs.clientHeight,sm=W<520,ml=sm?34:44,mr=sm?8:20,mt=14,mb=32;
+const x=v=>ml+v/10000*(W-ml-mr),y=v=>mt+(1-v/100)*(H-mt-mb);
+const P=a=>a.map((p,i)=>(i?'L':'M')+x(p[0]).toFixed(1)+','+y(p[1]).toFixed(1)).join('');
+const path=P(pts),hi=P(pts.filter(p=>p[0]<=2000))+`L${x(2000)},${y(0)}L${x(0)},${y(0)}Z`;
+const xt=(sm?[0,2000,5000,10000]:[0,1000,2000,4000,6000,8000,10000]).map(v=>`<text x="${x(v)}" y="${H-8}" text-anchor="middle">${v.toLocaleString('en')}</text>`).join('');
+const yt=[0,20,40,60,80,100].map(v=>`<line x1="${ml}" x2="${W-mr}" y1="${y(v)}" y2="${y(v)}" stroke="#fff" stroke-opacity=".18"/><text x="${ml-8}" y="${y(v)+4}" text-anchor="end">${v}%</text>`).join('');
+let stripes='';for(let v=2250;v<10000;v+=sm?500:250)stripes+=`<line x1="${x(v)}" x2="${x(v)}" y1="${y(0)}" y2="${y(0)-8}" stroke="#16110e" stroke-opacity=".35" stroke-width="2"/>`;
+cs.innerHTML=yt+`<path d="${path}L${x(10000)},${y(0)}L${x(0)},${y(0)}Z" fill="#16110e" fill-opacity=".28"/>`+stripes+`<path d="${hi}" fill="#f0b323"/><path d="${path}" fill="none" stroke="#fff" stroke-width="3"/>
+<line x1="${x(2000)}" x2="${x(2000)}" y1="${y(80)}" y2="${y(0)}" stroke="#16110e" stroke-width="2" stroke-dasharray="5 4"/>
+<use href="#star" transform="translate(${x(2000)},${y(80)}) scale(1.4)" fill="#f0b323" stroke="#16110e" stroke-width="1.4"/>
+<text x="${W-mr}" y="${y(48)}" text-anchor="end" style="font:700 ${sm?20:30}px Oswald,sans-serif;text-transform:uppercase">≈2,000 words → ≈80%</text>
+<text x="${W-mr}" y="${y(48)+22}" text-anchor="end" style="font-size:15px">${sm?'of everyday text':'of everyday text is covered.'}</text>
+<text x="${W-mr}" y="${y(48)+41}" text-anchor="end" style="font-size:15px">${sm?'8,000 more add ≈15%':'The next 8,000 words add only ≈15%.'}</text>`+xt+
+`<text x="${W-mr}" y="${y(0)-14}" text-anchor="end" fill-opacity=".85">words known →</text>`+youMark(x,y,sm);};
+const ro=new ResizeObserver(draw);ro.observe(cs);
+
+/* routine */
+const rt=[['Word drill','Flashcards, spaced',15],['Grammar + factory','One pattern, 20 forms',15],['Listening input','Podcast or video, Russian subtitles',20],['Speak & write','Shadowing + 5 sentences',10]];
+$('#routine').innerHTML=rt.map(r=>`<div class="row"><b>${r[0]}</b><div><div class="t" style="width:${r[2]/20*100}%">${r[1]}</div></div><span class="m">${r[2]} min</span></div>`).join('');
+
+/* daily norm */
+const norm=store.get('rb-norm',Array(56).fill(false));
+const NG=$('#ng');
+NG.innerHTML=Array.from({length:8},(_,w)=>`<div class="nr"><span>Нед. ${w+1}</span>${Array.from({length:7},(_,d)=>{const i=w*7+d;return `<button class="cell" type="button" data-i="${i}" aria-label="Week ${w+1}, day ${d+1}" aria-pressed="false"></button>`}).join('')}</div>`).join('');
+const normDraw=()=>{let best=0,cur=0;NG.querySelectorAll('.cell').forEach(c=>{const on=!!norm[c.dataset.i];c.classList.toggle('on',on);c.setAttribute('aria-pressed',on);c.innerHTML=on?'<svg width="60%" height="60%" viewBox="-11 -11 22 22"><use href="#star" fill="currentColor"/></svg>':''});
+norm.forEach(v=>{cur=v?cur+1:0;best=Math.max(best,cur)});const n=norm.filter(Boolean).length;$('#nDays').textContent=n;$('#nStreak').textContent=best;$('#nHours').textContent=n+' h';};
+NG.addEventListener('click',e=>{const c=e.target.closest('.cell');if(!c)return;norm[c.dataset.i]=!norm[c.dataset.i];store.set('rb-norm',norm);normDraw()});
+const confirm2=(b,label,fn)=>{if(b.dataset.c){fn();b.textContent=label;delete b.dataset.c}else{b.dataset.c=1;b.textContent='Tap again to confirm';setTimeout(()=>{if(b.dataset.c){b.textContent=label;delete b.dataset.c}},4000)}};
+$('#nReset').addEventListener('click',e=>confirm2(e.currentTarget,'Clear the norm',()=>{norm.fill(false);store.set('rb-norm',norm);normDraw()}));
+normDraw();
+
+/* plan + ranks */
+const weeks=[
+['Foundations reset','Alphabet, stress, present tense',['Word list: words 1–100','Master -ать / -ить present tense','Alphabet + the six pronunciation rules','Shadow 10 min of slow Russian daily','Learn 10 chunks from the list','Write 5 sentences about yourself']],
+['Where and where to','Prepositional + accusative',['Word list: words 101–250','Где? → в/на + prepositional','Куда? → в/на + accusative','Adjective endings: новый, новая, новое','Put & place: стоять / ставить, лежать / класть','Case factory: 30 correct forms']],
+['Have, have not, of','Genitive, numbers, negation',['Word list: words 251–400','у меня есть / у меня нет + gen.','Numbers: 1 книга, 2 книги, 5 книг','из, от, без, для, после','Negation: никто, ничего, нечего','Genitive plurals: лет, людей, минут']],
+['Telling what happened','Past tense, aspect, -ся',['Word list: words 401–550','Past tense: -л, -ла, -ло, -ли','Learn the 15 aspect pairs','Process (читал) vs result (прочитал)','-ся verbs: учиться, встречаться','Record a 1-minute story about yesterday']],
+['Plans and movement','Future, motion, imperative',['Word list: words 551–700','буду + imperf. vs perfective future','идти/ходить, ехать/ездить + 5 prefixes','Imperative: читай, скажи, давай…','Describe your next weekend','Case factory with adjectives']],
+['People and opinions','Dative, instrumental, свой',['Word list: words 701–850','Dative: мне нравится / нужно / холодно','Instrumental: с кем, заниматься чем','Verb + case table: 20 verbs','Possessives and свой','Agree and disagree chunks']],
+['Linking ideas','B1 complex sentences',['Word list: words 851–1000+','который in every case','Comparatives: лучше, больше, интереснее','если vs если бы, чтобы','потому что / поэтому / хотя','Write a 150-word opinion text']],
+['Fluency sprint','ТРКИ-1 style practice',['Review the whole list: aim for ≈70% coverage','Three 3-minute monologues a day','Role-play: shop, doctor, bank','Read the gazette, answer without help','Timed 150-word letter','Retake the level check']]];
+const TT=weeks.reduce((a,w)=>a+w[2].length,0);
+const ranks=[[0,'Октябрёнок','Little Octobrist'],[Math.round(TT*.125),'Пионер','Pioneer'],[Math.round(TT*.375),'Комсомолец','Komsomol member'],[Math.round(TT*.625),'Ударник','Shock worker'],[Math.round(TT*.875),'Стахановец','Record-breaker'],[TT,'Герой труда','Hero of labour']];
+const done=store.get('rb-done2',{});
+const W=$('#weeks');
+W.innerHTML=weeks.map((w,i)=>`<article class="wk" id="w${i}"><div class="n">${i+1}</div><div class="f">${w[1]}</div><h3>${w[0]}</h3>${w[2].map((t,j)=>`<label><input type="checkbox" id="c${i}-${j}" ${done[i+'-'+j]?'checked':''}><span>${t}</span></label>`).join('')}</article>`).join('');
+const badge=(lvl)=>{let r='';const n=8+lvl*4;for(let i=0;i<n;i++){const a=i/n*Math.PI*2,b=a+Math.PI/n*.55;r+=`<path d="M0,0L${(58*Math.cos(a)).toFixed(1)},${(58*Math.sin(a)).toFixed(1)}L${(58*Math.cos(b)).toFixed(1)},${(58*Math.sin(b)).toFixed(1)}Z" fill="#c8161d" opacity="${.35+lvl*.12}"/>`}
+return r+`<circle r="${30+lvl*2}" fill="#c8161d"/><use href="#star" transform="scale(${2.2+lvl*.15})" fill="#f0b323"/>`;};
+const prog=()=>{const n=Object.values(done).filter(Boolean).length,p=Math.round(n/TT*100);let li=0;ranks.forEach((r,i)=>{if(n>=r[0])li=i});
+$('#pbar').style.width=p+'%';$('#ptxt').textContent=`${n} of ${TT} plan tasks fulfilled · ${p}%`;$('#rname').textContent=ranks[li][1];
+$('#rnext').textContent=li<5?`${ranks[li][2]} · ${ranks[li+1][0]-n} tasks to ${ranks[li+1][1]}`:'Hero of labour · plan fulfilled!';$('#badge').innerHTML=badge(li);
+weeks.forEach((w,i)=>$('#w'+i).classList.toggle('done',w[2].every((t,j)=>done[i+'-'+j])));};
+W.addEventListener('change',e=>{done[e.target.id.slice(1)]=e.target.checked;store.set('rb-done2',done);prog()});
+$('#reset').addEventListener('click',e=>confirm2(e.currentTarget,'Reset plan progress',()=>{Object.keys(done).forEach(k=>delete done[k]);store.set('rb-done2',done);W.querySelectorAll('input').forEach(i=>i.checked=false);prog()}));
+prog();
+
+/* alphabet */
+const abc=[['А','a','ма́ма',1],['Б','b','брат',3],['В','v','вода́',2],['Г','g','го́род',3],['Д','d','дом',3],['Е','ye','есть',2],['Ё','yo','ёлка',3],['Ж','zh','жить',3],['З','z','зима́',3],['И','ee','и́мя',3],['Й','y','мой',3],['К','k','кот',1],['Л','l','ле́то',3],['М','m','мир',1],['Н','n','нет',2],['О','o','окно́',1],['П','p','па́па',3],['Р','r (rolled)','рука́',2],['С','s','сок',2],['Т','t','там',1],['У','oo','у́тро',2],['Ф','f','фо́то',3],['Х','kh','хлеб',2],['Ц','ts','у́лица',3],['Ч','ch','чай',3],['Ш','sh','шко́ла',3],['Щ','shch','ещё',3],['Ъ','hard sign','подъе́зд',4],['Ы','ɨ (deep i)','мы',3],['Ь','soft sign','день',4],['Э','e','э́то',3],['Ю','yu','юг',3],['Я','ya','я',3]];
+$('#abcg').innerHTML=abc.map((a,i)=>`<button class="lt g${a[3]}" type="button" data-i="${i}"><b>${a[0]}${a[0].toLowerCase()}</b><i>${a[1]}</i>${a[2]}</button>`).join('');
+$('#abcg').addEventListener('click',e=>{const b=e.target.closest('.lt');if(b)say(abc[b.dataset.i][2])});
+
+/* grammar tabs */
+$('#gtabs').addEventListener('click',e=>{const t=e.target.closest('.tab');if(!t)return;document.querySelectorAll('#gtabs .tab').forEach(b=>{b.setAttribute('aria-selected',b===t);$('#'+b.dataset.p).hidden=b!==t})});
+const asp=[['де́лать','сде́лать','do / make'],['чита́ть','прочита́ть','read'],['писа́ть','написа́ть','write'],['говори́ть','сказа́ть','say / tell'],['ви́деть','уви́деть','see'],['понима́ть','поня́ть','understand'],['покупа́ть','купи́ть','buy'],['брать','взять','take'],['дава́ть','дать','give'],['начина́ть','нача́ть','begin'],['звони́ть','позвони́ть','call'],['отвеча́ть','отве́тить','answer'],['помога́ть','помо́чь','help'],['забыва́ть','забы́ть','forget'],['встреча́ть','встре́тить','meet']];
+$('#aspect').innerHTML=asp.map(a=>`<tr><td class="k">${a[0]}</td><td class="k" style="color:var(--redt)">${a[1]}</td><td>${a[2]}</td></tr>`).join('');
+
+/* flashcards */
+const words=[
+['Verbs','быть','to be','Я бу́ду до́ма ве́чером.'],['Verbs','мочь','can, be able','Ты мо́жешь мне помо́чь?'],['Verbs','хоте́ть','to want','Я хочу́ пить.'],['Verbs','знать','to know','Я не зна́ю, где он.'],['Verbs','говори́ть','to speak, say','Вы говори́те по-англи́йски?'],['Verbs','сказа́ть','to say (once)','Что он сказа́л?'],['Verbs','де́лать','to do','Что ты де́лаешь?'],['Verbs','ду́мать','to think','Я ду́маю, что ты прав.'],['Verbs','идти́','to go on foot (now)','Я иду́ домо́й.'],['Verbs','е́хать','to go by transport (now)','Мы е́дем на рабо́ту.'],['Verbs','жить','to live','Где ты живёшь?'],['Verbs','рабо́тать','to work','Она́ рабо́тает в ба́нке.'],['Verbs','понима́ть','to understand','Я не понима́ю.'],['Verbs','ви́деть','to see','Я тебя́ ви́жу.'],['Verbs','люби́ть','to love, like','Я люблю́ чита́ть.'],['Verbs','помо́чь','to help (once)','Помоги́те, пожа́луйста!'],['Verbs','взять','to take (once)','Я возьму́ ко́фе.'],['Verbs','купи́ть','to buy (once)','Что ты купи́л?'],['Verbs','ждать','to wait','Подожди́ мину́ту.'],['Verbs','по́мнить','to remember','Я по́мню э́тот день.'],['Verbs','спроси́ть','to ask (once)','Мо́жно спроси́ть?'],['Verbs','отве́тить','to answer (once)','Он не отве́тил.'],['Verbs','смотре́ть','to watch, look','Мы смо́трим фильм.'],['Verbs','слу́шать','to listen','Слу́шай меня́!'],['Verbs','учи́ть','to learn, study','Я учу́ ру́сский.'],['Verbs','сиде́ть','to sit','Он сиди́т до́ма.'],['Verbs','стоя́ть','to stand','Маши́на стои́т тут.'],['Verbs','получи́ть','to receive','Я получи́л письмо́.'],['Verbs','найти́','to find','Я не могу́ найти́ ключи́.'],['Verbs','рассказа́ть','to tell (a story)','Расскажи́ о себе́.'],['Verbs','писа́ть','to write','Я пишу́ письмо́.'],['Verbs','чита́ть','to read','Что ты чита́ешь?'],['Verbs','есть','to eat','Я ем суп.'],['Verbs','пить','to drink','Ты пьёшь ко́фе?'],['Verbs','спать','to sleep','Ребёнок спит.'],
+['Nouns','вре́мя','time','У меня́ нет вре́мени.'],['Nouns','челове́к','person','Он хоро́ший челове́к.'],['Nouns','лю́ди','people','Там мно́го люде́й.'],['Nouns','день','day','Хоро́шего дня!'],['Nouns','год','year','Мне два́дцать лет.'],['Nouns','де́ло','matter, business','Как дела́?'],['Nouns','жизнь','life','Така́я жизнь.'],['Nouns','сло́во','word','Что зна́чит э́то сло́во?'],['Nouns','рабо́та','work, job','Я иду́ на рабо́ту.'],['Nouns','вопро́с','question','У меня́ вопро́с.'],['Nouns','друг','friend','Э́то мой друг.'],['Nouns','го́род','city','Я люблю́ э́тот го́род.'],['Nouns','де́ньги','money','У меня́ нет де́нег.'],['Nouns','страна́','country','Кака́я краси́вая страна́!'],['Nouns','язы́к','language, tongue','Ру́сский язы́к тру́дный?'],['Nouns','семья́','family','У меня́ больша́я семья́.'],['Nouns','ребёнок','child','Ребёнок игра́ет.'],['Nouns','де́ти','children','У вас есть де́ти?'],['Nouns','рука́','hand, arm','У меня́ боли́т рука́.'],['Nouns','дверь','door','Закро́й дверь.'],['Nouns','у́лица','street','Я живу́ на э́той у́лице.'],['Nouns','у́тро','morning','До́брое у́тро!'],['Nouns','ночь','night','Споко́йной но́чи!'],['Nouns','мир','world, peace','Мир большо́й.'],['Nouns','пробле́ма','problem','Нет пробле́м.'],['Nouns','исто́рия','story, history','Э́то до́лгая исто́рия.'],['Nouns','това́рищ','comrade, mate','Он мой ста́рый това́рищ.'],['Nouns','раз','time (occurrence)','Ещё раз, пожа́луйста.'],
+['Adjectives','хоро́ший','good','Хоро́шая иде́я!'],['Adjectives','плохо́й','bad','Плоха́я пого́да.'],['Adjectives','большо́й','big','Э́то большо́й дом.'],['Adjectives','ма́ленький','small','Ма́ленькая ко́мната.'],['Adjectives','но́вый','new','У меня́ но́вая рабо́та.'],['Adjectives','ста́рый','old','Ста́рый друг.'],['Adjectives','пе́рвый','first','Э́то мой пе́рвый раз.'],['Adjectives','после́дний','last','После́дний авто́бус.'],['Adjectives','ва́жный','important','Э́то о́чень ва́жно.'],['Adjectives','интере́сный','interesting','Интере́сная кни́га.'],['Adjectives','тру́дный','difficult','Тру́дный вопро́с.'],['Adjectives','лёгкий','easy, light','Э́то лёгкое сло́во.'],['Adjectives','свобо́дный','free','Ты свобо́ден за́втра?'],['Adjectives','гото́вый','ready','Я гото́в!'],['Adjectives','ру́сский','Russian','Ру́сская ку́хня.'],['Adjectives','краси́вый','beautiful','Краси́вый го́род.'],
+['Time & place','сего́дня','today','Сего́дня хо́лодно.'],['Time & place','за́втра','tomorrow','До за́втра!'],['Time & place','вчера́','yesterday','Вчера́ был дождь.'],['Time & place','у́тром','in the morning','У́тром я пью ко́фе.'],['Time & place','ве́чером','in the evening','Ве́чером я до́ма.'],['Time & place','но́чью','at night','Но́чью я сплю.'],['Time & place','ра́но','early','Ещё ра́но.'],['Time & place','по́здно','late','Уже́ по́здно.'],['Time & place','здесь','here','Я здесь.'],['Time & place','там','there','Кто там?'],['Time & place','до́ма','at home','Я до́ма.'],['Time & place','домо́й','(to) home','Я иду́ домо́й.'],['Time & place','везде́','everywhere','Везде́ снег.'],['Time & place','ря́дом','nearby','Магази́н ря́дом.'],['Time & place','далеко́','far','Э́то далеко́?'],['Time & place','давно́','for a long time','Я давно́ тут живу́.'],['Time & place','сейча́с','now','Я сейча́с за́нят.'],['Time & place','пото́м','later, then','Пото́м поговори́м.'],['Time & place','всегда́','always','Он всегда́ опа́здывает.'],['Time & place','иногда́','sometimes','Иногда́ я гото́влю.'],
+['Little words','уже́','already','Я уже́ по́нял.'],['Little words','ещё','still, more','Ещё раз, пожа́луйста.'],['Little words','то́же','also','Я то́же.'],['Little words','то́лько','only','Э́то то́лько нача́ло.'],['Little words','потому́ что','because','Я до́ма, потому́ что бо́лен.'],['Little words','поэ́тому','that is why','Был дождь, поэ́тому мы до́ма.'],['Little words','е́сли','if','Е́сли бу́дет вре́мя, позвоню́.'],['Little words','когда́','when','Когда́ ты придёшь?'],['Little words','почему́','why','Почему́ ты не пришёл?'],['Little words','ну́жно','it is necessary','Мне ну́жно идти́.'],['Little words','мо́жно','may, is it OK','Мо́жно войти́?'],['Little words','наве́рное','probably','Наве́рное, он до́ма.'],['Little words','хотя́','although','Хотя́ я уста́л, я рабо́таю.'],['Little words','что́бы','in order to','Я учу́ ру́сский, что́бы говори́ть.'],['Little words','кото́рый','which, who','Друг, кото́рый живёт ря́дом.'],['Little words','о́чень','very','Спаси́бо большо́е, о́чень прия́тно.'],['Little words','мно́го','a lot, many','У меня́ мно́го рабо́ты.'],['Little words','ма́ло','little, few','У нас ма́ло вре́мени.'],['Little words','ведь','after all','Ведь я говори́л!'],['Little words','да́же','even','Он да́же не позвони́л.']];
+const exMap=new Map(words.map(w=>[strip(w[1]),w[3]]));
+const bandsDef=[[0,100],[100,300],[300,600],[600,NW]];
+const decks=[...bandsDef.map(([a,b])=>({name:`Frequency ${a+1}–${b}`,items:FL.slice(a,b).map(e=>({w:e.w,t:e.t,k:e.k,c:'#'+e.r+' by frequency',ex:exMap.get(e.k)||''}))})),
+...[...new Set(words.map(w=>w[0]))].map(c=>({name:c+' (with examples)',items:words.filter(w=>w[0]===c).map(w=>({w:w[1],t:w[2],k:strip(w[1]),c,ex:w[3]}))}))];
+$('#cat').innerHTML=decks.map((d,i)=>`<option value="${i}">${d.name} · ${d.items.length}</option>`).join('');
+const known=new Set(store.get('rb-known',[]).map(strip));
+const saveK=()=>store.set('rb-known',[...known]);
+let q=[];const card=$('#card');
+const deck=()=>decks[+$('#cat').value].items;
+const coverage=()=>{let c=0,n=0;FL.forEach((e,i)=>{if(known.has(e.k)){c+=WT[i];n++}});youN=n;youC=c;const mx=covN(NW);
+$('#covPct').textContent='≈'+Math.round(c)+'%';$('#covBar').style.width=c+'%';$('#covMax').style.left=mx+'%';
+$('#covTxt').textContent=`of everyday text covered by the ${n} list words you know. All ${NW} words → ≈${Math.round(mx)}% (white line). The next 1,000, from listening and reading, take you to ≈80%.`;
+$('#nAll').textContent=NW.toLocaleString('en');draw();bandsDraw();};
+const show=()=>{card.classList.remove('flip');const d=deck();$('#sLeft').textContent=q.length;$('#sKnown').textContent=d.filter(w=>known.has(w.k)).length;$('#sTotal').textContent=d.length;
+const w=q[0];if(!w){$('#cCat').textContent='';$('#cRu').textContent='Норма выполнена!';$('#cEn').textContent='Deck finished';$('#cEx').textContent='Shuffle and restart to review, or pick the next deck.';return}
+$('#cCat').textContent=w.c;$('#cRu').textContent=w.w;$('#cEn').textContent=w.t;$('#cEx').textContent=w.ex;};
+const build=()=>{q=shuf(deck().filter(w=>!known.has(w.k)));show()};
+card.addEventListener('click',e=>{if(e.target.closest('.say'))return;card.classList.toggle('flip')});
+card.addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();card.classList.toggle('flip')}});
+$('#say1').addEventListener('click',()=>q[0]&&say(q[0].w+(q[0].ex?'. '+q[0].ex:'')));
+$('#again').addEventListener('click',()=>{if(!q.length)return;const w=q.shift();q.splice(Math.min(3,q.length),0,w);show()});
+$('#know').addEventListener('click',()=>{if(!q.length)return;known.add(q.shift().k);saveK();show();coverage();wlDraw()});
+$('#shuffle').addEventListener('click',()=>{deck().forEach(w=>known.delete(w.k));saveK();build();coverage();wlDraw()});
+$('#cat').addEventListener('change',build);
+
+/* word list */
+const bandsDraw=()=>{$('#bands').innerHTML=bandsDef.map(([a,b])=>{const sl=FL.slice(a,b),k=sl.filter(e=>known.has(e.k)).length,cv=WT.slice(a,b).reduce((x,y)=>x+y,0);return `<div><b>${a+1}–${b}</b><span>≈${Math.round(cv)}% of text · ${k}/${sl.length} known</span><i><u style="width:${k/sl.length*100}%"></u></i></div>`}).join('')};
+$('#wb').innerHTML='<option value="-1">All bands</option>'+bandsDef.map(([a,b],i)=>`<option value="${i}">Words ${a+1}–${b}</option>`).join('');
+let shown=[];
+const wlDraw=()=>{const qv=strip($('#wq').value.trim().toLowerCase()),bi=+$('#wb').value,f=$('#wf').value;
+shown=FL.filter(e=>(bi<0||(e.r>bandsDef[bi][0]&&e.r<=bandsDef[bi][1]))&&(!qv||e.k.toLowerCase().includes(qv)||e.t.toLowerCase().includes(qv))&&(f==='all'||(f==='known')===known.has(e.k)));
+$('#wCount').textContent=`${shown.length} shown`;
+$('#wlist').innerHTML=shown.length?shown.map(e=>{const k=known.has(e.k);return `<label class="wl${k?' k':''}"><input type="checkbox" data-k="${e.k}" ${k?'checked':''}><span class="r">#${e.r}</span><div><b>${e.w}</b><span>${e.t}</span></div></label>`}).join(''):'<p style="padding:16px">No words match. Try another search or band.</p>';};
+$('#wlist').addEventListener('change',e=>{const k=e.target.dataset.k;if(e.target.checked)known.add(k);else known.delete(k);e.target.closest('.wl').classList.toggle('k',e.target.checked);saveK();coverage();show()});
+['wq','wb','wf'].forEach(id=>$('#'+id).addEventListener('input',wlDraw));
+$('#wAll').addEventListener('click',()=>{shown.forEach(e=>known.add(e.k));saveK();wlDraw();coverage();build()});
+$('#wNone').addEventListener('click',e=>confirm2(e.currentTarget,'Unmark shown',()=>{shown.forEach(x=>known.delete(x.k));saveK();wlDraw();coverage();build()}));
+build();coverage();wlDraw();
+
+/* case factory */
+const CN=['Genitive','Dative','Accusative','Instrumental','Prepositional'];
+const CP=[['без','without'],['к','towards'],['Я ви́жу','I see'],['с','with'],['о','about']];
+const nouns=[['брат','brother','брата','брату','брата','братом','брате','m',1],['ма́ма','mum','мамы','маме','маму','мамой','маме','f',1],['друг','friend','друга','другу','друга','другом','друге','m',1],['сестра́','sister','сестры','сестре','сестру','сестрой','сестре','f',1],['кни́га','book','книги','книге','книгу','книгой','книге','f',0],['го́род','city','города','городу','город','городом','городе','m',0],['маши́на','car','машины','машине','машину','машиной','машине','f',0],['музе́й','museum','музея','музею','музей','музеем','музее','m',0],['неде́ля','week','недели','неделе','неделю','неделей','неделе','f',0],['мо́ре','sea','моря','морю','море','морем','море','n',0],['письмо́','letter','письма','письму','письмо','письмом','письме','n',0],['учи́тель','teacher','учителя','учителю','учителя','учителем','учителе','m',1],['тетра́дь','notebook','тетради','тетради','тетрадь','тетрадью','тетради','f',0],['пло́щадь','square','площади','площади','площадь','площадью','площади','f',0],['врач','doctor','врача','врачу','врача','врачом','враче','m',1],['рабо́та','work','работы','работе','работу','работой','работе','f',0],['па́па','dad','папы','папе','папу','папой','папе','m',1],['това́рищ','comrade','товарища','товарищу','товарища','товарищем','товарище','m',1],['заво́д','factory','завода','заводу','завод','заводом','заводе','m',0],['соба́ка','dog','собаки','собаке','собаку','собакой','собаке','f',1],['окно́','window','окна','окну','окно','окном','окне','n',0],['кварти́ра','flat','квартиры','квартире','квартиру','квартирой','квартире','f',0]];
+const adjs=[['но́вый','new','нов',0],['ста́рый','old','стар',0],['краси́вый','beautiful','красив',0],['хоро́ший','good','хорош',1],['интере́сный','interesting','интересн',0]];
+const AE={m:[['ого','ому',null,'ым','ом'],'ый'],n:[['ого','ому','ое','ым','ом'],'ое'],f:[['ой','ой','ую','ой','ой'],'ая']};
+const adjForm=(a,n,ci)=>{const g=n[7];let e=AE[g][0][ci];if(e===null)e=n[8]?'ого':'ый';if(a[3])e=e.replace(/^о(?=го|му|м$)/,'е').replace(/^ым$/,'им').replace(/^ый$/,'ий').replace(/^ой$/,'ей');return a[2]+e};
+const adjNom=(a,n)=>{let e=AE[n[7]][1];if(a[3])e=e.replace('ый','ий').replace('ое','ее');return a[2]+e};
+const fOn=store.get('rb-fcases',[1,1,1,1,1]);
+$('#fCases').innerHTML=CN.map((c,i)=>`<label><input type="checkbox" data-i="${i}" id="fc${i}" ${fOn[i]?'checked':''}>${c}</label>`).join('');
+let cur=null,fok=0,ftry=0,answered=false;
+const norm1=s=>s.toLowerCase().replace(/\u0301/g,'').replace(/ё/g,'е').replace(/\s+/g,' ').trim();
+const fNew=()=>{const on=fOn.map((v,i)=>v?i:-1).filter(i=>i>=0);const ci=on.length?on[Math.floor(Math.random()*on.length)]:0;let n;do{n=nouns[Math.floor(Math.random()*nouns.length)]}while(cur&&n===cur.n&&nouns.length>1);
+const a=$('#fAdj').checked?adjs[Math.floor(Math.random()*adjs.length)]:null;cur={n,ci,a};answered=false;$('#fCase').textContent=CN[ci]+(a?' + adjective':'');$('#fPr').innerHTML=`${CP[ci][0]} <u>&nbsp;</u> <span style="color:#c9bdac;font-size:.6em">(${a?adjNom(a,n)+' ':''}${n[0].replace(/\u0301/g,'')})</span>`;$('#fGl').textContent=`${CP[ci][1]} … ${a?a[1]+' ':''}${n[1]}`;$('#fIn').value='';$('#fFb').textContent='';$('#fFb').className='fb';};
+const fAns=()=>(cur.a?adjForm(cur.a,cur.n,cur.ci)+' ':'')+cur.n[2+cur.ci];
+const fStat=()=>{$('#fOk').textContent=fok;$('#fRate').textContent=ftry?Math.round(fok/ftry*100)+'%':'—'};
+$('#fForm').addEventListener('submit',e=>{e.preventDefault();const v=norm1($('#fIn').value);if(!v)return;if(answered){fNew();return}
+const a=fAns(),ok=v===norm1(a);ftry++;if(ok)fok++;answered=true;fStat();
+$('#fFb').className='fb '+(ok?'y':'n');$('#fFb').textContent=ok?`Верно! ${CP[cur.ci][0]} ${a}. Press Enter for the next noun.`:`Not quite: ${CP[cur.ci][0]} ${a}. Press Enter for the next noun.`;
+$('#fPr').querySelector('u').textContent=a;});
+$('#fShow').addEventListener('click',()=>{if(!answered){answered=true;ftry++;fStat()}$('#fPr').querySelector('u').textContent=fAns();$('#fFb').className='fb';$('#fFb').textContent=`${CP[cur.ci][0]} ${fAns()}`;});
+$('#fNext').addEventListener('click',fNew);
+$('#fAdj').checked=!!store.get('rb-fadj',0);$('#fAdj').addEventListener('change',e=>{store.set('rb-fadj',e.target.checked?1:0);fNew()});
+$('#fCases').addEventListener('change',e=>{fOn[e.target.dataset.i]=e.target.checked?1:0;store.set('rb-fcases',fOn);fNew()});
+fNew();
+
+/* gazette */
+const art=[['Меня зовут Марк. Я живу в Берлине и работаю инженером. Два года назад я начал учить русский язык, потому что моя жена из Казани. Сначала было очень трудно: падежи, глаголы движения, ударение…','My name is Mark. I live in Berlin and work as an engineer. Two years ago I started learning Russian because my wife is from Kazan. At first it was very hard: cases, verbs of motion, stress…'],
+['Долго я учил всё подряд и почти не говорил. Потом друг посоветовал мне простой метод: учить только самое важное и каждый день говорить. Я выучил тысячу частых слов и пятьдесят готовых фраз.','For a long time I studied everything and hardly spoke. Then a friend suggested a simple method: learn only the most important things and speak every day. I learned a thousand common words and fifty ready-made phrases.'],
+['Каждое утро я слушал подкаст по дороге на работу, а вечером писал пять предложений о своём дне. Через два месяца я смог поговорить с тёщей по телефону.','Every morning I listened to a podcast on the way to work, and in the evening I wrote five sentences about my day. Two months later I was able to talk to my mother-in-law on the phone.'],
+['Она сказала, что я говорю почти как русский. Наверное, она была слишком добра! Но теперь я знаю: главное — не идеальная грамматика, а смелость говорить.','She said I speak almost like a Russian. She was probably being too kind! But now I know: the main thing is not perfect grammar, but the courage to speak.']];
+$('#art').innerHTML=art.map((p,i)=>`<div class="pp"><p>${p[0]}</p><button class="lk" type="button" data-i="${i}" aria-expanded="false">Show translation</button><p class="en" id="en${i}" hidden>${p[1]}</p></div>`).join('');
+$('#art').addEventListener('click',e=>{const b=e.target.closest('.lk');if(!b)return;const el=$('#en'+b.dataset.i);el.hidden=!el.hidden;b.setAttribute('aria-expanded',!el.hidden);b.textContent=el.hidden?'Show translation':'Hide translation'});
+const tf=[['Марк живёт в Казани.',false,'He lives in Berlin; his wife is from Kazan.'],['Сначала Марк почти не говорил.',true,'«…и почти не говорил».'],['Вечером Марк слушал подкаст.',false,'He listened in the morning and wrote in the evening.'],['Через два месяца он поговорил с тёщей.',true,'«Через два месяца я смог поговорить с тёщей».']];
+$('#tf').innerHTML='<h3>Правда или нет?</h3>'+tf.map((t,i)=>`<div class="tfq"><p>${t[0]}</p><button type="button" data-i="${i}" data-v="1">Правда</button><button type="button" data-i="${i}" data-v="0">Нет</button><span id="tfw${i}" style="flex-basis:100%;font-size:15px;color:var(--soft)"></span></div>`).join('');
+$('#tf').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const t=tf[b.dataset.i],ok=(b.dataset.v==='1')===t[1];b.parentElement.querySelectorAll('button').forEach(x=>x.classList.remove('ok','no'));b.classList.add(ok?'ok':'no');$('#tfw'+b.dataset.i).textContent=(ok?'Верно. ':'Неверно. ')+t[2]});
+
+/* phrases */
+const ph=[['Мне ка́жется, что…','It seems to me that…'],['Как ты ду́маешь?','What do you think?'],['По-мо́ему…','In my opinion…'],['Я согла́сен / согла́сна.','I agree.'],['Я не совсе́м согла́сен.','I don’t fully agree.'],['Де́ло в том, что…','The thing is that…'],['С одно́й стороны́… с друго́й стороны́…','On one hand… on the other…'],['Че́стно говоря́…','To be honest…'],['Кста́ти…','By the way…'],['В о́бщем…','All in all…'],['Наприме́р…','For example…'],['Зави́сит от того́, …','It depends on…'],['Я не уве́рен / уве́рена.','I’m not sure.'],['Что вы име́ете в виду́?','What do you mean?'],['Повтори́те, пожа́луйста, ме́дленнее.','Please repeat more slowly.'],['Как э́то сказа́ть по-ру́сски?','How do you say this in Russian?'],['Как пи́шется э́то сло́во?','How is this word spelled?'],['Мо́жно вопро́с?','Can I ask something?'],['Я хоте́л бы / хоте́ла бы…','I would like…'],['Бы́ло бы здо́рово, е́сли бы…','It would be great if…'],['Мне ну́жно…','I need to…'],['У меня́ есть иде́я.','I have an idea.'],['Ничего́ стра́шного.','No problem, it’s fine.'],['Не за что.','You’re welcome.'],['Извини́те, я опа́здываю.','Sorry, I’m running late.'],['Дава́й встре́тимся в…','Let’s meet at…'],['Во ско́лько?','At what time?'],['Ско́лько э́то сто́ит?','How much is it?'],['Мо́жно счёт, пожа́луйста?','The bill, please.'],['Я тут пе́рвый раз.','I’m here for the first time.'],['Я давно́ хоте́л…','I’ve long wanted to…'],['Я привы́к / привы́кла к…','I’m used to…'],['Мне интере́сно…','I’m curious…'],['Мне всё равно́.','I don’t mind.'],['Тем не ме́нее…','Nevertheless…'],['Поэ́тому я ду́маю, что…','That’s why I think…'],['Я так не ду́маю.','I don’t think so.'],['Ты прав / права́.','You’re right.'],['Вот э́то да!','Wow!'],['Как прошли́ выходны́е?','How was your weekend?'],['Что но́вого?','What’s new?'],['Я рад / ра́да тебя́ ви́деть.','Glad to see you.'],['Расскажи́ о себе́.','Tell me about yourself.'],['Я занима́юсь…','I do / practise…'],['Я учу́ ру́сский уже́…','I’ve been learning Russian for…'],['Мо́жно погро́мче?','Could you speak louder?'],['Пра́вда?','Really?'],['Коне́чно!','Of course!'],['Я поду́маю.','I’ll think about it.'],['Посмо́трим.','We’ll see.']];
+$('#phr').innerHTML=ph.map((p,i)=>`<div class="ph"><div><b>${p[0]}</b><span>${p[1]}</span></div><button class="say" type="button" data-i="${i}" aria-label="Pronounce">${spk}</button></div>`).join('');
+$('#phr').addEventListener('click',e=>{const b=e.target.closest('.say');if(b)say(ph[b.dataset.i][0])});
+
+/* quiz */
+const bank=[
+['Я живу́ в ___ . (Москва)',['Москва','Москву','Москве','Москвой'],2,'Где? → prepositional: в Москве.',2],
+['Я е́ду в ___ . (Москва)',['Москве','Москву','Москвы','Москва'],1,'Куда? → accusative: в Москву.',2],
+['У меня́ нет ___ . (время)',['время','времени','временем','времена'],1,'нет + genitive: времени.',3],
+['Я ви́жу ___ . (брат)',['брат','брату','брата','братом'],2,'People in the accusative look like the genitive: брата.',2],
+['Вчера́ я ___ кни́гу и пошёл спать.',['читал','прочитал','читаю','прочитаю'],1,'Finished, then the next action → perfective: прочитал.',4],
+['Ка́ждый день я ___ на рабо́ту на авто́бусе.',['еду','езжу','иду','хожу'],1,'Habit + transport → ездить: езжу.',5],
+['Мне о́чень ___ э́тот фильм.',['нравлюсь','люблю','нравится','нравятся'],2,'The film pleases me: фильм нравится (singular).',6],
+['Я пишу́ ___ . (ручка)',['ручка','ручку','ручке','ручкой'],3,'The tool you use → instrumental: ручкой.',6],
+['За́втра я ___ тебе́.',['звоню','позвоню','звонил','буду позвонить'],1,'One action in the future → perfective: позвоню.',5],
+['Э́то студе́нт, ___ живёт ря́дом.',['которая','который','которого','которым'],1,'Masculine, subject of «живёт» → который.',7],
+['Мы говори́м с ___ . (друг)',['другу','друга','другом','друге'],2,'с (with) + instrumental: с другом.',6],
+['Я иду́ к ___ . (врач)',['врачу','врача','врачом','враче'],0,'к + dative: к врачу.',6],
+['Ему́ два́дцать пять ___ .',['год','года','лет','годов'],2,'5–20 → genitive plural, and for years that is лет.',3],
+['Я хочу́, ___ ты пришёл.',['что','чтобы','если','потому что'],1,'Wanting someone else to act → чтобы + past.',7],
+['Е́сли бы я знал, я ___ тебе́.',['скажу','сказал бы','говорю','скажи'],1,'Unreal condition: если бы … сказал бы.',7],
+['В ___ я был в Москве́. (прошлый год)',['прошлый год','прошлого года','прошлом году','прошлым годом'],2,'в + year → prepositional with -у: в прошлом году.',2],
+['Вчера́ она́ ___ в Петербу́рг на по́езде. (left)',['ушла','уехала','ехала','ездит'],1,'Left + by transport → у- + ехать: уехала.',5],
+['У ___ есть маши́на. (она)',['её','ей','неё','она'],2,'After a preposition, её becomes неё: у неё.',6],
+['Я ___ э́тот фильм три ра́за.',['смотрел','посмотрел','смотрю','посмотрю'],0,'Repeated action in the past → imperfective: смотрел.',4],
+['Пять ___ . (минута)',['минута','минуты','минут','минутой'],2,'5+ → genitive plural: пять минут.',3],
+['Я ду́маю о ___ . (моя семья)',['моя семья','мою семью','моей семье','моей семьи'],2,'о + prepositional, and мой agrees: о моей семье.',6],
+['Он лю́бит ___ жену́. (his own)',['его','свою','своя','её'],1,'The owner is the subject, so use свой: свою жену.',6],
+['Го́род, в ___ я живу́, о́чень краси́вый.',['который','котором','которого','которым'],1,'в + prepositional (где?): в котором.',7],
+['Я занима́юсь ___ . (спорт)',['спорт','спорту','спортом','спорта'],2,'заниматься + instrumental: спортом.',6],
+['Москва́ ___, чем Каза́нь.',['большая','больше','большой','самая'],1,'Comparative of большой: больше.',7],
+['Мне ___ де́лать. (I have nothing to do)',['ничего','нечего','никто','некого'],1,'нечего + infinitive = nothing to do.',3],
+['___ кни́гу на по́лку. (put it, upright)',['Поставь','Стоит','Положи','Лежит'],0,'Books on a shelf stand, and putting is ставить / поставить.',2],
+['Е́сли за́втра ___ дождь, мы бу́дем до́ма.',['был','будет','есть','был бы'],1,'Real condition about the future → future: если будет.',7],
+['___ , пожа́луйста! (Sit down, polite)',['Сидите','Садитесь','Сесть','Сидеть'],1,'Invitation to sit → imperfective imperative: садитесь.',5],
+['Мне ___ . (I feel cold)',['холодный','холодно','холод','холодная'],1,'Dative + -о word: мне холодно.',6],
+['Я ___ ру́сский язы́к.',['учусь','учу','учится','учит'],1,'With a direct object use учить: учу русский. Учиться takes no object.',4],
+['Вы ___ звони́ли? (anyone at all)',['кому-то','кому-нибудь','никому','некому'],1,'In questions use -нибудь: кому-нибудь.',3],
+['У меня́ нет ___ . (новая машина)',['новая машина','новой машины','новую машину','новой машине'],1,'нет + genitive, adjective agrees: новой машины.',3],
+['Э́то сло́во ___ , чем то.',['труднее','трудный','трудно','самое трудное'],0,'Comparative: труднее.',7],
+['Ле́кция ___ в де́вять.',['начинает','начинается','начать','начнёт'],1,'No object → -ся verb: начинается.',4]];
+let qs=[],qi=0,score=0,miss=[];
+const Q=$('#quiz');
+const start=()=>{qs=shuf(bank.slice()).slice(0,10).map(x=>{const o=x[1].map((t,i)=>[t,i===x[2]]);shuf(o);return [x[0],o.map(a=>a[0]),o.findIndex(a=>a[1]),x[3],x[4]]});qi=0;score=0;miss=[];renderQ()};
+const renderQ=()=>{if(qi>=qs.length){const wk=[...new Set(miss)].sort();const lv=score>=9?'Стахановец: your B1 core is solid':score>=6?'Ударник: strong A2+, almost there':'Пионер: start the plan at week 1';
+Q.innerHTML=`<div class="meta"><span>Result</span><span>${score} / ${qs.length}</span></div><div class="stem">${lv}</div><p class="why">${wk.length?'Go back to: '+wk.map(w=>`<a href="#w${w-1}">week ${w}</a>`).join(', ')+'.':'No gaps found. Go straight to week 8 fluency work.'}</p><button class="btn red" id="retry" type="button">New round</button>`;$('#retry').addEventListener('click',start);return}
+const x=qs[qi];Q.innerHTML=`<div class="meta"><span>Question ${qi+1} of ${qs.length}</span><span>Score ${score}</span></div><div class="stem">${x[0]}</div><div class="why" id="why">&nbsp;</div><div class="opts">${x[1].map((o,i)=>`<button class="opt" type="button" data-i="${i}">${o}</button>`).join('')}</div><div style="margin-top:16px;text-align:right"><button class="btn red" id="next" type="button" hidden>Next</button></div>`;};
+Q.addEventListener('click',e=>{const o=e.target.closest('.opt');if(o&&!o.disabled){const x=qs[qi],i=+o.dataset.i,ok=i===x[2];
+Q.querySelectorAll('.opt').forEach((b,j)=>{b.disabled=true;if(j===x[2])b.classList.add('ok');else if(j===i)b.classList.add('no')});
+if(ok)score++;else miss.push(x[4]);$('#why').innerHTML=(ok?'<b style="color:var(--ok)">Верно.</b> ':'<b style="color:var(--bad)">Not quite.</b> ')+x[3];$('#next').hidden=false;$('#next').focus({preventScroll:true});return}
+if(e.target.id==='next'){qi++;renderQ()}});
+start();
+}
+</script>
+</body>
+</html>
