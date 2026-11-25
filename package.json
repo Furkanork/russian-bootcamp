@@ -1,0 +1,14 @@
+{
+  "name": "russian-bootcamp",
+  "private": true,
+  "description": "РЫВОК: Russian A2 → B1 sprint. Static site; these scripts only run the checks.",
+  "scripts": {
+    "test": "node tests/smoke.js && node tests/check-russian.js",
+    "test:ui": "node tests/smoke.js",
+    "test:russian": "node tests/check-russian.js"
+  },
+  "devDependencies": {
+    "axe-core": "4.10.2",
+    "playwright": "1.63.0"
+  }
+}
